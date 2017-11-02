@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SKSLearningSystem", "SKSLea
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SKSLearningSystem.Tests", "SKSLearningSystem.Tests\SKSLearningSystem.Tests.csproj", "{91E6A8CC-8CF6-4DB5-95EC-D6625BBAC294}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SKSLearningSystem.Data", "SKSLearningSystem.Data\SKSLearningSystem.Data.csproj", "{E15390A5-01B9-47DB-A60B-A34923668FA0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{91E6A8CC-8CF6-4DB5-95EC-D6625BBAC294}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91E6A8CC-8CF6-4DB5-95EC-D6625BBAC294}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91E6A8CC-8CF6-4DB5-95EC-D6625BBAC294}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E15390A5-01B9-47DB-A60B-A34923668FA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E15390A5-01B9-47DB-A60B-A34923668FA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E15390A5-01B9-47DB-A60B-A34923668FA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E15390A5-01B9-47DB-A60B-A34923668FA0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

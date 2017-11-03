@@ -6,7 +6,33 @@ using System.Threading.Tasks;
 
 namespace SKSLearningSystem.Data.Models
 {
-    class CourseState
+    public class CourseState
     {
+        public CourseState()
+        {
+
+        }
+
+        public int Id { get; set; }
+
+        public int UserId { get; set; }
+
+        public int CourseId { get; set; }
+
+        public bool Passed { get; set; }
+
+        public virtual User User { get; set; }
+
+        //public virtual Course Course { get; set; }
+
+        public bool Mandatory { get; set; }
+
+        public double Grade { get; set; }
+
+        public DateTime AssignmentDate { get; set; }
+
+        public DateTime DueDate { get; set; }
+
+        public DateTime CompletionDate { get; set; }
     }
 }

@@ -1,0 +1,49 @@
+﻿#formForCourse {
+    border-radius: 10px;
+    border: solid;
+    border-color: white;
+    padding: 2%;
+  
+    text-align: center;
+}
+
+
+.inputField {
+    visibility: hidden;
+}
+
+.inputLabel {
+    font-size: 300%;
+    padding-left: 30%;
+    padding-right: 30%;
+    padding-bottom: 3%;
+    padding-top: 3%;
+    color:lightslategrey;
+    border: dashed;
+    border-radius: 22px;
+    border-color: darkseagreen;
+}
+
+.inputLabel:hover {
+    border-style: solid;   
+}
+
+.btn-upload{
+    font-size:130%;
+    border-radius:25px;
+    background-color:darkseagreen;
+    border:none;
+    color:white;
+    padding:1.5%;
+}
+
+.btn-upload:hover {
+    background-color: darkgreen;
+}
+
+#crtCourse{
+    font-size:320%;
+     color:lightslategrey;
+     text-align:left;
+     margin-left:5%;
+}

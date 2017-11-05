@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using SKSLearningSystem.Data;
+using SKSLearningSystem.Migrations;
+using System.Data.Entity;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
@@ -19,6 +18,9 @@ namespace SKSLearningSystem
 
             ViewEngines.Engines.Clear();
             ViewEngines.Engines.Add(new RazorViewEngine());
+
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<LearningSystemDbContext, Configuration>());
+
         }
     }
 }

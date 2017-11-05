@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace SKSLearningSystem.Data.Models
 {
-    class Course
+    public class Course
     {
+        public Course()
+        {
+
+        }
+
+        public int Id { get; set; }
+
+        public ICollection<CourseState> Registry { get; set; }
+
     }
 }

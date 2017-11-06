@@ -308,7 +308,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SKSLearningSystem.Data\SKSLearningSystem.Data.csproj">
-     // conflict
+     
       <Project>{e15390a5-01b9-47db-a60b-a34923668fa0}</Project>
 
       <Project>{E15390A5-01B9-47DB-A60B-A34923668FA0}</Project>

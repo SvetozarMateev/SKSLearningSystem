@@ -21,6 +21,12 @@ namespace SKSLearningSystem.Data
 
         public virtual IDbSet<CourseState> CourseStates { get; set; }
 
+        public virtual IDbSet<Image> Images { get; set; }
+
+        public virtual IDbSet<Question> Questions { get; set; }
+
+        public virtual IDbSet<Option> Options { get; set; }
+
 
         public static LearningSystemDbContext Create()
         {

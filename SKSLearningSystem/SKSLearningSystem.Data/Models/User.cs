@@ -14,20 +14,6 @@ namespace SKSLearningSystem.Data.Models
         public User()
         {
             this.courseStates = new HashSet<CourseState>();
-
-        //private ICollection<CourseState> courseStates;
-
-        public User()
-        {
-            //this.courseState = new HashSet<CourseState>();
-        }
-
-        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
-        {
-            // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
-            var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
-            // Add custom user claims here
-            return userIdentity;
         }
 
         public string Department { get; set; }
@@ -43,17 +29,12 @@ namespace SKSLearningSystem.Data.Models
                 this.courseStates = value;
             }
         }
-
-        //public virtual ICollection<CourseState> CourseStates
-        //{
-        //    get
-        //    {
-        //        return this.courseStates;
-        //    }
-        //    set
-        //    {
-        //        this.courseStates = value;
-        //    }
-        //}
+        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
+        {
+            // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
+            var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
+            // Add custom user claims here
+            return userIdentity;
+        }
     }
 }

@@ -23,7 +23,7 @@ namespace SKSLearningSystem.Data.Models
 
         public virtual User User { get; set; }
 
-        //public virtual Course Course { get; set; }
+        public virtual Course Course { get; set; }
 
         public bool Mandatory { get; set; }
 

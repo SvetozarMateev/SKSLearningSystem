@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="Data\LearningSystemDbContext.cs" />
     <Compile Include="Models\Course.cs" />
+
     <Compile Include="Models\CourseState.cs" />
 
     <Compile Include="Migrations\201711041204074_InitialCreate.cs" />
@@ -76,6 +77,7 @@
       <DependentUpon>201711041409039_adminfunc.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

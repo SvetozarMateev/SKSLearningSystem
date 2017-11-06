@@ -1,4 +1,4 @@
-﻿using SKSLearningSystem.Data.Models;
+﻿//using SKSLearningSystem.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +9,6 @@ namespace SKSLearningSystem.Services.Factories
 {
     public interface ICourseStateFactory
     {
-        CourseState CreateCourseState(int courseId);
+        //CourseState CreateCourseState(int courseId);
     }
 }

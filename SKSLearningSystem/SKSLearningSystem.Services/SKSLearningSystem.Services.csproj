@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E15390A5-01B9-47DB-A60B-A34923668FA0}</ProjectGuid>
+    <ProjectGuid>{CD2D9EF0-7F14-406C-BE65-86F7D6AB7D80}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SKSLearningSystem.Data</RootNamespace>
-    <AssemblyName>SKSLearningSystem.Data</AssemblyName>
+    <RootNamespace>SKSLearningSystem.Services</RootNamespace>
+    <AssemblyName>SKSLearningSystem.Services</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -59,16 +60,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\LearningSystemDbContext.cs" />
-    <Compile Include="Models\Course.cs" />
-    <Compile Include="Models\CourseState.cs" />
-    <Compile Include="Models\User.cs" />
+    <Compile Include="Factories\CourseStateFactory.cs" />
+    <Compile Include="Factories\ICourseStateFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserServices\TakeCourseService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SKSLearningSystem.Data\SKSLearningSystem.Data.csproj">
+      <Project>{e15390a5-01b9-47db-a60b-a34923668fa0}</Project>
+      <Name>SKSLearningSystem.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SKSLearningSystem\SKSLearningSystem.csproj">
+      <Project>{be4a6ab9-8170-4894-8a93-6c2257a3f34b}</Project>
+      <Name>SKSLearningSystem</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -50,7 +50,10 @@ namespace SKSLearningSystem.Areas.Admin.Services
 
         public Course ReadCourseFromJSON(UploadCourseViewModel model)
         {
+            Guard.WhenArgument(model, "model").IsNull().Throw();
+
             Guard.WhenArgument(model.CourseFile, "model").IsNull().Throw();
+
 
             var stream = model.CourseFile.InputStream;
             Course course;
@@ -69,6 +72,8 @@ namespace SKSLearningSystem.Areas.Admin.Services
 
         public ICollection<Image> ReadImagesFromFiles(UploadCourseViewModel model)
         {
+            Guard.WhenArgument(model, "model").IsNull().Throw();
+
             Guard.WhenArgument(model.Photos, "model").IsNull().Throw();
 
             ICollection<Image> images = new List<Image>();

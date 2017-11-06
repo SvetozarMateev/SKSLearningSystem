@@ -12,7 +12,7 @@ using System.Linq;
 namespace SKSLearningSystem.Tests.Areas.Admin.Services.AdminServicesTests
 {
     [TestClass]
-   public class SaveCourseToDb_Should
+    public class SaveCourseToDb_Should
     {
         [TestMethod]
         public void ThrowArgumentNullException_WhenParameterIsNull()
@@ -21,11 +21,11 @@ namespace SKSLearningSystem.Tests.Areas.Admin.Services.AdminServicesTests
             var dbMock = new Mock<LearningSystemDbContext>();
             var services = new AdminServices(dbMock.Object);
             var coursesMock = new Mock<DbSet<Course>>();
-            
+
             var model = new UploadCourseViewModel();
 
             //Act & Assert
-            Assert.ThrowsException<ArgumentNullException>(()=> services.SaveCourseToDB(null));
+            Assert.ThrowsException<ArgumentNullException>(() => services.SaveCourseToDB(null));
         }
 
         [TestMethod]
@@ -38,7 +38,7 @@ namespace SKSLearningSystem.Tests.Areas.Admin.Services.AdminServicesTests
             var listCourses = new List<Course>();
             var courseMock = new Course();
             var model = new UploadCourseViewModel();
-           
+
             coursesMock.SetupData(listCourses);
             dbMock.Setup(x => x.Courses).Returns(coursesMock.Object);
 

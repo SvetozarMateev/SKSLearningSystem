@@ -3,7 +3,17 @@
 @{  
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@using (Ajax.BeginForm("uploadcourse", "admin", new AjaxOptions(), new { enctype = "multipart/form-data", id = "formForCourse" }))
+<div id="success-message">
+    @if (Model != null)
+    {
+       
+            Html.RenderPartial("SuccessMessage", Model);
+        
+    }
+</div>
+@using (Ajax.BeginForm("uploadcourse", "admin",
+    new AjaxOptions() {UpdateTargetId="success-message", InsertionMode = InsertionMode.Replace },
+    new { enctype = "multipart/form-data", id = "formForCourse" }))
 {
     @Html.ValidationSummary()
     @Html.ValidationMessageFor(x => x.Photos);
@@ -17,6 +27,7 @@
     new { @type = "file", @class = "inputField" })
 
     <button type="submit"  class="btn-upload">Upload</button>
+  
 }
 @section scripts{
     @Scripts.Render("~/bundles/uploadCourse")    

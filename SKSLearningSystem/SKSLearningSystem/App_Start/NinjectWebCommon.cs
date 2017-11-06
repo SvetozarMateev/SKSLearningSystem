@@ -12,6 +12,7 @@ namespace SKSLearningSystem.App_Start
     using Ninject.Web.Common;
     using Microsoft.AspNet.Identity.Owin;
     using SKSLearningSystem.Data;
+    using SKSLearningSystem.Areas.Admin.Services;
 
     public static class NinjectWebCommon 
     {
@@ -74,6 +75,8 @@ namespace SKSLearningSystem.App_Start
             .Current
             .GetOwinContext()
             .Get<LearningSystemDbContext>());
+
+            kernel.Bind<IAdminServices>().To<AdminServices>();
         }        
     }
 }

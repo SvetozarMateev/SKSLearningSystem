@@ -1,0 +1,38 @@
+﻿
+@model SKSLearningSystem.Areas.Admin.Models.UploadCourseViewModel
+@{  
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="success-message">
+    @if (Model != null)
+    {
+       
+            Html.RenderPartial("SuccessMessage", Model);
+        
+    }
+</div>
+@using (Ajax.BeginForm("uploadcourse", "admin",
+    new AjaxOptions() {UpdateTargetId="success-message", InsertionMode = InsertionMode.Replace },
+    new { enctype = "multipart/form-data", id = "formForCourse" }))
+{
+    @Html.ValidationSummary()
+    @Html.ValidationMessageFor(x => x.Photos);
+    @Html.LabelFor(x=>x.Photos,"Click here to select photos",new { @class = "inputLabel" })
+    @Html.TextBoxFor(model => model.Photos, "",
+       new { @type = "file", @multiple = "multiple", @class = "inputField"})
+   
+    @Html.ValidationMessageFor(x => x.CourseFile);
+    @Html.LabelFor(x => x.CourseFile,"Click here to select file", new { @class = "inputLabel" });
+    @Html.TextBoxFor(model => model.CourseFile, "",
+    new { @type = "file", @class = "inputField" })
+
+    <button type="submit"  class="btn-upload">Upload</button>
+  
+}
+@section scripts{
+    @Scripts.Render("~/bundles/uploadCourse")    
+}
+
+
+
+

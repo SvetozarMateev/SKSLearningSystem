@@ -54,6 +54,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\LearningSystemDbContext.cs" />
+    <Compile Include="Migrations\201711041204074_InitialCreate.cs" />
+    <Compile Include="Migrations\201711041204074_InitialCreate.Designer.cs">
+      <DependentUpon>201711041204074_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711041232314_addingAdmin.cs" />
+    <Compile Include="Migrations\201711041232314_addingAdmin.Designer.cs">
+      <DependentUpon>201711041232314_addingAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711041409039_adminfunc.cs" />
+    <Compile Include="Migrations\201711041409039_adminfunc.Designer.cs">
+      <DependentUpon>201711041409039_adminfunc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -61,6 +74,16 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201711041204074_InitialCreate.resx">
+      <DependentUpon>201711041204074_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711041232314_addingAdmin.resx">
+      <DependentUpon>201711041232314_addingAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711041409039_adminfunc.resx">
+      <DependentUpon>201711041409039_adminfunc.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

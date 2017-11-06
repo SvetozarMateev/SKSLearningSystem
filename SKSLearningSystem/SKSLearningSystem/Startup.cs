@@ -1,5 +1,8 @@
 ﻿using Microsoft.Owin;
 using Owin;
+using SKSLearningSystem.Data;
+using SKSLearningSystem.Migrations;
+using System.Data.Entity;
 
 [assembly: OwinStartupAttribute(typeof(SKSLearningSystem.Startup))]
 namespace SKSLearningSystem

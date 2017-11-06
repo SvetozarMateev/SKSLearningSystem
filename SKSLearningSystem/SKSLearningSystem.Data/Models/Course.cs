@@ -8,7 +8,15 @@ namespace SKSLearningSystem.Data.Models
 {
     public class Course
     {
+        public Course()
+        {
+
+        }
+
         public int Id { get; set; }
+
         public string Name { get; set; }
+
+        public ICollection<CourseState> Registry { get; set; }
     }
 }

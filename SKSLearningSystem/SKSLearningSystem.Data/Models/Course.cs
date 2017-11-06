@@ -15,7 +15,12 @@ namespace SKSLearningSystem.Data.Models
 
         public int Id { get; set; }
 
-        public ICollection<CourseState> Registry { get; set; }
+        public string Name { get; set; }
 
+        public string Description { get; set; }
+
+        // public virtual ICollection<CourseState> Registry { get; set; }
+
+        public virtual ICollection<Byte[]> Images { get; set; }
     }
 }

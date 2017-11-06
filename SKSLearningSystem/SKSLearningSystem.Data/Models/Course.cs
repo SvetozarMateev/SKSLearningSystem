@@ -8,9 +8,13 @@ namespace SKSLearningSystem.Data.Models
 {
     public class Course
     {
+        private ICollection<CourseState> registry;
+        private ICollection<Image> images;
+
         public Course()
         {
-
+            this.registry = new HashSet<CourseState>();
+            this.images = new HashSet<Image>();
         }
 
         public int Id { get; set; }
@@ -21,7 +25,7 @@ namespace SKSLearningSystem.Data.Models
 
         public virtual ICollection<CourseState> Registry { get; set; }
 
-        public virtual ICollection<Byte[]> Images { get; set; }
+        public virtual ICollection<Image> Images { get; set; }
 
     }
 }

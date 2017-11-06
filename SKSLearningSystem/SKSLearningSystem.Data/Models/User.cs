@@ -8,11 +8,18 @@ namespace SKSLearningSystem.Data.Models
 {
     public class User : IdentityUser
     {
+
         private ICollection<CourseState> courseStates;
 
         public User()
         {
             this.courseStates = new HashSet<CourseState>();
+
+        //private ICollection<CourseState> courseStates;
+
+        public User()
+        {
+            //this.courseState = new HashSet<CourseState>();
         }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
@@ -36,5 +43,17 @@ namespace SKSLearningSystem.Data.Models
                 this.courseStates = value;
             }
         }
+
+        //public virtual ICollection<CourseState> CourseStates
+        //{
+        //    get
+        //    {
+        //        return this.courseStates;
+        //    }
+        //    set
+        //    {
+        //        this.courseStates = value;
+        //    }
+        //}
     }
 }

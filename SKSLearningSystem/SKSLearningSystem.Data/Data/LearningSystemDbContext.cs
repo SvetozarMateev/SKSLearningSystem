@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.EntityFramework;
 using SKSLearningSystem.Data.Models;
 using System;
 using System.Collections.Generic;
@@ -16,9 +16,11 @@ namespace SKSLearningSystem.Data
         {
         }
 
+ 
         public virtual IDbSet<Course> Courses { get; set; }
 
         public virtual IDbSet<CourseState> CourseStates { get; set; }
+
 
         public static LearningSystemDbContext Create()
         {

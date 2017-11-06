@@ -1,16 +1,27 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace SKSLearningSystem.Data.Models
 {
     public class User : IdentityUser
     {
+
+        private ICollection<CourseState> courseStates;
+
+        public User()
+        {
+            this.courseStates = new HashSet<CourseState>();
+
+        //private ICollection<CourseState> courseStates;
+
+        public User()
+        {
+            //this.courseState = new HashSet<CourseState>();
+        }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -18,5 +29,31 @@ namespace SKSLearningSystem.Data.Models
             // Add custom user claims here
             return userIdentity;
         }
+
+        public string Department { get; set; }
+
+        public virtual ICollection<CourseState> CourseStates
+        {
+            get
+            {
+                return this.courseStates;
+            }
+            set
+            {
+                this.courseStates = value;
+            }
+        }
+
+        //public virtual ICollection<CourseState> CourseStates
+        //{
+        //    get
+        //    {
+        //        return this.courseStates;
+        //    }
+        //    set
+        //    {
+        //        this.courseStates = value;
+        //    }
+        //}
     }
 }

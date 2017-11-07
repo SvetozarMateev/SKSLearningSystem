@@ -29,6 +29,11 @@ namespace SKSLearningSystem
                       "~/Content/site.css",
                       "~/Content/uploadcourse.css"));
 
+            bundles.Add(new ScriptBundle("~/bundles/jqGrid").Include(
+                    "~/Scripts/jqGrid.js",
+                    "~/Scripts/jquery-ui-{version}.js",
+                    "~/Scripts/monitoringAdminSide.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/uploadCourse").Include(
                       "~/Scripts/uploadCourse.js"));
         }

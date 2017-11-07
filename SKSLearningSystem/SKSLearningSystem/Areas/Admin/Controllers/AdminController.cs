@@ -41,5 +41,17 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
 
             return this.View();
         }
+
+        [HttpGet]
+        public ActionResult MonitorUsersProgress()
+        {
+            return this.View();
+        }
+
+        //public ActionResult Overdue()
+        //{
+
+        //    return this.Json();
+        //}
     }
 }

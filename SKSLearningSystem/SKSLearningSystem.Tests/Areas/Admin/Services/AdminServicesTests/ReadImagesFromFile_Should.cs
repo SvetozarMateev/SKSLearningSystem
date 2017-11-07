@@ -29,27 +29,31 @@ namespace SKSLearningSystem.Tests.Areas.Admin.Services.AdminServicesTests
         }
     }
 
-    [TestMethod]
-    public void ReturnImages_WhenParametersAreCorrect()
-    {
-        //Arrange
-        var dbMock = new Mock<LearningSystemDbContext>();
-        var services = new AdminServices(dbMock.Object);
-        var model = new UploadCourseViewModel();
-        var image = new Mock<HttpPostedFileBase>();
+    //[TestMethod]
+    //public void ReturnImages_WhenParametersAreCorrect()
+    //{
+    //    //Arrange
+    //    var dbMock = new Mock<LearningSystemDbContext>();
+    //    var services = new AdminServices(dbMock.Object);
+    //    var model = new UploadCourseViewModel();
+    //    var image = new Mock<HttpPostedFileBase>();
+        
 
-        ICollection<Image> expected = new List<Image>();
-        foreach (var item in model.Photos)
-        {
-            using (MemoryStream ms = new MemoryStream())
-            {
-                item.InputStream.CopyTo(ms);
-                byte[] array = ms.GetBuffer();
-                expected.Add(new Image() { CurrentImage = array });
-            }
-        }
+    //    model.Photos= new List<HttpPostedFileBase>() { image.Object };
 
-        FileStream stream = new FileStream(@"..\..\MyTestPhoto.png", FileMode.Open);
-        image.Setup(x => x.InputStream).Returns(stream);
-    }
+    //    ICollection<Image> expected = new List<Image>();
+        
+    //        using (MemoryStream ms = new MemoryStream())
+    //        {
+    //            item.InputStream.CopyTo(ms);
+    //            byte[] array = ms.GetBuffer();
+    //            expected.Add(new Image() { CurrentImage = array });
+    //        }
+        
+
+    //    FileStream stream = new FileStream(@"..\..\MyTestPhoto.png", FileMode.Open);
+    //    image.Setup(x => x.InputStream).Returns(stream);
+
+
+    //}
 }

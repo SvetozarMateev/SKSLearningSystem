@@ -22,6 +22,7 @@ namespace SKSLearningSystem
             );
 
             routes.MapRoute(
+
                name: "Admin",
                url: "Admin/{controller}/{action}/{id}",
                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
@@ -37,6 +38,10 @@ namespace SKSLearningSystem
             routes.MapRoute(
                 name: "Empty",
                 url: "",
+
+                name: "Admin",
+                url: "Admin/{controller}/{action}/{id}",
+
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
         }

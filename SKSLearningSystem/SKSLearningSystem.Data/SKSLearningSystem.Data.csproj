@@ -64,6 +64,14 @@
     <Compile Include="Migrations\201711061315269_InitialDb.Designer.cs">
       <DependentUpon>201711061315269_InitialDb.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711061406487_questions-migration.cs" />
+    <Compile Include="Migrations\201711061406487_questions-migration.Designer.cs">
+      <DependentUpon>201711061406487_questions-migration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711061413098_legit questions.cs" />
+    <Compile Include="Migrations\201711061413098_legit questions.Designer.cs">
+      <DependentUpon>201711061413098_legit questions.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\CourseState.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -80,6 +88,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201711061315269_InitialDb.resx">
       <DependentUpon>201711061315269_InitialDb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711061406487_questions-migration.resx">
+      <DependentUpon>201711061406487_questions-migration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711061413098_legit questions.resx">
+      <DependentUpon>201711061413098_legit questions.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

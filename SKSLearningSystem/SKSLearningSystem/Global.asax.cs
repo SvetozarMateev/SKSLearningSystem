@@ -1,5 +1,6 @@
 ﻿using SKSLearningSystem.Data;
 using SKSLearningSystem.Migrations;
+using System;
 using System.Data.Entity;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -20,7 +21,14 @@ namespace SKSLearningSystem
             ViewEngines.Engines.Add(new RazorViewEngine());
 
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<LearningSystemDbContext, Configuration>());
-
+            
         }
+
+        //protected void Application_Error(object sender, EventArgs e)
+        //{
+        //    Exception exception = Server.GetLastError();
+        //    Server.ClearError();
+        //    Response.Redirect("/Home/Error");
+        //}
     }
 }

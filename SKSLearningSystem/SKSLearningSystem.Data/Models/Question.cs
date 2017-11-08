@@ -16,6 +16,10 @@ namespace SKSLearningSystem.Data.Models
         }
         public int Id { get; set; }
 
+        public int CourseId { get; set; }
+
+        public virtual Course Course { get; set; }
+
         public string Statement { get; set; }
 
         public string Answer { get; set; }

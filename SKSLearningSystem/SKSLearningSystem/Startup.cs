@@ -12,6 +12,7 @@ namespace SKSLearningSystem
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
+            
         }
     }
 }

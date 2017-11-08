@@ -1,5 +1,6 @@
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+
 using SKSLearningSystem.Data;
 using SKSLearningSystem.Data.Models;
 using System;
@@ -17,7 +18,6 @@ namespace SKSLearningSystem.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "SKSLearningSystem.Models.LearningSystemDbContext";
         }
 
         protected override void Seed(LearningSystemDbContext context)

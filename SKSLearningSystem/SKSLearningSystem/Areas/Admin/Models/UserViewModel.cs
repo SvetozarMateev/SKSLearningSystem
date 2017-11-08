@@ -7,10 +7,14 @@ namespace SKSLearningSystem.Areas.Admin.Models
 {
     public class UserViewModel
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         public string UserName { get; set; }
 
         public bool Checked { get; set; }
+
+        public DateTime DueDate { get; set; }
+
+        public bool Mandatory { get; set; }
     }
 }

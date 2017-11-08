@@ -13,5 +13,7 @@ namespace SKSLearningSystem.Areas.Admin.Models
         public List<UserViewModel> Users { get; set; }
 
         public List<CourseViewModel> Courses { get; set; }
+
+        
     }
 }

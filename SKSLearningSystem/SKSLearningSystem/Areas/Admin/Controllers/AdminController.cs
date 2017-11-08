@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using SKSLearningSystem.Areas.Admin.Models;
 using SKSLearningSystem.Areas.Admin.Services;
 using SKSLearningSystem.Data;
+using SKSLearningSystem.Data.Models;
 
 namespace SKSLearningSystem.Areas.Admin.Controllers
 {
@@ -32,31 +33,64 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult AssignCourse()
         {
-            
+
             var users = this.userManager
                 .Users
                 .Select(u => new UserViewModel()
                 {
-                    UserName = u.UserName
+                    UserName = u.UserName,
+                    Id = u.Id
                 }).ToList();
 
             var courses = this.context
                 .Courses
-                .Select(c => new CourseViewModel() { Name = c.Name })
+                .Select(c => new CourseViewModel()
+                {
+                    Name = c.Name,
+                    Id = c.Id
+                })
                 .ToList();
 
-            var assignCourseViewModel = new AssignCourseViewModel() {
+            var assignCourseViewModel = new AssignCourseViewModel()
+            {
                 Courses = courses,
-            Users = users
+                Users = users
             };
 
             return this.View(assignCourseViewModel);
         }
 
-        [HttpPost]
+
         public ActionResult CompleteAssignment(AssignCourseViewModel assignCourseViewModel)
         {
             return View(assignCourseViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult SubmitAssignments(AssignCourseViewModel assignCourseViewModel)
+        {
+            var users = context.Users.Where(x => assignCourseViewModel.Users.Select(y => y.Id).ToList().Contains(x.Id)).ToList();
+            var courses = context.Courses.Where(c => assignCourseViewModel.Courses.Select(cr => cr.Id).ToList().Contains(c.Id)).ToList();
+
+
+            for (int i = 0; i < users.Count; i++)
+            {
+                for (int j = 0; j < courses.Count; j++)
+                {
+                    CourseState state = new CourseState()
+                    {
+                        User = users[i],
+                        Course = courses[j]
+                    };
+
+                    users[i].CourseStates.Add(state);
+                    courses[j].Registry.Add(state);
+                }
+            }
+
+            context.SaveChanges();
+
+            return RedirectToAction("AssignCourse");
         }
 
         [HttpPost]
@@ -66,14 +100,14 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
             if (IsValid)
             {
                 // var course = this.services.ReadCourseFromJSON(model);
-                return PartialView("SuccessMessage",model);
+                return PartialView("SuccessMessage", model);
             }
             else
             {
                 this.ModelState.AddModelError("file", "You can upload only json, png or jpeg files.");
             }
-          
-                return this.View();
+
+            return this.View();
         }
     }
 }

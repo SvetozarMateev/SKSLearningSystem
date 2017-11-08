@@ -1,0 +1,29 @@
+﻿body {
+    
+}
+
+#container2 {
+    margin: auto;
+    width: 50%;
+    display: grid;
+    grid-template-columns: repeat(60, 1fr);
+}
+
+#users, #courses {
+    border: 1px solid black;
+    padding: 1px 5px;
+}
+
+#users {
+    grid-column-start: 1;
+    grid-column-end: 30;
+}
+
+#courses {
+    grid-column-start: 30;
+    grid-column-end: 60;
+}
+
+.pressMe{
+    padding: 5px 5px;
+}

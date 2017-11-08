@@ -210,7 +210,10 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
+    <Compile Include="Areas\Admin\Models\AssignCourseViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\CourseViewModel.cs" />
     <Compile Include="Areas\Admin\Models\UploadCourseViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\UserViewModel.cs" />
     <Compile Include="Areas\Admin\Services\AdminServices.cs" />
     <Compile Include="Areas\Admin\Services\IAdminServices.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -225,6 +228,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\AssignCourse.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\uploadcourse.css" />
@@ -240,6 +244,8 @@
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\Admin\UploadCourse.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\SuccessMessage.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\AssignCourse.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\CompleteAssignment.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -308,9 +314,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SKSLearningSystem.Data\SKSLearningSystem.Data.csproj">
-     
       <Project>{e15390a5-01b9-47db-a60b-a34923668fa0}</Project>
-
       <Project>{E15390A5-01B9-47DB-A60B-A34923668FA0}</Project>
       <Name>SKSLearningSystem.Data</Name>
     </ProjectReference>

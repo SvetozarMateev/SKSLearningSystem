@@ -1,0 +1,37 @@
+﻿@model SKSLearningSystem.Areas.Admin.Models.AssignCourseViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<h2>You Have Selected</h2>
+
+@using (Html.BeginForm("CompleteAssignment", "Admin", FormMethod.Post))
+{
+    <div id="container">
+        <div class="ListContiner">
+            @for (int i = 0; i < Model.Users.Count; i++)
+            {
+
+                if (Model.Users[i].Checked == true)
+                {
+                    <p> @Model.Users[i].UserName</p>
+                }
+
+            }
+        </div>
+        <div class="ListContiner">
+            @*@foreach (var course in Model.Courses)
+                    {
+                    <p> @course.Name</p>
+
+                }*@
+        </div>
+    </div>
+    <div id="butt">
+       @Html.ActionLink("Confirm Assignment", "AssignCourse", "Admin", new { area = "Admin" }, null)
+        @Html.ActionLink("Chose New Assignmet", "AssignCourse", "Admin", new { area = "Admin" }, null)
+        
+    </div>
+        }

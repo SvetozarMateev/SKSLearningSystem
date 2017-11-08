@@ -27,7 +27,8 @@ namespace SKSLearningSystem
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
-                      "~/Content/uploadcourse.css"));
+                      "~/Content/uploadcourse.css",
+                       "~/Content/AssignCourse.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/uploadCourse").Include(
                       "~/Scripts/uploadCourse.js"));

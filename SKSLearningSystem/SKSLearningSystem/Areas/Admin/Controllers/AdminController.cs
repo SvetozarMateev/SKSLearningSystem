@@ -1,7 +1,7 @@
 ﻿using SKSLearningSystem.Areas.Admin.Models;
 using SKSLearningSystem.Areas.Admin.Services;
 using SKSLearningSystem.Data;
-
+using System.Linq;
 using SKSLearningSystem.Data.Models;
 
 using System.Web.Mvc;
@@ -21,6 +21,7 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
             this.services = services;
             this.userManager = userManager;
             this.context = context;
+        }
 
         private readonly LearningSystemDbContext db;
 

@@ -1,5 +1,6 @@
 ﻿using SKSLearningSystem.Areas.Admin.Models;
 using SKSLearningSystem.Data;
+using SKSLearningSystem.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,18 +40,29 @@ namespace SKSLearningSystem.Controllers
             return View();
         }
 
-        //public async Task<ActionResult> MyProfile()
-        //{
-        //    var user = await this.applicationUserManager.FindByNameAsync(this.User.Identity.Name);
+        [Authorize]
+        public async Task<ActionResult> MyProfile()
+        {
+            var user = await this.applicationUserManager.FindByNameAsync(this.User.Identity.Name);
 
-        //    var userModel = new UserViewModel()
-        //    {
-        //        Id = user.Id,
-        //        UserName = user.UserName,
-                
-        //    };
+            var userModel = new UserViewModel()
+            {
+                Id = user.Id,
+                UserName = user.UserName,
+                CourseStates = user.CourseStates.Select(cs=>new CourseStateViewModel()
+                {
+                    CourseName = cs.Course.Name,
+                    Mandatory = cs.Mandatory,
+                    Grade = cs.Grade,
+                    AssignmentDate = cs.AssignmentDate,
+                    DueDate = cs.DueDate,
+                    CompletionDate = cs.DueDate
+                }).ToList()
+        };
 
-        //    return View(userModel);
-        //}
+            return View(userModel);
+        }
+
+
     }
 }

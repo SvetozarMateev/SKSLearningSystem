@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SKSLearningSystem.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,5 +17,7 @@ namespace SKSLearningSystem.Areas.Admin.Models
         public DateTime DueDate { get; set; }
 
         public bool Mandatory { get; set; }
+
+        public List<CourseStateViewModel> CourseStates { get; set; }
     }
 }

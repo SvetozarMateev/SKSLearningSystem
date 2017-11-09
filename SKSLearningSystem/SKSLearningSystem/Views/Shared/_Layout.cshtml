@@ -24,10 +24,22 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    @if (this.User.IsInRole("Admin"))
-                    {
-                        <li>@Html.ActionLink("AssignCourse", "AssignCourse", "Admin", new { area = "Admin" }, null)</li>
-                    }
+                    <li id="right">
+                        @if (this.User.IsInRole("Admin"))
+                        {
+                            <p>@Html.ActionLink("AssignCourse", "AssignCourse", "Admin", new { area = "Admin" }, null)</p>
+                        }
+
+                        @if (this.User.IsInRole("MyProfile"))
+                        {
+                            <p>@Html.ActionLink("MyProfile", "MyProfile", "Home", new { area = "Admin" }, null)</p>
+                        }
+                        else
+                        {
+                            <p>@Html.ActionLink("MyProfile", "MyProfile", "Home", new { area = "Admin" }, null)</p>
+                        }
+                    </li>
+
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

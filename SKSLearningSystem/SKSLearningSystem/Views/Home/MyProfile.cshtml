@@ -2,7 +2,17 @@
 
 <div id="containerUserProfile">
     <div id="profilePicture">
-        <img src="smiley.gif" alt="Smiley face" height="42" width="42">
+        
+        @using (Html.BeginForm("ChangeProfilePicture", "Home", FormMethod.Post, new { enctype = "multipart/form-data", id = "formForCourse" }))
+        {
+            @Html.LabelFor(u => u.ProfilePictureFile, "Click here to select photo")
+
+            @Html.TextBoxFor(model => model.ProfilePictureFile, "",
+       new { @type = "file", @multiple = "multiple", @class = "inputField" })
+
+            <button type="submit" class="btn-upload">Upload</button>
+
+        }
     </div>
     <div id="personalData">
         <p id="userName">@Model.UserName</p>

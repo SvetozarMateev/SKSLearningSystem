@@ -8,13 +8,14 @@ namespace SKSLearningSystem.Data.Models
 {
     public class User : IdentityUser
     {
-
         private ICollection<CourseState> courseStates;
 
         public User()
         {
             this.courseStates = new HashSet<CourseState>();
         }
+
+        public Image ProfilePicture { get; set; }
 
         public string Department { get; set; }
 

@@ -77,6 +77,8 @@ namespace SKSLearningSystem.App_Start
             .Get<LearningSystemDbContext>());
 
             kernel.Bind<IAdminServices>().To<AdminServices>();
+
+            kernel.Bind<IGridServices>().To<GridServices>();
         }        
     }
 }

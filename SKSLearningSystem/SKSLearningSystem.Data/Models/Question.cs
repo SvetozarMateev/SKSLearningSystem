@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,8 +21,12 @@ namespace SKSLearningSystem.Data.Models
 
         public virtual Course Course { get; set; }
 
+        [Required]
+        [StringLength(200,MinimumLength =5)]
         public string Statement { get; set; }
 
+        [Required]
+        [StringLength(2)]
         public string Answer { get; set; }
 
         public virtual ICollection<Option> Options { get; set; }

@@ -1,7 +1,7 @@
 ﻿
 @model SKSLearningSystem.Areas.Admin.Models.UploadCourseViewModel
-@{  
-    Layout = "~/Views/Shared/_Layout.cshtml";
+@{ 
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
 @using (Html.BeginForm("UploadCourse", "Admin", FormMethod.Post, new { enctype = "multipart/form-data", id = "formForCourse" }))

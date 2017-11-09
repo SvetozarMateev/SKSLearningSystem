@@ -4,6 +4,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using SKSLearningSystem.Data;
 using SKSLearningSystem.Data.Models;
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
@@ -45,12 +46,22 @@ namespace SKSLearningSystem.Migrations
 
                 //Here we create a Admin super user who will maintain the website                  
 
+                var course = new Course();
+                var courseState = new CourseState();
+                course.Name = "Seed";
+                course.Description = "Seeded";
+                courseState.Course = course;
+                courseState.AssignmentDate = DateTime.Now;
+                courseState.CompletionDate = DateTime.Now;
+                courseState.DueDate = DateTime.Now;
+                
                 var user = new User();
+                user.CourseStates = new List<CourseState>() { courseState };
                 user.UserName = "adming@admin.com";
                 user.Email = "adming@admin.com";
                 
                 string userPWD = "Admin123$";
-
+                
                 var chkUser = UserManager.Create(user, userPWD);
 
                 //Add default User to Role Admin   

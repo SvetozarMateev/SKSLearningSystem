@@ -219,12 +219,18 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
+    <Compile Include="Areas\Admin\Models\CourseStateRowViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\FilterViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\GridRequestViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\RulesViewModel.cs" />
     <Compile Include="Areas\Admin\Models\AssignCourseViewModel.cs" />
     <Compile Include="Areas\Admin\Models\CourseViewModel.cs" />
     <Compile Include="Areas\Admin\Models\UploadCourseViewModel.cs" />
     <Compile Include="Areas\Admin\Models\UserViewModel.cs" />
     <Compile Include="Areas\Admin\Services\AdminServices.cs" />
+    <Compile Include="Areas\Admin\Services\GridServices.cs" />
     <Compile Include="Areas\Admin\Services\IAdminServices.cs" />
+    <Compile Include="Areas\Admin\Services\IGridServices.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -244,6 +250,13 @@
     <Content Include="Content\AssignCourse.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\home-page.css" />
+    <Content Include="Content\hover.css" />
+    <Content Include="Content\jquery.jqGrid\ellipsis-xbl.xml" />
+    <Content Include="Content\jquery.jqGrid\ui.jqgrid.css" />
+    <Content Include="Content\monitorAdmin.css" />
+    <Content Include="Content\slick-theme.css" />
+    <Content Include="Content\slick.css" />
     <Content Include="Content\CompleteAssignment.css" />
     <Content Include="Content\jquery.jqGrid\ellipsis-xbl.xml" />
     <Content Include="Content\jquery.jqGrid\ui.jqgrid.css" />
@@ -327,6 +340,10 @@
     <Content Include="Areas\Admin\Views\Admin\AssignCourse.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\CompleteAssignment.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\MonitorUsersProgress.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="fonts\slick.ttf" />
+    <Content Include="fonts\slick.woff" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\i18n\grid.locale-ar.js" />
     <Content Include="Scripts\i18n\grid.locale-bg.js" />
@@ -388,6 +405,8 @@
     <Content Include="Scripts\monitoringAdminSide.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\slick.min.js" />
+    <Content Include="Scripts\slider.js" />
     <Content Include="Scripts\uploadCourse.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -427,7 +446,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

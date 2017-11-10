@@ -6,11 +6,7 @@ using SKSLearningSystem.Areas.Admin.Services;
 using SKSLearningSystem.Data;
 using SKSLearningSystem.Data.Models;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web;
 
 namespace SKSLearningSystem.Tests.Areas.Admin.Services.AdminServicesTests
@@ -38,7 +34,7 @@ namespace SKSLearningSystem.Tests.Areas.Admin.Services.AdminServicesTests
             var model = new UploadCourseViewModel();
 
             //Act & Assert
-            Assert.ThrowsException<ArgumentNullException>(() => services.ReadCourseFromJSON(model));
+            Assert.ThrowsException<ArgumentNullException>(() => services.ReadCourseFromJSON(model.CourseFile));
         }
 
         [TestMethod]
@@ -54,7 +50,7 @@ namespace SKSLearningSystem.Tests.Areas.Admin.Services.AdminServicesTests
             jsonFileMock.Setup(x => x.InputStream).Returns(stream);
 
             //Act & Assert
-            Assert.ThrowsException<ArgumentNullException>(() => services.ReadCourseFromJSON(model));
+            Assert.ThrowsException<ArgumentNullException>(() => services.ReadCourseFromJSON(model.CourseFile));
 
             stream.Dispose();
         }
@@ -81,7 +77,7 @@ namespace SKSLearningSystem.Tests.Areas.Admin.Services.AdminServicesTests
             jsonFileMock.Setup(x => x.InputStream).Returns(stream);
 
             //Act 
-            var actual = services.ReadCourseFromJSON(model);
+            var actual = services.ReadCourseFromJSON(model.CourseFile);
 
             //Assert
             Assert.AreEqual(expected.Name, actual.Name);

@@ -1,22 +1,20 @@
 ﻿
 @{
     ViewBag.Title = "MonitorUsersProgress";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div class="overdue-field">
-    <table id="grps"></table>
-    <div id="pgrps"></div>
-</div>
-
-<div class="pending-field">
-
-</div>
-
-<div class="started-field">
+<div class="users-field">
+    @*<table id="grps"></table>
+    <div id="pgrps"></div>*@
+    <table id="list485"></table>
+    <div id="plist485"></div>
 
 </div>
 
-<div class="completed-field">
-
-</div>
+@section scripts{
+    @Scripts.Render("~/bundles/jqGrid")
+}
+@section styles{
+    @Styles.Render("~/Content/jqGridcss")
+}

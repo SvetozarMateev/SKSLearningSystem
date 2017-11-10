@@ -53,14 +53,13 @@ namespace SKSLearningSystem.Migrations
                 courseState.AssignmentDate = DateTime.Now;
                 courseState.CompletionDate = DateTime.Now;
                 courseState.DueDate = DateTime.Now;
-
                 var user = new User();
                 user.CourseStates = new List<CourseState>() { courseState };
                 user.UserName = "adming@admin.com";
                 user.Email = "adming@admin.com";
 
                 string userPWD = "Admin123$";
-
+                
                 var chkUser = UserManager.Create(user, userPWD);
 
                 //Add default User to Role Admin   

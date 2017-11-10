@@ -17,10 +17,11 @@ namespace SKSLearningSystem.Tests.Areas.Admin.Controllers.AdminControllerTests
         {
             //Arrange
             var adminServicesMock = new Mock<IAdminServices>();
+            var gridServicesMock = new Mock<IGridServices>();
             var dbMock = new Mock<LearningSystemDbContext>();
             var viewModelMock = new UploadCourseViewModel();
 
-            var controller = new AdminController(adminServicesMock.Object, dbMock.Object);
+            var controller = new AdminController(adminServicesMock.Object, dbMock.Object,gridServicesMock.Object);
             adminServicesMock.Setup(x => x.ValidateInputFiles(viewModelMock)).Returns(false);
             var expected = 1;
 
@@ -36,10 +37,12 @@ namespace SKSLearningSystem.Tests.Areas.Admin.Controllers.AdminControllerTests
         {
             //Arrange
             var adminServicesMock = new Mock<IAdminServices>();
+            var gridServicesMock = new Mock<IGridServices>();
+
             var dbMock = new Mock<LearningSystemDbContext>();
             var viewModelMock = new UploadCourseViewModel();
 
-            var controller = new AdminController(adminServicesMock.Object, dbMock.Object);           
+            var controller = new AdminController(adminServicesMock.Object, dbMock.Object,gridServicesMock.Object);
 
             //Act 
             controller.UploadCourse(viewModelMock);
@@ -53,13 +56,14 @@ namespace SKSLearningSystem.Tests.Areas.Admin.Controllers.AdminControllerTests
         {
             //Arrange
             var adminServicesMock = new Mock<IAdminServices>();
+            var gridServicesMock = new Mock<IGridServices>();
             var dbMock = new Mock<LearningSystemDbContext>();
             var viewModelMock = new UploadCourseViewModel();
             var courseMock = new Course();
 
-            var controller = new AdminController(adminServicesMock.Object, dbMock.Object);
+            var controller = new AdminController(adminServicesMock.Object, dbMock.Object,gridServicesMock.Object);
             adminServicesMock.Setup(x => x.ValidateInputFiles(viewModelMock)).Returns(true);
-            adminServicesMock.Setup(x => x.ReadCourseFromJSON(viewModelMock)).Returns(courseMock);
+            adminServicesMock.Setup(x => x.ReadCourseFromJSON(viewModelMock.CourseFile)).Returns(courseMock);
 
             //Act 
             controller.UploadCourse(viewModelMock);
@@ -73,12 +77,13 @@ namespace SKSLearningSystem.Tests.Areas.Admin.Controllers.AdminControllerTests
         {
             //Arrange
             var adminServicesMock = new Mock<IAdminServices>();
+            var gridServicesMock = new Mock<IGridServices>();
             var dbMock = new Mock<LearningSystemDbContext>();
             var viewModelMock = new UploadCourseViewModel();
 
-            var controller = new AdminController(adminServicesMock.Object, dbMock.Object);
+            var controller = new AdminController(adminServicesMock.Object, dbMock.Object,gridServicesMock.Object);
             adminServicesMock.Setup(x => x.ValidateInputFiles(viewModelMock)).Returns(true);
-       
+
             //Act & Assert
             controller
                 .WithCallTo(c => c.UploadCourse())

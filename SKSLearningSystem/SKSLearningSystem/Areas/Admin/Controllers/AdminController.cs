@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace SKSLearningSystem.Areas.Admin.Controllers
 {
+    [Authorize(Roles ="Admin")]
     public class AdminController : Controller
     {
         private readonly IAdminServices services;
@@ -24,12 +25,13 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
         }
 
         private readonly LearningSystemDbContext db;
+        private readonly IGridServices gridServices;
 
-        public AdminController(IAdminServices services, LearningSystemDbContext db)
+        public AdminController(IAdminServices services, LearningSystemDbContext db,IGridServices gridServices)
         {
             this.services = services;
             this.db = db;
-
+            this.gridServices = gridServices;
         }
 
         [HttpGet]
@@ -108,10 +110,8 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
 
             if (IsValid)
             {
-
-              
-                var course = this.services.ReadCourseFromJSON(model);
-                var images = this.services.ReadImagesFromFiles(model);
+                var course = this.services.ReadCourseFromJSON(model.CourseFile);
+                var images = this.services.ReadImagesFromFiles(model.Photos);
                 course.Images = images;
                 this.services.SaveCourseToDB(course);
 
@@ -124,16 +124,22 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
             return this.View();
         }
 
-        [HttpGet]
+       
         public ActionResult MonitorUsersProgress()
         {
             return this.View();
         }
-
-        //public ActionResult Overdue()
-        //{
-
-        //    return this.Json();
-        //}
+     
+        public ActionResult GetJSON(bool _search,int rows,int page,string filters)
+        {
+            if (_search == false)
+            {               
+                return Json(this.gridServices.SearchFalseResult(), JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(this.gridServices.SearchResultTrue(filters), JsonRequestBehavior.AllowGet);
+            }         
+        }
     }
 }

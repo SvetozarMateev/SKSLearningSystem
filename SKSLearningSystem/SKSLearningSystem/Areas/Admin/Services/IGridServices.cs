@@ -8,6 +8,10 @@ namespace SKSLearningSystem.Areas.Admin.Services
 {
     public interface IGridServices
     {
-        IList<User> Filtrator(string propertyName, string shortOp, string inputField, IList<User> users);
+       // IList<User> Filtrator(string propertyName, string shortOp, string inputField, IList<User> users);
+
+         object SearchFalseResult();
+
+        object SearchResultTrue(string filters);
     }
 }

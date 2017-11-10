@@ -12,77 +12,82 @@ namespace SKSLearningSystem.Tests.Areas.Admin.Controllers.AdminControllerTests
     [TestClass]
      public class UploadCoursePost_Should
      {
-        //[TestMethod]
-        //public void AddErrorToModelState_WhenFileNameIsInvalid()
-        //{
-        //    //Arrange
-        //    var adminServicesMock = new Mock<IAdminServices>();
-        //    var dbMock = new Mock<LearningSystemDbContext>();
-        //    var viewModelMock = new UploadCourseViewModel();
+        [TestMethod]
+        public void AddErrorToModelState_WhenFileNameIsInvalid()
+        {
+            //Arrange
+            var adminServicesMock = new Mock<IAdminServices>();
+            var gridServicesMock = new Mock<IGridServices>();
+            var dbMock = new Mock<LearningSystemDbContext>();
+            var viewModelMock = new UploadCourseViewModel();
 
-        //    var controller = new AdminController(adminServicesMock.Object, dbMock.Object);
-        //    adminServicesMock.Setup(x => x.ValidateInputFiles(viewModelMock)).Returns(false);
-        //    var expected = 1;
+            var controller = new AdminController(adminServicesMock.Object, dbMock.Object,gridServicesMock.Object);
+            adminServicesMock.Setup(x => x.ValidateInputFiles(viewModelMock)).Returns(false);
+            var expected = 1;
 
-        //    //Act
-        //    controller.UploadCourse(viewModelMock);
+            //Act
+            controller.UploadCourse(viewModelMock);
 
-        //    //Assert
-        //    Assert.AreEqual(expected, controller.ModelState.Count);
-        //}
+            //Assert
+            Assert.AreEqual(expected, controller.ModelState.Count);
+        }
 
-        //[TestMethod]
-        //public void ValidateNameExtensions()
-        //{
-        //    //Arrange
-        //    var adminServicesMock = new Mock<IAdminServices>();
-        //    var dbMock = new Mock<LearningSystemDbContext>();
-        //    var viewModelMock = new UploadCourseViewModel();
+        [TestMethod]
+        public void ValidateNameExtensions()
+        {
+            //Arrange
+            var adminServicesMock = new Mock<IAdminServices>();
+            var gridServicesMock = new Mock<IGridServices>();
 
-        //    var controller = new AdminController(adminServicesMock.Object, dbMock.Object);           
+            var dbMock = new Mock<LearningSystemDbContext>();
+            var viewModelMock = new UploadCourseViewModel();
 
-        //    //Act 
-        //    controller.UploadCourse(viewModelMock);
+            var controller = new AdminController(adminServicesMock.Object, dbMock.Object,gridServicesMock.Object);
 
-        //    //Assert
-        //    adminServicesMock.Verify(x => x.ValidateInputFiles(viewModelMock), Times.Once);
-        //}
+            //Act 
+            controller.UploadCourse(viewModelMock);
 
-        //[TestMethod]
-        //public void SaveCourseToDb_WhenFilesAreCorrect()
-        //{
-        //    //Arrange
-        //    var adminServicesMock = new Mock<IAdminServices>();
-        //    var dbMock = new Mock<LearningSystemDbContext>();
-        //    var viewModelMock = new UploadCourseViewModel();
-        //    var courseMock = new Course();
+            //Assert
+            adminServicesMock.Verify(x => x.ValidateInputFiles(viewModelMock), Times.Once);
+        }
 
-        //    var controller = new AdminController(adminServicesMock.Object, dbMock.Object);
-        //    adminServicesMock.Setup(x => x.ValidateInputFiles(viewModelMock)).Returns(true);
-        //    adminServicesMock.Setup(x => x.ReadCourseFromJSON(viewModelMock)).Returns(courseMock);
+        [TestMethod]
+        public void SaveCourseToDb_WhenFilesAreCorrect()
+        {
+            //Arrange
+            var adminServicesMock = new Mock<IAdminServices>();
+            var gridServicesMock = new Mock<IGridServices>();
+            var dbMock = new Mock<LearningSystemDbContext>();
+            var viewModelMock = new UploadCourseViewModel();
+            var courseMock = new Course();
 
-        //    //Act 
-        //    controller.UploadCourse(viewModelMock);
+            var controller = new AdminController(adminServicesMock.Object, dbMock.Object,gridServicesMock.Object);
+            adminServicesMock.Setup(x => x.ValidateInputFiles(viewModelMock)).Returns(true);
+            adminServicesMock.Setup(x => x.ReadCourseFromJSON(viewModelMock.CourseFile)).Returns(courseMock);
 
-        //    //Assert
-        //    adminServicesMock.Verify(x => x.SaveCourseToDB(courseMock), Times.Once);
-        //}
+            //Act 
+            controller.UploadCourse(viewModelMock);
 
-        //[TestMethod]
-        //public void ReturnDefaultView()
-        //{
-        //    //Arrange
-        //    var adminServicesMock = new Mock<IAdminServices>();
-        //    var dbMock = new Mock<LearningSystemDbContext>();
-        //    var viewModelMock = new UploadCourseViewModel();
+            //Assert
+            adminServicesMock.Verify(x => x.SaveCourseToDB(courseMock), Times.Once);
+        }
 
-        //    var controller = new AdminController(adminServicesMock.Object, dbMock.Object);
-        //    adminServicesMock.Setup(x => x.ValidateInputFiles(viewModelMock)).Returns(true);
-       
-        //    //Act & Assert
-        //    controller
-        //        .WithCallTo(c => c.UploadCourse())
-        //        .ShouldRenderDefaultView();
-        //}
+        [TestMethod]
+        public void ReturnDefaultView()
+        {
+            //Arrange
+            var adminServicesMock = new Mock<IAdminServices>();
+            var gridServicesMock = new Mock<IGridServices>();
+            var dbMock = new Mock<LearningSystemDbContext>();
+            var viewModelMock = new UploadCourseViewModel();
+
+            var controller = new AdminController(adminServicesMock.Object, dbMock.Object,gridServicesMock.Object);
+            adminServicesMock.Setup(x => x.ValidateInputFiles(viewModelMock)).Returns(true);
+
+            //Act & Assert
+            controller
+                .WithCallTo(c => c.UploadCourse())
+                .ShouldRenderDefaultView();
+        }
     }
 }

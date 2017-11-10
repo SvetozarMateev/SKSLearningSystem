@@ -5,8 +5,6 @@ namespace SKSLearningSystem.Models
 {
     public class TakeCourseModel
     {
-        public int Id { get; set; }
-
         public string CourseName { get; set; }
 
         public int CourseId { get; set; }

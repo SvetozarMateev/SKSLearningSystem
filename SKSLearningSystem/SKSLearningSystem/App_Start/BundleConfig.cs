@@ -30,7 +30,8 @@ namespace SKSLearningSystem
                       "~/Content/uploadcourse.css",
                        "~/Content/AssignCourse.css",
                         "~/Content/CompleteAssignment.css",
-                      "~/Content/uploadcourse.css"));
+                      "~/Content/uploadcourse.css",
+                      "~/Content/TakeCourse.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqGrid").Include(
                     "~/Scripts/jqGrid.js",

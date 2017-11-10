@@ -35,14 +35,6 @@ namespace SKSLearningSystem.Services.CourseServices
         {
             var images = this.context.Courses.First(c => c.Id == courseId).Images;
 
-            //var imagesAsBitmap = new List<Bitmap>();
-
-            //foreach (var image in images)
-            //{
-            //    Bitmap bitmapImage = (Bitmap)((new ImageConverter()).ConvertFrom(image.CurrentImage));
-            //    imagesAsBitmap.Add(bitmapImage);
-            //}
-
             return images.ToList();
         }
     }

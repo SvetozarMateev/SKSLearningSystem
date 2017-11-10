@@ -1,0 +1,47 @@
+﻿h2, #butt {
+    text-align: center;
+}
+
+#container {
+    display: grid;
+    grid-template-columns: repeat(60, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(40px, auto);
+    border: 1px solid black;
+    margin: 5px 150px;
+    padding: 5px;
+}
+
+#ListUsers {
+    grid-column-start: 1;
+    grid-column-end: 52;
+    display: grid;
+    grid-template-columns: repeat(52, 1fr);
+}
+
+#userName {
+    grid-column-start: 1;
+    grid-column-end: 20;
+}
+#mandatory {
+    text-align: center;
+    grid-column-start: 20;
+    grid-column-end: 30;
+}
+#dueDate {
+    text-align: center;
+    grid-column-start: 30;
+    grid-column-end: 52;
+}
+
+#ListCourses {
+    grid-column-start:52;
+    grid-column-end: 60;
+}
+
+/*p {
+    border: 1px solid black;
+}*/
+
+
+

@@ -12,17 +12,22 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
     public class AdminController : Controller
     {
         private readonly IAdminServices services;
-
+        private readonly ApplicationUserManager applicationUserManager;
         private readonly ApplicationUserManager userManager;
         private readonly LearningSystemDbContext context;
 
-        public AdminController(IAdminServices services, ApplicationUserManager userManager, LearningSystemDbContext context)
+        public AdminController(IAdminServices services, ApplicationUserManager userManager, LearningSystemDbContext context
+            , ApplicationUserManager applicationUserManager)
         {
             this.services = services;
             this.userManager = userManager;
             this.context = context;
+            this.applicationUserManager = applicationUserManager;
         }
+      
+       
 
+       
         private readonly LearningSystemDbContext db;
 
         public AdminController(IAdminServices services, LearningSystemDbContext db)
@@ -77,8 +82,11 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult SubmitAssignments(AssignCourseViewModel assignCourseViewModel)
         {
-            var users = context.Users.Where(x => assignCourseViewModel.Users.Select(y => y.Id).ToList().Contains(x.Id)).ToList();
-            var courses = context.Courses.Where(c => assignCourseViewModel.Courses.Select(cr => cr.Id).ToList().Contains(c.Id)).ToList();
+            var userIds = assignCourseViewModel.Users.Select(y => y.Id).ToArray();
+            var courseIds = assignCourseViewModel.Courses.Select(cr => cr.Id).ToArray();
+
+            var users = context.Users.Where(x => userIds.Contains(x.Id)).ToList();
+            var courses = context.Courses.Where(c => courseIds.Contains(c.Id)).ToList();
 
 
             for (int i = 0; i < users.Count; i++)
@@ -93,6 +101,7 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
 
                     users[i].CourseStates.Add(state);
                     courses[j].Registry.Add(state);
+                    context.CourseStates.Add(state);
                 }
             }
 
@@ -135,5 +144,37 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
 
         //    return this.Json();
         //}
+
+        public ActionResult AssignRoles()
+        {
+            var users = this.userManager
+                .Users
+                .Select(u => new UserViewModel()
+                {
+                    UserName = u.UserName,
+                    Id = u.Id
+                }).ToList();
+
+            var assignCourseViewModel = new AssignCourseViewModel()
+            {
+                Users = users
+            };
+
+            return View(assignCourseViewModel);
+        }
+       
+        public ActionResult MakeAdmin(AssignCourseViewModel assignCourseViewModel)
+        {
+            var users = context.Users.Where(x => assignCourseViewModel.Users.Select(y => y.Id).ToList().Contains(x.Id)).ToList();
+
+            for (int i = 0; i < users.Count; i++)
+            {
+                    this.applicationUserManager.AddToRoleAsync(users[i].Id, "Admin");
+            }
+
+            context.SaveChanges();
+
+            return RedirectToAction("AssignRoles");
+        }
     }
 }

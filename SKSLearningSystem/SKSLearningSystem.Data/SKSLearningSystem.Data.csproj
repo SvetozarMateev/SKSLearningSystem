@@ -72,6 +72,10 @@
     <Compile Include="Migrations\201711061413098_legit questions.Designer.cs">
       <DependentUpon>201711061413098_legit questions.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711101547009_xxx.cs" />
+    <Compile Include="Migrations\201711101547009_xxx.Designer.cs">
+      <DependentUpon>201711101547009_xxx.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\CourseState.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -94,6 +98,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711061413098_legit questions.resx">
       <DependentUpon>201711061413098_legit questions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711101547009_xxx.resx">
+      <DependentUpon>201711101547009_xxx.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

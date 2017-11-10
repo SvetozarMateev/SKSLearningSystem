@@ -3,11 +3,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
-
 <h2>Assign Courses</h2>
 
-@using (Html.BeginForm("CompleteAssignment", "Admin"))
+@using (Html.BeginForm("CompleteAssignment", "Admin", FormMethod.Post))
 {
     <div id="container">
         <div id="ListUsers">

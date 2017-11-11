@@ -96,7 +96,9 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
                     CourseState state = new CourseState()
                     {
                         User = users[i],
-                        Course = courses[j]
+                        Course = courses[j],
+                        DueDate = assignCourseViewModel.Users[i].DueDate,
+                        Mandatory = assignCourseViewModel.Users[i].Mandatory
                     };
 
                     users[i].CourseStates.Add(state);

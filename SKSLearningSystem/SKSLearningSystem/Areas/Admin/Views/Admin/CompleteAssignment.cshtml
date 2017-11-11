@@ -9,27 +9,21 @@
 
 @using (Html.BeginForm("SubmitAssignments", "Admin", FormMethod.Post))
 {
-    <div id="container2">
-        <div id="users">
+    <div id="container">
+        <div id="ListUsers">
             @for (int i = 0; i < Model.Users.Count; i++)
-            {
-
-                if (Model.Users[i].Checked == true)
                 {
-                    <p> @Model.Users[i].UserName @Html.HiddenFor(x => Model.Users[i].Id)</p>
-                }
-
+                <p>@Html.HiddenFor(x => Model.Users[i].Id)</p>
+                <p id="userName"> @Html.DisplayFor(x => Model.Users[i].UserName) @Html.HiddenFor(x => Model.Users[i].UserName)</p>
+                <p id="mandatory">@Html.LabelFor(u => Model.Users[i].Mandatory) @Html.DisplayFor(u => Model.Users[i].Mandatory) @Html.HiddenFor(u => Model.Users[i].Mandatory)</p>
+                <p id="dueDate">@Html.LabelFor(u => Model.Users[i].DueDate) @Html.DisplayFor(u => Model.Users[i].DueDate) @Html.HiddenFor(u => Model.Users[i].DueDate)</p>
             }
         </div>
-        <div id="courses">
+        <div id="ListCourses">
             @for (int i = 0; i < Model.Courses.Count; i++)
-            {
-
-                if (Model.Users[i].Checked == true)
                 {
-                    <p> @Model.Courses[i].Name @Html.HiddenFor(x => Model.Courses[i].Id)</p>
-                }
-
+                <p>@Html.HiddenFor(x => Model.Courses[i].Id)</p>
+                <p>@Html.DisplayFor(x => Model.Courses[i].Name) @Html.HiddenFor(x => Model.Courses[i].Name)</p>
             }
         </div>
     </div>

@@ -54,6 +54,7 @@ namespace SKSLearningSystem.Migrations
                 courseState.CompletionDate = DateTime.Now;
                 courseState.DueDate = DateTime.Now;
 
+
                 var course2 = new Course();
                 var courseState2 = new CourseState();
                 course2.Name = "Seed2";
@@ -66,13 +67,14 @@ namespace SKSLearningSystem.Migrations
                 context.Courses.Add(course);
                 context.Courses.Add(course2);
 
+
                 var user = new User();
                 user.CourseStates = new List<CourseState>() {  };
                 user.UserName = "adming@admin.com";
                 user.Email = "adming@admin.com";
 
                 string userPWD = "Admin123$";
-
+                
                 var chkUser = UserManager.Create(user, userPWD);
 
                 //Add default User to Role Admin   

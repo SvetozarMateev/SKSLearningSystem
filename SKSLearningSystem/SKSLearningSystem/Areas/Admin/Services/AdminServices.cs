@@ -6,6 +6,7 @@ using SKSLearningSystem.Data.Models;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Web;
 
 namespace SKSLearningSystem.Areas.Admin.Services
 {
@@ -48,14 +49,11 @@ namespace SKSLearningSystem.Areas.Admin.Services
             return true;
         }
 
-        public Course ReadCourseFromJSON(UploadCourseViewModel model)
+        public Course ReadCourseFromJSON(HttpPostedFileBase model)
         {
             Guard.WhenArgument(model, "model").IsNull().Throw();
 
-            Guard.WhenArgument(model.CourseFile, "model").IsNull().Throw();
-
-
-            var stream = model.CourseFile.InputStream;
+            var stream = model.InputStream;
             Course course;
             using (StreamReader reader = new StreamReader(stream))
             {
@@ -70,14 +68,12 @@ namespace SKSLearningSystem.Areas.Admin.Services
             return course;
         }
 
-        public ICollection<Image> ReadImagesFromFiles(UploadCourseViewModel model)
+        public ICollection<Image> ReadImagesFromFiles(IEnumerable<HttpPostedFileBase> model)
         {
             Guard.WhenArgument(model, "model").IsNull().Throw();
 
-            Guard.WhenArgument(model.Photos, "model").IsNull().Throw();
-
             ICollection<Image> images = new List<Image>();
-            foreach (var item in model.Photos)
+            foreach (var item in model)
             {
                 using (MemoryStream ms = new MemoryStream())
                 {

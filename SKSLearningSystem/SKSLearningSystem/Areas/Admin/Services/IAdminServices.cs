@@ -1,14 +1,15 @@
 ﻿using SKSLearningSystem.Areas.Admin.Models;
 using SKSLearningSystem.Data.Models;
 using System.Collections.Generic;
+using System.Web;
 
 namespace SKSLearningSystem.Areas.Admin.Services
 {
     public interface IAdminServices
     {
-        ICollection<Image> ReadImagesFromFiles(UploadCourseViewModel model);
+        ICollection<Image> ReadImagesFromFiles(IEnumerable<HttpPostedFileBase> model);
 
-        Course ReadCourseFromJSON(UploadCourseViewModel model);
+        Course ReadCourseFromJSON(HttpPostedFileBase model);
 
         bool ValidateInputFiles(UploadCourseViewModel model);
 

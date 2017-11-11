@@ -13,6 +13,7 @@ namespace SKSLearningSystem.App_Start
     using Microsoft.AspNet.Identity.Owin;
     using SKSLearningSystem.Data;
     using SKSLearningSystem.Areas.Admin.Services;
+    using SKSLearningSystem.Services.CourseServices;
     using SKSLearningSystem.Areas.Admin.Models;
 
     public static class NinjectWebCommon 
@@ -78,6 +79,11 @@ namespace SKSLearningSystem.App_Start
             .Get<LearningSystemDbContext>());
 
             kernel.Bind<IAdminServices>().To<AdminServices>();
+
+
+            kernel.Bind<IGridServices>().To<GridServices>();
+
+            kernel.Bind<ICourseService>().To<CourseService>();
 
         }        
     }

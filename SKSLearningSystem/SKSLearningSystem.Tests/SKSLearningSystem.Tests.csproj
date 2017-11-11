@@ -105,6 +105,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Areas\Admin\Controllers\AdminControllerTests\GetJSON_Should.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminControllerTests\MonitorUsersProgress_Should.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminControllerTests\UploadCourseGet_Should.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminControllerTests\UploadCoursePost_Should.cs" />
     <Compile Include="Areas\Admin\Services\AdminServicesTests\ReadCourseFromJSON_Should.cs" />
     <Compile Include="Areas\Admin\Services\AdminServicesTests\ReadImagesFromFile_Should.cs" />

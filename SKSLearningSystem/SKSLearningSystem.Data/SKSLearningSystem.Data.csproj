@@ -72,9 +72,19 @@
     <Compile Include="Migrations\201711061413098_legit questions.Designer.cs">
       <DependentUpon>201711061413098_legit questions.cs</DependentUpon>
     </Compile>
+
     <Compile Include="Migrations\201711101547009_xxx.cs" />
     <Compile Include="Migrations\201711101547009_xxx.Designer.cs">
       <DependentUpon>201711101547009_xxx.cs</DependentUpon>
+
+    <Compile Include="Migrations\201711080007195_addState.cs" />
+    <Compile Include="Migrations\201711080007195_addState.Designer.cs">
+      <DependentUpon>201711080007195_addState.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711091158573_thing2.cs" />
+    <Compile Include="Migrations\201711091158573_thing2.Designer.cs">
+      <DependentUpon>201711091158573_thing2.cs</DependentUpon>
+
     </Compile>
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\CourseState.cs" />
@@ -99,8 +109,16 @@
     <EmbeddedResource Include="Migrations\201711061413098_legit questions.resx">
       <DependentUpon>201711061413098_legit questions.cs</DependentUpon>
     </EmbeddedResource>
+
     <EmbeddedResource Include="Migrations\201711101547009_xxx.resx">
       <DependentUpon>201711101547009_xxx.cs</DependentUpon>
+
+    <EmbeddedResource Include="Migrations\201711080007195_addState.resx">
+      <DependentUpon>201711080007195_addState.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711091158573_thing2.resx">
+      <DependentUpon>201711091158573_thing2.cs</DependentUpon>
+
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

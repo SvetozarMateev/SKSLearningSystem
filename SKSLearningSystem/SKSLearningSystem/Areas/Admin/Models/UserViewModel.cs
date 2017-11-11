@@ -7,6 +7,11 @@ namespace SKSLearningSystem.Areas.Admin.Models
 {
     public class UserViewModel
     {
+        public UserViewModel()
+        {
+            this.DueDate = DateTime.Now;
+        }
+
         public string Id { get; set; }
 
         public string UserName { get; set; }

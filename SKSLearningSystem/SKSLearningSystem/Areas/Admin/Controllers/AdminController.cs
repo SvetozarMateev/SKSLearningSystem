@@ -5,7 +5,7 @@ using System.Linq;
 using SKSLearningSystem.Data.Models;
 
 using System.Web.Mvc;
-
+using System.Threading.Tasks;
 
 namespace SKSLearningSystem.Areas.Admin.Controllers
 {
@@ -13,17 +13,22 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
     public class AdminController : Controller
     {
         private readonly IAdminServices services;
-
+        private readonly ApplicationUserManager applicationUserManager;
         private readonly ApplicationUserManager userManager;
         private readonly LearningSystemDbContext context;
 
-        public AdminController(IAdminServices services, ApplicationUserManager userManager, LearningSystemDbContext context)
+        public AdminController(IAdminServices services, ApplicationUserManager userManager, LearningSystemDbContext context
+            , ApplicationUserManager applicationUserManager)
         {
             this.services = services;
             this.userManager = userManager;
             this.context = context;
+            this.applicationUserManager = applicationUserManager;
         }
+      
+       
 
+       
         private readonly LearningSystemDbContext db;
         private readonly IGridServices gridServices;
 
@@ -79,8 +84,11 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult SubmitAssignments(AssignCourseViewModel assignCourseViewModel)
         {
-            var users = context.Users.Where(x => assignCourseViewModel.Users.Select(y => y.Id).ToList().Contains(x.Id)).ToList();
-            var courses = context.Courses.Where(c => assignCourseViewModel.Courses.Select(cr => cr.Id).ToList().Contains(c.Id)).ToList();
+            var userIds = assignCourseViewModel.Users.Select(y => y.Id).ToArray();
+            var courseIds = assignCourseViewModel.Courses.Select(cr => cr.Id).ToArray();
+
+            var users = context.Users.Where(x => userIds.Contains(x.Id)).ToList();
+            var courses = context.Courses.Where(c => courseIds.Contains(c.Id)).ToList();
 
 
             for (int i = 0; i < users.Count; i++)
@@ -90,11 +98,14 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
                     CourseState state = new CourseState()
                     {
                         User = users[i],
-                        Course = courses[j]
+                        Course = courses[j],
+                        DueDate = assignCourseViewModel.Users[i].DueDate,
+                        Mandatory = assignCourseViewModel.Users[i].Mandatory
                     };
 
                     users[i].CourseStates.Add(state);
                     courses[j].Registry.Add(state);
+                    context.CourseStates.Add(state);
                 }
             }
 
@@ -110,11 +121,12 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
 
             if (IsValid)
             {
+
                 var course = this.services.ReadCourseFromJSON(model.CourseFile);
                 var images = this.services.ReadImagesFromFiles(model.Photos);
+
                 course.Images = images;
                 this.services.SaveCourseToDB(course);
-
             }
             else
             {
@@ -129,6 +141,43 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
         {
             return this.View();
         }
+
+
+        //public ActionResult Overdue()
+        //{
+        //    return this.Json();
+        //}
+
+        public ActionResult AssignRoles()
+        {
+            var users = this.userManager
+                .Users
+                .Select(u => new UserViewModel()
+                {
+                    UserName = u.UserName,
+                    Id = u.Id
+                }).ToList();
+
+            var assignCourseViewModel = new AssignCourseViewModel()
+            {
+                Users = users
+            };
+
+            return View(assignCourseViewModel);
+        }
+       
+        public async Task<ActionResult> MakeAdmin(AssignCourseViewModel assignCourseViewModel)
+        {
+            var userIds = assignCourseViewModel.Users.Select(y => y.Id).ToArray();
+            var users = context.Users.Where(x => userIds.Contains(x.Id)).ToList();
+
+            for (int i = 0; i < users.Count; i++)
+            {
+                await this.applicationUserManager.AddToRoleAsync(users[i].Id, "Admin");
+            }
+
+            return RedirectToAction("AssignRoles");
+
      
         public ActionResult GetJSON(bool _search,int rows,int page,string filters)
         {
@@ -140,6 +189,7 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
             {
                 return Json(this.gridServices.SearchResultTrue(filters), JsonRequestBehavior.AllowGet);
             }         
+
         }
     }
 }

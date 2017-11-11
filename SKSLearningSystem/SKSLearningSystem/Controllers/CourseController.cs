@@ -62,6 +62,9 @@ namespace SKSLearningSystem.Controllers
         public ActionResult TakeExam(TakeTestViewModel questions)
         {
             var IsTestStateValid = this.services.ValidateTest(questions);
+
+
+
             if (IsTestStateValid == false)
             {
                 this.ModelState.AddModelError("answers", "Please select one answer per question");

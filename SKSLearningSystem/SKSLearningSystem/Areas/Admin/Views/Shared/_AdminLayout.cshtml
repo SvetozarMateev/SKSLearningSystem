@@ -18,7 +18,9 @@
             <li><a href="@Url.Action("AssignCourse", "Admin",new { area = "Admin" })"><i class="fa fa-file-text" aria-hidden="true"></i><span class="spanche">Assign Courses</span></a></li>
             <li><a href="@Url.Action("uploadcourse", "Admin",new { area = "Admin" })"><i class="fa fa-upload" aria-hidden="true"></i><span class="spanche">Upload Course</span></a></li>
             <li><a href="@Url.Action("monitorusersprogress", "Admin",new { area = "Admin" })"><i class="fa fa-desktop" aria-hidden="true"></i><span class="spanche">Monitor Progress</span></a></li>
-            <li><a href="@Url.Action("AssignRoles", "Admin",new { area = "Admin" })"><i class="fa fa-wrench" aria-hidden="true"></i><span class="spanche">Manage Users</span></a></li>
+
+            <li><a href="@Url.Action("assignroles", "Admin",new { area = "Admin" })"><i class="fa fa-wrench" aria-hidden="true"></i><span class="spanche">Manage Users</span></a></li>
+
         </ul>
     </div>
 
@@ -46,7 +48,7 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
+        <footer >
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
     </div>

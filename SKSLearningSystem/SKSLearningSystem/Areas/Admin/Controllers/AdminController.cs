@@ -5,7 +5,7 @@ using System.Linq;
 using SKSLearningSystem.Data.Models;
 
 using System.Web.Mvc;
-
+using System.Threading.Tasks;
 
 namespace SKSLearningSystem.Areas.Admin.Controllers
 {
@@ -117,13 +117,10 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
 
             if (IsValid)
             {
-
-              
                 var course = this.services.ReadCourseFromJSON(model);
                 var images = this.services.ReadImagesFromFiles(model);
                 course.Images = images;
                 this.services.SaveCourseToDB(course);
-
             }
             else
             {
@@ -141,7 +138,6 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
 
         //public ActionResult Overdue()
         //{
-
         //    return this.Json();
         //}
 
@@ -163,16 +159,15 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
             return View(assignCourseViewModel);
         }
        
-        public ActionResult MakeAdmin(AssignCourseViewModel assignCourseViewModel)
+        public async Task<ActionResult> MakeAdmin(AssignCourseViewModel assignCourseViewModel)
         {
-            var users = context.Users.Where(x => assignCourseViewModel.Users.Select(y => y.Id).ToList().Contains(x.Id)).ToList();
+            var userIds = assignCourseViewModel.Users.Select(y => y.Id).ToArray();
+            var users = context.Users.Where(x => userIds.Contains(x.Id)).ToList();
 
             for (int i = 0; i < users.Count; i++)
             {
-                    this.applicationUserManager.AddToRoleAsync(users[i].Id, "Admin");
+                await this.applicationUserManager.AddToRoleAsync(users[i].Id, "Admin");
             }
-
-            context.SaveChanges();
 
             return RedirectToAction("AssignRoles");
         }

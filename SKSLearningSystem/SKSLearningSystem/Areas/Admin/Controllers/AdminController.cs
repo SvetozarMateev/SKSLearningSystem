@@ -12,42 +12,20 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
     public class AdminController : Controller
     {
         private readonly IAdminServices services;
-
         private readonly IGridServices gridServices;
         private readonly ApplicationUserManager userManager;
         private readonly LearningSystemDbContext context;
 
-        public AdminController(IAdminServices services, ApplicationUserManager userManager, LearningSystemDbContext context, IGridServices gridServices)
-
-        private readonly ApplicationUserManager applicationUserManager;
-        private readonly ApplicationUserManager userManager;
-        private readonly LearningSystemDbContext context;
-
         public AdminController(IAdminServices services, ApplicationUserManager userManager, LearningSystemDbContext context
-            , ApplicationUserManager applicationUserManager)
+            , IGridServices gridServices)
 
         {
             this.services = services;
             this.userManager = userManager;
             this.context = context;
-
-
-            this.applicationUserManager = applicationUserManager;
-        }
-
-
-
-
-        private readonly LearningSystemDbContext db;
-        private readonly IGridServices gridServices;
-
-        public AdminController(IAdminServices services, LearningSystemDbContext db, IGridServices gridServices)
-        {
-            this.services = services;
-            this.db = db;
-
             this.gridServices = gridServices;
-        }      
+            this.userManager = userManager;
+        }     
 
         [HttpGet]
         public ActionResult UploadCourse()
@@ -152,12 +130,6 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
             return this.View();
         }
 
-
-        //public ActionResult Overdue()
-        //{
-        //    return this.Json();
-        //}
-
         public ActionResult AssignRoles()
         {
             var users = this.userManager
@@ -183,7 +155,7 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
 
             for (int i = 0; i < users.Count; i++)
             {
-                await this.applicationUserManager.AddToRoleAsync(users[i].Id, "Admin");
+                await this.userManager.AddToRoleAsync(users[i].Id, "Admin");
             }
 
             return RedirectToAction("AssignRoles");

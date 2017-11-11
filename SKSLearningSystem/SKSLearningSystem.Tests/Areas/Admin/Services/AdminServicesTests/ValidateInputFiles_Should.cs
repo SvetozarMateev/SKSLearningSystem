@@ -38,6 +38,7 @@ namespace SKSLearningSystem.Tests.Areas.Admin.Services.AdminServicesTests
             var dbMock = new Mock<LearningSystemDbContext>();
             var model = new UploadCourseViewModel();
             var services = new AdminServices(dbMock.Object);
+
             var fileMock = new Mock<HttpPostedFileBase>();
 
             fileMock.SetupGet(x => x.FileName).Returns("somename.invalid");

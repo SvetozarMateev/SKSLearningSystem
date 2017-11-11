@@ -49,5 +49,34 @@ namespace SKSLearningSystem.Controllers
 
             return File(currentImage, "image/png");
         }
+
+        [HttpGet]
+        public ActionResult TakeExam()
+        {
+            var questions = this.services.GetQuestionsForCourse(14);
+            return this.View(questions);
+        }
+
+        [HttpPost]
+        public ActionResult TakeExam(IList<QuestionViewModel> questions)
+        {
+            var IsTestStateValid = this.services.ValidateTest(questions);
+            if (IsTestStateValid == false)
+            {
+                this.ModelState.AddModelError("answers", "Please select one answer per question");
+                return this.PartialView("InvalidTest",questions);
+            }
+            var grade = this.services.GradeExam(questions);
+            this.ViewBag.Grade = grade;
+            if (grade >= 50)
+            {
+                return this.PartialView("PassedTest");
+            }
+            else
+            {
+                return this.PartialView("FailedTest");
+            }
+            return this.View(questions);
+        }
     }
 }

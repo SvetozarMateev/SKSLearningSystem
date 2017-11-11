@@ -14,7 +14,7 @@
         <ul class="nav navbar-nav" id="side">
             <li><a href="@Url.Action("index", "Home",new { area = "" })"><i class="fa fa-graduation-cap" aria-hidden="true"></i><span class="spanche">SKS Learning</span></a></li>
             <hr id="greasy-line" />
-            <li><a href="#"><i class="fa fa-file-text" aria-hidden="true"></i><span class="spanche">Assign Courses</span></a></li>
+            <li><a href="@Url.Action("AssignCourse", "Admin",new { area = "Admin" })"><i class="fa fa-file-text" aria-hidden="true"></i><span class="spanche">Assign Courses</span></a></li>
             <li><a href="@Url.Action("uploadcourse", "Admin",new { area = "Admin" })"><i class="fa fa-upload" aria-hidden="true"></i><span class="spanche">Upload Course</span></a></li>
             <li><a href="@Url.Action("monitorusersprogress", "Admin",new { area = "Admin" })"><i class="fa fa-desktop" aria-hidden="true"></i><span class="spanche">Monitor Progress</span></a></li>
             <li><a href="#"><i class="fa fa-wrench" aria-hidden="true"></i><span class="spanche">Manage Users</span></a></li>

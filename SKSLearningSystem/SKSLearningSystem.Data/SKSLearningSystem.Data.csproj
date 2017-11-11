@@ -80,13 +80,7 @@
     <Compile Include="Migrations\201711111552314_hopefix3.Designer.cs">
       <DependentUpon>201711111552314_hopefix3.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\Course.cs" />
-    <Compile Include="Models\CourseState.cs" />
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Image.cs" />
-    <Compile Include="Models\Option.cs" />
-    <Compile Include="Models\Question.cs" />
-    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -109,6 +103,15 @@
     <EmbeddedResource Include="Migrations\201711111552314_hopefix3.resx">
       <DependentUpon>201711111552314_hopefix3.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SKSLearningSystem.Models\SKSLearningSystem.Models.csproj">
+      <Project>{002F7687-91BD-41F3-ABEE-33485FF11EFA}</Project>
+      <Name>SKSLearningSystem.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

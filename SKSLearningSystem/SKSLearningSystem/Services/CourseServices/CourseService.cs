@@ -8,6 +8,7 @@ using SKSLearningSystem.Data;
 using System.IO;
 using SKSLearningSystem.Models;
 using Bytes2you.Validation;
+using SKSLearningSystem.Areas.Admin.Models;
 
 namespace SKSLearningSystem.Services.CourseServices
 {
@@ -38,10 +39,10 @@ namespace SKSLearningSystem.Services.CourseServices
             return images.ToList();
         }
 
-        public IList<QuestionViewModel> GetQuestionsForCourse(int courseId)
+        public List<QuestionViewModel> GetQuestionsForCourse(int courseStateId)
         {
-            var course = this.context.Courses.First(x => x.Id == courseId);
-            var questions = course.Questions.Select(x => new QuestionViewModel()
+            var courseState = this.context.CourseStates.First(x => x.Id == courseStateId);
+            var questions = courseState.Course.Questions.Select(x => new QuestionViewModel()
             {
                 Id = x.Id,
                 CourseId = x.CourseId,
@@ -57,21 +58,21 @@ namespace SKSLearningSystem.Services.CourseServices
             return questions;
         }
 
-        public bool ValidateTest(IList<QuestionViewModel> questions)
+        public bool ValidateTest(TakeTestViewModel questions)
         {
-            if (questions.Any(x => x.Options.Where(y => y.IsSelected == true).Count() > 1))
+            if (questions.Questions.Any(x => x.Options.Where(y => y.IsSelected == true).Count() > 1))
             {
                 return false;
             }
             return true;
         }
 
-        public double GradeExam(IList<QuestionViewModel> questions)
+        public double GradeExam(TakeTestViewModel questions)
         {
             var correctAnswersCount = 0.0;
-            for (int i = 0; i < questions.Count; i++)
+            for (int i = 0; i < questions.Questions.Count; i++)
             {
-                var currQuestion = questions[i];
+                var currQuestion = questions.Questions[i];
                 var selectedOption = currQuestion.Options.First(x => x.IsSelected == true);
                 var answer=this.context.Questions.First(x => x.Id == currQuestion.Id).Answer;
                 if (selectedOption.Letter == answer)
@@ -79,7 +80,14 @@ namespace SKSLearningSystem.Services.CourseServices
                     correctAnswersCount++;
                 }
             }
-            return correctAnswersCount/questions.Count*100;
+            return correctAnswersCount/questions.Questions.Count*100;
+        }
+
+        public void ChangeCourseState(int courseStateId, string newState)
+        {
+            var course = this.context.CourseStates.First(x => x.Id == courseStateId);
+            course.State = newState;
+            this.context.SaveChanges();
         }
     }
 }

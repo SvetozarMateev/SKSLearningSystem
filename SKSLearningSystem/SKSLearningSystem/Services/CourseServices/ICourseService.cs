@@ -1,4 +1,5 @@
-﻿using SKSLearningSystem.Data.Models;
+﻿using SKSLearningSystem.Areas.Admin.Models;
+using SKSLearningSystem.Data.Models;
 using SKSLearningSystem.Models;
 using System.Collections.Generic;
 
@@ -10,10 +11,12 @@ namespace SKSLearningSystem.Services.CourseServices
 
         ICollection<Image> GetImages(int courseId);
 
-        IList<QuestionViewModel> GetQuestionsForCourse(int courseId);
+        List<QuestionViewModel> GetQuestionsForCourse(int courseId);
 
-        bool ValidateTest(IList<QuestionViewModel> questions);
+        bool ValidateTest(TakeTestViewModel questions);
 
-        double GradeExam(IList<QuestionViewModel> questions);
+        double GradeExam(TakeTestViewModel questions);
+
+        void ChangeCourseState(int courseId,string newState);
     }
 }

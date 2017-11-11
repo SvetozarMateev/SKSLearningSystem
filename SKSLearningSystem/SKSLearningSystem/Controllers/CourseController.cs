@@ -10,6 +10,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using SKSLearningSystem.Areas.Admin.Models;
 
 namespace SKSLearningSystem.Controllers
 {
@@ -53,12 +54,12 @@ namespace SKSLearningSystem.Controllers
         [HttpGet]
         public ActionResult TakeExam()
         {
-            var questions = this.services.GetQuestionsForCourse(14);
-            return this.View(questions);
+            var model = new TakeTestViewModel() { Questions = this.services.GetQuestionsForCourse(14) };
+            return this.View(model);
         }
 
         [HttpPost]
-        public ActionResult TakeExam(IList<QuestionViewModel> questions)
+        public ActionResult TakeExam(TakeTestViewModel questions)
         {
             var IsTestStateValid = this.services.ValidateTest(questions);
             if (IsTestStateValid == false)
@@ -70,13 +71,13 @@ namespace SKSLearningSystem.Controllers
             this.ViewBag.Grade = grade;
             if (grade >= 50)
             {
+                this.services.ChangeCourseState(questions.Questions.First().CourseId,"Completed");
                 return this.PartialView("PassedTest");
             }
             else
             {
                 return this.PartialView("FailedTest");
             }
-            return this.View(questions);
         }
     }
 }

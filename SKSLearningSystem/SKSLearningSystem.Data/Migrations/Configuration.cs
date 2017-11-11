@@ -53,8 +53,23 @@ namespace SKSLearningSystem.Migrations
                 courseState.AssignmentDate = DateTime.Now;
                 courseState.CompletionDate = DateTime.Now;
                 courseState.DueDate = DateTime.Now;
+
+
+                var course2 = new Course();
+                var courseState2 = new CourseState();
+                course2.Name = "Seed2";
+                course2.Description = "Seeded2";
+                courseState2.Course = course2;
+                courseState2.AssignmentDate = DateTime.Now;
+                courseState2.CompletionDate = DateTime.Now;
+                courseState2.DueDate = DateTime.Now;
+
+                context.Courses.Add(course);
+                context.Courses.Add(course2);
+
+
                 var user = new User();
-                user.CourseStates = new List<CourseState>() { courseState };
+                user.CourseStates = new List<CourseState>() {  };
                 user.UserName = "adming@admin.com";
                 user.Email = "adming@admin.com";
 
@@ -67,6 +82,15 @@ namespace SKSLearningSystem.Migrations
                 {
                     var result1 = UserManager.AddToRole(user.Id, "Admin");
                 }
+
+                var user2 = new User();
+                user2.CourseStates = new List<CourseState>() { };
+                user2.UserName = "sir@sir.com";
+                user2.Email = "sir@sir.com";
+
+                string userPWD2 = "Sir123$";
+
+                var chkUser2 = UserManager.Create(user2, userPWD2);
             }
 
         }

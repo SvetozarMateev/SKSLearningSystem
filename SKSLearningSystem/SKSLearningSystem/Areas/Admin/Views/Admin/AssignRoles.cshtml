@@ -1,0 +1,25 @@
+﻿
+@model SKSLearningSystem.Areas.Admin.Models.AssignCourseViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<h2>Assign Roles</h2>
+
+@using (Html.BeginForm("MakeAdmin", "Admin"))
+{
+    <div id="container">
+        <div id="ListUsers">
+            @for (int i = 0; i < Model.Users.Count; i++)
+                {
+                <p>@Html.HiddenFor(x => Model.Users[i].Id)</p>
+                <p id="userName">@Html.EditorFor(u => Model.Users[i].Checked) @Html.DisplayFor(x => Model.Users[i].UserName) @Html.HiddenFor(x => Model.Users[i].UserName)</p>
+            }
+        </div>
+    </div>
+    <div id="butt">
+        <input type="submit" value="Make User/s Admin">
+    </div>
+}

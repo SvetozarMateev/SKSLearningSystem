@@ -7,13 +7,13 @@ namespace SKSLearningSystem.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class thing2 : IMigrationMetadata
+    public sealed partial class hopefix3 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(thing2));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(hopefix3));
         
         string IMigrationMetadata.Id
         {
-            get { return "201711091158573_thing2"; }
+            get { return "201711111552314_hopefix3"; }
         }
         
         string IMigrationMetadata.Source

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SKSLearningSystem.Areas.Admin.Controllers
 {
-    [Authorize(Roles ="Admin")]
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         private readonly IAdminServices services;
@@ -25,14 +25,14 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
             this.context = context;
             this.applicationUserManager = applicationUserManager;
         }
-      
-       
 
-       
+
+
+
         private readonly LearningSystemDbContext db;
         private readonly IGridServices gridServices;
 
-        public AdminController(IAdminServices services, LearningSystemDbContext db,IGridServices gridServices)
+        public AdminController(IAdminServices services, LearningSystemDbContext db, IGridServices gridServices)
         {
             this.services = services;
             this.db = db;
@@ -136,7 +136,7 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
             return this.View();
         }
 
-       
+
         public ActionResult MonitorUsersProgress()
         {
             return this.View();
@@ -165,7 +165,7 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
 
             return View(assignCourseViewModel);
         }
-       
+
         public async Task<ActionResult> MakeAdmin(AssignCourseViewModel assignCourseViewModel)
         {
             var userIds = assignCourseViewModel.Users.Select(y => y.Id).ToArray();
@@ -177,19 +177,19 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
             }
 
             return RedirectToAction("AssignRoles");
+        }
 
-     
-        public ActionResult GetJSON(bool _search,int rows,int page,string filters)
-        {
-            if (_search == false)
-            {               
-                return Json(this.gridServices.SearchFalseResult(), JsonRequestBehavior.AllowGet);
-            }
-            else
+            public ActionResult GetJSON(bool _search, int rows, int page, string filters)
             {
-                return Json(this.gridServices.SearchResultTrue(filters), JsonRequestBehavior.AllowGet);
-            }         
+                if (_search == false)
+                {
+                    return Json(this.gridServices.SearchFalseResult(), JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(this.gridServices.SearchResultTrue(filters), JsonRequestBehavior.AllowGet);
+                }
 
+            }
         }
     }
-}

@@ -1,0 +1,43 @@
+﻿body {
+    background-color: #305030;
+}
+.sheet {
+    margin-left: 13%;
+    margin-right: 13%;
+    margin-top: 7%;
+    padding-bottom:5%;
+    background-color: white;
+    -webkit-box-shadow: 24px 29px 40px 17px rgba(0,0,0,0.48);
+    -moz-box-shadow: 24px 29px 40px 17px rgba(0,0,0,0.48);
+    box-shadow: 24px 29px 40px 17px rgba(0,0,0,0.48);
+    border-radius: 10px;
+}
+.inner-sheet{
+    padding:6%;
+}
+.statement{
+    font-weight:bold;
+    font-size:130%;
+}
+.answer{
+    font-size:105%;
+}
+.question{
+    margin-left:6%;
+}
+.exam-name{
+    margin-left:35%;
+}
+.btn-upload {
+    font-size: 130%;
+    border-radius: 25px;
+    background-color: darkseagreen;
+    border: none;
+    color: white;
+    padding: 1.5%;
+    float:right;
+}
+
+    .btn-upload:hover {
+        background-color: darkgreen;
+    }

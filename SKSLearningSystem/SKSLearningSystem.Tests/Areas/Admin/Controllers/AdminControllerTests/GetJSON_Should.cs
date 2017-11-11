@@ -23,7 +23,9 @@ namespace SKSLearningSystem.Tests.Areas.Admin.Controllers.AdminControllerTests
             var adminServicesMock = new Mock<IAdminServices>();
             var gridServicesMock = new Mock<IGridServices>();
             var dbMock = new Mock<LearningSystemDbContext>();
-            var controller = new AdminController(adminServicesMock.Object, dbMock.Object, gridServicesMock.Object);
+            var applicationUserManagerMock = new Mock<ApplicationUserManager>();
+            var controller = new AdminController(adminServicesMock.Object,
+                applicationUserManagerMock.Object, dbMock.Object, gridServicesMock.Object);
             var _search = true;
             var rows = It.IsAny<int>();
             var pages = It.IsAny<int>();
@@ -43,7 +45,8 @@ namespace SKSLearningSystem.Tests.Areas.Admin.Controllers.AdminControllerTests
             var adminServicesMock = new Mock<IAdminServices>();
             var gridServicesMock = new Mock<IGridServices>();
             var dbMock = new Mock<LearningSystemDbContext>();
-            var controller = new AdminController(adminServicesMock.Object, dbMock.Object, gridServicesMock.Object);
+            var applicationUserManagerMock = new Mock<ApplicationUserManager>();
+            var controller = new AdminController(adminServicesMock.Object, applicationUserManagerMock.Object, dbMock.Object, gridServicesMock.Object);
             var _search = true;
             var rows = It.IsAny<int>();
             var pages = It.IsAny<int>();

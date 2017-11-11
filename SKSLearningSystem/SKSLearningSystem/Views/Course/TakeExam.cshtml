@@ -1,0 +1,65 @@
+﻿@model System.Collections.Generic.IList<SKSLearningSystem.Models.QuestionViewModel>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>TakeExam</title>
+    @Styles.Render("~/Content/takeExam")
+</head>
+<body>
+
+    <div class="sheet">
+        <div class="inner-sheet">
+            <h2 class="exam-name">This is the exam for course x</h2>
+            <hr />
+          
+            @using (Ajax.BeginForm("TakeExam",null, new AjaxOptions() { UpdateTargetId = "result"}
+                ,new { id = "exam" }))
+            {
+                for (int i = 0; i < Model.Count; i++)
+                {
+                   <div class="question">
+                    @Html.HiddenFor(x => x[i].Id)
+                    <p class="statement">
+                        @{
+                            var counter = i + 1;
+                        }
+                        @counter. 
+                        @Html.DisplayFor(x => x[i].Statement)
+                        @Html.HiddenFor(x => x[i].Statement)
+                    </p>
+                                       
+                    @for (int a=0; a<Model[i].Options.Count;a++)
+                    {  <p>
+                        @Html.CheckBoxFor(x => x[i].Options[a].IsSelected,"IsSelected")
+                           
+                        <span class="answer">
+                            @Html.HiddenFor(x => x[i].Options[a].Letter)
+                            @Html.DisplayFor(x => x[i].Options[a].Letter))
+                            @Html.DisplayFor(x => x[i].Options[a].Answer)
+                        </span>
+                    </p>
+                    }
+                     </div>
+                                    
+                }
+                    <button type="submit"  class="btn-upload">Submit Test</button>
+            }
+            <div id="result">
+
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/takeExam")
+    <script>
+  
+    </script>
+</body>
+</html>

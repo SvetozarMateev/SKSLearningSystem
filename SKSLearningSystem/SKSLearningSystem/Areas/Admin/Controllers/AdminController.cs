@@ -3,7 +3,6 @@ using SKSLearningSystem.Areas.Admin.Services;
 using SKSLearningSystem.Data;
 using System.Linq;
 using SKSLearningSystem.Data.Models;
-
 using System.Web.Mvc;
 using System.Threading.Tasks;
 
@@ -13,16 +12,26 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
     public class AdminController : Controller
     {
         private readonly IAdminServices services;
+
+        private readonly IGridServices gridServices;
+        private readonly ApplicationUserManager userManager;
+        private readonly LearningSystemDbContext context;
+
+        public AdminController(IAdminServices services, ApplicationUserManager userManager, LearningSystemDbContext context, IGridServices gridServices)
+
         private readonly ApplicationUserManager applicationUserManager;
         private readonly ApplicationUserManager userManager;
         private readonly LearningSystemDbContext context;
 
         public AdminController(IAdminServices services, ApplicationUserManager userManager, LearningSystemDbContext context
             , ApplicationUserManager applicationUserManager)
+
         {
             this.services = services;
             this.userManager = userManager;
             this.context = context;
+
+
             this.applicationUserManager = applicationUserManager;
         }
 
@@ -36,8 +45,9 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
         {
             this.services = services;
             this.db = db;
+
             this.gridServices = gridServices;
-        }
+        }      
 
         [HttpGet]
         public ActionResult UploadCourse()

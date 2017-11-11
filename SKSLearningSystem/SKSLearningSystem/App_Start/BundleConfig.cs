@@ -56,6 +56,11 @@ namespace SKSLearningSystem
 
             bundles.Add(new ScriptBundle("~/bundles/uploadCourse").Include(
                       "~/Scripts/uploadCourse.js"));
+            bundles.Add(new ScriptBundle("~/bundles/takeExam").Include(
+                     "~/Scripts/takeExamValidator.js"));
+
+            bundles.Add(new StyleBundle("~/Content/takeExam").Include(
+                   "~/Content/takeExam.css"));
         }
     }
 }

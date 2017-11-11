@@ -23,28 +23,28 @@
                 ,new { id = "exam" }))
             {
                @Html.HiddenFor(x => Model.CourseName);
-                @Html.HiddenFor(x => Model.CourseStateId);
+                @Html.HiddenFor(x => x.CourseStateId);
                 for (int i = 0; i < Model.Questions.Count; i++)
                 {
                    <div class="question">
-                    @Html.HiddenFor(x => Model.Questions[i].Id)
+                    @Html.HiddenFor(x => x.Questions[i].Id)
                     <p class="statement">
                         @{
                             var counter = i + 1;
                         }
                         @counter. 
-                        @Html.DisplayFor(x => Model.Questions[i].Statement)
-                        @Html.HiddenFor(x => Model.Questions[i].Statement)
+                        @Html.DisplayFor(x => x.Questions[i].Statement)
+                        @Html.HiddenFor(x => x.Questions[i].Statement)
                     </p>
                                        
                     @for (int a=0; a<Model.Questions[i].Options.Count;a++)
                     {  <p>
-                        @Html.CheckBoxFor(x => Model.Questions[i].Options[a].IsSelected,"IsSelected")
+                        @Html.CheckBoxFor(x => x.Questions[i].Options[a].IsSelected, "IsSelected")
                            
                         <span class="answer">
-                            @Html.HiddenFor(x => Model.Questions[i].Options[a].Letter)
-                            @Html.DisplayFor(x => Model.Questions[i].Options[a].Letter))
-                            @Html.DisplayFor(x => Model.Questions[i].Options[a].Answer)
+                            @Html.HiddenFor(x => x.Questions[i].Options[a].Letter)
+                            @Html.DisplayFor(x => x.Questions[i].Options[a].Letter))
+                            @Html.DisplayFor(x => x.Questions[i].Options[a].Answer)
                         </span>
                     </p>
                     }

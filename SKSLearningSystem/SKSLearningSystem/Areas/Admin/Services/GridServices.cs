@@ -38,7 +38,7 @@ namespace SKSLearningSystem.Areas.Admin.Services
         {
             var parsedFilters = JsonConvert.DeserializeObject<GridRequestViewModel>(filters);
             var counter = 1;
-            var users = db.Users.ToList();
+            var users = this.db.Users.ToList();
             var propertyName = parsedFilters.rules.First().field;
             var shortenedOperator = parsedFilters.rules.First().op;
             var inputedField = parsedFilters.rules.First().data;

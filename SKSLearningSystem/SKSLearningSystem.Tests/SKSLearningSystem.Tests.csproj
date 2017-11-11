@@ -126,6 +126,10 @@
       <Project>{e15390a5-01b9-47db-a60b-a34923668fa0}</Project>
       <Name>SKSLearningSystem.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SKSLearningSystem.Models\SKSLearningSystem.Models.csproj">
+      <Project>{002F7687-91BD-41F3-ABEE-33485FF11EFA}</Project>
+      <Name>SKSLearningSystem.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SKSLearningSystem.Services\SKSLearningSystem.Services.csproj">
       <Project>{cd2d9ef0-7f14-406c-be65-86f7d6ab7d80}</Project>
       <Name>SKSLearningSystem.Services</Name>

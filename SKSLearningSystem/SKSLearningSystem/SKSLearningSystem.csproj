@@ -219,15 +219,6 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
-    <Compile Include="Areas\Admin\Models\CourseStateRowViewModel.cs" />
-    <Compile Include="Areas\Admin\Models\FilterViewModel.cs" />
-    <Compile Include="Areas\Admin\Models\GridRequestViewModel.cs" />
-    <Compile Include="Areas\Admin\Models\RulesViewModel.cs" />
-    <Compile Include="Areas\Admin\Models\AssignCourseViewModel.cs" />
-    <Compile Include="Areas\Admin\Models\CourseViewModel.cs" />
-    <Compile Include="Models\TakeTestViewModel.cs" />
-    <Compile Include="Areas\Admin\Models\UploadCourseViewModel.cs" />
-    <Compile Include="Areas\Admin\Models\UserViewModel.cs" />
     <Compile Include="Areas\Admin\Services\AdminServices.cs" />
     <Compile Include="Areas\Admin\Services\GridServices.cs" />
     <Compile Include="Areas\Admin\Services\IAdminServices.cs" />
@@ -239,11 +230,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\OptionViewModel.cs" />
-    <Compile Include="Models\QuestionViewModel.cs" />
-    <Compile Include="Models\TakeCourseModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CourseServices\CourseService.cs" />
     <Compile Include="Services\CourseServices\ICourseService.cs" />
@@ -456,6 +442,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -475,6 +463,10 @@
       <Project>{e15390a5-01b9-47db-a60b-a34923668fa0}</Project>
       <Project>{E15390A5-01B9-47DB-A60B-A34923668FA0}</Project>
       <Name>SKSLearningSystem.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SKSLearningSystem.Models\SKSLearningSystem.Models.csproj">
+      <Project>{002F7687-91BD-41F3-ABEE-33485FF11EFA}</Project>
+      <Name>SKSLearningSystem.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

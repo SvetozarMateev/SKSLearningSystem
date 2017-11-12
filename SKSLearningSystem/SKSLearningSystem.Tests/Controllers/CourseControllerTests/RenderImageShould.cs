@@ -6,9 +6,13 @@ using SKSLearningSystem.Data.Models;
 using SKSLearningSystem.Services.CourseServices;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EntityFramework.Testing;
+using TestStack.FluentMVCTesting;
+using System.IO;
 
 namespace SKSLearningSystem.Tests.Controllers.CourseControllerTests
 {
@@ -16,24 +20,40 @@ namespace SKSLearningSystem.Tests.Controllers.CourseControllerTests
     public class RenderImageShould
     {
         [TestMethod]
-        public async Task ReturnImageFile_WithCorrecParameters()
+        public void ReturnImageFile_WithCorrecParameters()
         {
             // Arrange
             var contextMock = new Mock<LearningSystemDbContext>();
             var courseServiceMock = new Mock<ICourseService>();
+            var courses = new List<Course>();
 
-            var image = new Image();
-            var currentImage = image.CurrentImage;
-            var imageId = image.Id;
+            byte[] imageAsArray = File.ReadAllBytes("solid-OOP_wall-skills.jpg");
+
+            var image = new Image()
+            {
+                Id = 1,
+                CurrentImage = imageAsArray
+            };
+
+            var images = new List<Image>() { image };
+
+            var course = new Course()
+            {
+                Id = 1,
+                Images = images
+            };
+
+            courses.Add(course);
+
+            var courseSetMock = new Mock<DbSet<Course>>().SetupData(courses);
+            var imageSetMock = new Mock<DbSet<Image>>().SetupData(images);
+            contextMock.Setup(c => c.Courses).Returns(courseSetMock.Object);
+            contextMock.Setup(c => c.Images).Returns(imageSetMock.Object);
 
             var controller = new CourseController(courseServiceMock.Object, contextMock.Object);
-
-            // Act
-            await controller.RenderImage(imageId);
-
-            // Assert
-
-
+            
+            // Act & Assert
+            controller.WithCallTo(x => x.RenderImage(image.Id)).ShouldRenderAnyFile();
         }
     }
 }

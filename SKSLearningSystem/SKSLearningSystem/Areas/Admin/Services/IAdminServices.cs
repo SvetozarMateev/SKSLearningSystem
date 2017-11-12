@@ -13,6 +13,12 @@ namespace SKSLearningSystem.Areas.Admin.Services
 
         bool ValidateInputFiles(UploadCourseViewModel model);
 
-        void SaveCourseToDB(Course course);        
+        void SaveCourseToDB(Course course);
+
+        // Assign Course Methods Start
+        AssignCourseViewModel GetUsersAndCoursesFromDB();
+
+        void SaveAssignedCoursesToDb(AssignCourseViewModel assignCourseViewModel);
+        // end
     }
 }

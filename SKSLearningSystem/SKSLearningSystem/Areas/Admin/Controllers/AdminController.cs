@@ -33,18 +33,32 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
             return this.View();
         }
 
+        // Assign Course Methods Start
         [HttpGet]
         public ActionResult AssignCourse()
         {
+            var assignCourseViewModel = this.services.GetUsersAndCoursesFromDB();
 
-            var users = this.userManager
-                .Users
-                .Select(u => new UserViewModel()
-                {
-                    UserName = u.UserName,
-                    Id = u.Id
-                }).ToList();
+            return this.View(assignCourseViewModel);
+        }
 
+        public ActionResult ConfirmAssignment(AssignCourseViewModel assignCourseViewModel)
+        {
+            return View(assignCourseViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult SubmitAssignments(AssignCourseViewModel assignCourseViewModel)
+        {
+            this.services.SaveAssignedCoursesToDb(assignCourseViewModel);
+
+            return RedirectToAction("AssignCourse");
+        }
+        // end
+
+        [HttpGet]
+        public ActionResult DeAssignCourse()
+        {
             var courses = this.context
                 .Courses
                 .Select(c => new CourseViewModel()
@@ -56,50 +70,18 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
 
             var assignCourseViewModel = new AssignCourseViewModel()
             {
-                Courses = courses,
-                Users = users
+                Courses = courses
             };
 
             return this.View(assignCourseViewModel);
         }
 
-
-        public ActionResult CompleteAssignment(AssignCourseViewModel assignCourseViewModel)
+        public ActionResult EditUsers(AssignCourseViewModel assignCourseViewModel)
         {
+            var coureseId = assignCourseViewModel.Courses.First().Id;
+            var users = context.CourseStates.Where(cs => cs.CourseId == coureseId).Select(x => x.UserId).ToList();
+
             return View(assignCourseViewModel);
-        }
-
-        [HttpPost]
-        public ActionResult SubmitAssignments(AssignCourseViewModel assignCourseViewModel)
-        {
-            var userIds = assignCourseViewModel.Users.Select(y => y.Id).ToArray();
-            var courseIds = assignCourseViewModel.Courses.Select(cr => cr.Id).ToArray();
-
-            var users = context.Users.Where(x => userIds.Contains(x.Id)).ToList();
-            var courses = context.Courses.Where(c => courseIds.Contains(c.Id)).ToList();
-
-
-            for (int i = 0; i < users.Count; i++)
-            {
-                for (int j = 0; j < courses.Count; j++)
-                {
-                    CourseState state = new CourseState()
-                    {
-                        User = users[i],
-                        Course = courses[j],
-                        DueDate = assignCourseViewModel.Users[i].DueDate,
-                        Mandatory = assignCourseViewModel.Users[i].Mandatory
-                    };
-
-                    users[i].CourseStates.Add(state);
-                    courses[j].Registry.Add(state);
-                    context.CourseStates.Add(state);
-                }
-            }
-
-            context.SaveChanges();
-
-            return RedirectToAction("AssignCourse");
         }
 
         [HttpPost]

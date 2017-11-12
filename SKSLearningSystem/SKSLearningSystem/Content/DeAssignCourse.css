@@ -1,0 +1,7 @@
+﻿
+
+#CoursesForEdit {
+    grid-column-start: 21;
+    grid-column-end: 60;
+    border: 2px solid black;
+}

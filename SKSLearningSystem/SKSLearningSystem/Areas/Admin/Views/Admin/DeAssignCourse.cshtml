@@ -1,0 +1,22 @@
+﻿@model SKSLearningSystem.Areas.Admin.Models.AssignCourseViewModel
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Select Course Where You Want To Remove Useres</h2>
+
+@using (Html.BeginForm("EditUsers", "Admin", FormMethod.Post))
+{
+    <div id="container">
+        <div id="CoursesForEdit">
+            @for (int i = 0; i < Model.Courses.Count; i++)
+                {
+                <p>@Html.HiddenFor(x => Model.Courses[i].Id)</p>
+                <p>@Html.EditorFor(u => Model.Courses[i].Checked) @Html.DisplayFor(x => Model.Courses[i].Name) @Html.HiddenFor(x => Model.Courses[i].Name)</p>
+            }
+        </div>
+    </div>
+    <div id="butt">
+        <input type="submit" value="Edit Users">
+    </div>
+}

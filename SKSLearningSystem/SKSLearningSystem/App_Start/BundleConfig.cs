@@ -43,6 +43,7 @@ namespace SKSLearningSystem
                      "~/Content/jquery.jqGrid/ui.jqgrid.css",             
                        "~/Content/AssignCourse.css",
                         "~/Content/CompleteAssignment.css",
+                         "~/Content/DeAssignCourse.css",
                       "~/Content/uploadcourse.css",
                       "~/Content/TakeCourse.css"));
 

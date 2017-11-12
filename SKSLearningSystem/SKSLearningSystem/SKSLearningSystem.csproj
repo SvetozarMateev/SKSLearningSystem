@@ -314,6 +314,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
+    <Content Include="Content\DeAssignCourse.css" />
     <Content Include="Content\uploadcourse.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -328,13 +329,15 @@
     <Content Include="Areas\Admin\Views\Admin\UploadCourse.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\SuccessMessage.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\AssignCourse.cshtml" />
-    <Content Include="Areas\Admin\Views\Admin\CompleteAssignment.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\ConfirmAssignment.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\MonitorUsersProgress.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\AssignRoles.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_AdminLayout.cshtml" />
     <Content Include="fonts\slick.ttf" />
     <Content Include="fonts\slick.woff" />
+    <Content Include="Areas\Admin\Views\Admin\DeAssignCourse.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\EditUsers.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\i18n\grid.locale-ar.js" />
     <Content Include="Scripts\i18n\grid.locale-bg.js" />
@@ -400,7 +403,9 @@
     <Content Include="Scripts\slider.js" />
     <Content Include="Scripts\takeExamValidator.js" />
     <Content Include="Scripts\uploadCourse.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

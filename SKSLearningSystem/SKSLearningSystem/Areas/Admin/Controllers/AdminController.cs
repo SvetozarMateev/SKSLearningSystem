@@ -52,8 +52,19 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
         {
             this.services.SaveAssignedCoursesToDb(assignCourseViewModel);
 
+            return RedirectToAction("AlertUser");
+        }
+
+        public ActionResult AlertUser()
+        {
+            return View();
+        }
+
+        public ActionResult BackToAssign()
+        {
             return RedirectToAction("AssignCourse");
         }
+
         // end
 
         [HttpGet]
@@ -91,7 +102,6 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
 
             if (IsValid)
             {
-
                 var course = this.services.ReadCourseFromJSON(model.CourseFile);
                 var images = this.services.ReadImagesFromFiles(model.Photos);
 

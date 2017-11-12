@@ -338,6 +338,7 @@
     <Content Include="fonts\slick.woff" />
     <Content Include="Areas\Admin\Views\Admin\DeAssignCourse.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\EditUsers.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\AlertUser.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\i18n\grid.locale-ar.js" />
     <Content Include="Scripts\i18n\grid.locale-bg.js" />
@@ -444,6 +445,7 @@
     <Content Include="Views\Course\InvalidTest.cshtml" />
     <Content Include="Views\Course\PassedTest.cshtml" />
     <Content Include="Views\Course\FailedTest.cshtml" />
+    <Content Include="Views\Home\MyProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

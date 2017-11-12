@@ -96,12 +96,14 @@
     <Compile Include="ViewModels\AdminViewModels\RulesViewModel.cs" />
     <Compile Include="ViewModels\AdminViewModels\UploadCourseViewModel.cs" />
     <Compile Include="ViewModels\AdminViewModels\UserViewModel.cs" />
+    <Compile Include="ViewModels\CourseSateViewModel.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
     <Compile Include="ViewModels\OptionViewModel.cs" />
     <Compile Include="ViewModels\QuestionViewModel.cs" />
     <Compile Include="ViewModels\TakeCourseModel.cs" />
     <Compile Include="ViewModels\TakeTestViewModel.cs" />
     <Compile Include="ViewModels\User.cs" />
+    <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

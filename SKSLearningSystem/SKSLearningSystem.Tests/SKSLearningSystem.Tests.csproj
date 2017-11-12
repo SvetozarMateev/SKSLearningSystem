@@ -115,6 +115,7 @@
     <Compile Include="Areas\Admin\Services\AdminServicesTests\ValidateInputFiles_Should.cs" />
     <Compile Include="Controllers\CourseControllerTests\RenderImageShould.cs" />
     <Compile Include="Controllers\CourseControllerTests\TakeCourseShould.cs" />
+    <Compile Include="Controllers\CourseControllerTests\ConstructorShould.cs" />
     <Compile Include="Services\CourseServices\CourseServiceTests\GetImagesShould.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

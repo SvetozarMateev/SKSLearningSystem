@@ -41,3 +41,63 @@
     .btn-upload:hover {
         background-color: darkgreen;
     }
+.failed-box {
+    background-color: lightpink;
+    border-color: darkred;
+    border-radius: 15px;
+    border: solid;
+    color: darkred;
+    font: bold;
+    margin-right: 6%;
+    margin-left: 6%;
+}
+.text-failed{
+    padding:4%;
+
+}
+.return-home {
+    text-decoration: none;
+    background-color: red;
+    color: white;
+    border-radius: 10px;
+    float: right;
+    margin-right: 6%;
+    margin-top: 1%;
+    padding: 2%;
+}
+.return-home:hover {
+    text-decoration: none;
+    background-color: darkred;
+   
+}
+
+.passed-box {
+    background-color: lightgreen;
+    border-color: darkgreen;
+    border-radius: 15px;
+    border: solid;
+    color: darkgreen;
+    font: bold;
+    margin-right: 6%;
+    margin-left: 6%;
+}
+
+.text-passed {
+    padding: 4%;
+}
+
+.return-home-passed {
+    text-decoration: none;
+    background-color: forestgreen;
+    color: white;
+    border-radius: 10px;
+    float: right;
+    margin-right: 6%;
+    margin-top: 1%;
+    padding: 2%;
+}
+
+    .return-home-passed:hover {
+        text-decoration: none;
+        background-color: darkgreen;
+    }

@@ -49,9 +49,13 @@
     <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -60,19 +64,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Factories\CourseStateFactory.cs" />
-    <Compile Include="Factories\ICourseStateFactory.cs" />
+    <Compile Include="AdminServices.cs" />
+    <Compile Include="Contracts\IAdminServices.cs" />
+    <Compile Include="Contracts\ICourseService.cs" />
+    <Compile Include="Contracts\IGridServices.cs" />
+    <Compile Include="Contracts\IHomeServices.cs" />
+    <Compile Include="CourseService.cs" />
+    <Compile Include="GridServices.cs" />
+    <Compile Include="HomeServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserServices\TakeCourseService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SKSLearningSystem.Data\SKSLearningSystem.Data.csproj">
       <Project>{e15390a5-01b9-47db-a60b-a34923668fa0}</Project>
       <Name>SKSLearningSystem.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SKSLearningSystem\SKSLearningSystem.csproj">
-      <Project>{be4a6ab9-8170-4894-8a93-6c2257a3f34b}</Project>
-      <Name>SKSLearningSystem</Name>
+    <ProjectReference Include="..\SKSLearningSystem.Models\SKSLearningSystem.Models.csproj">
+      <Project>{002F7687-91BD-41F3-ABEE-33485FF11EFA}</Project>
+      <Name>SKSLearningSystem.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

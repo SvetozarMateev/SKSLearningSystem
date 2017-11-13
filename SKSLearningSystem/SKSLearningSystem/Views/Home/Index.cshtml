@@ -1,112 +1,17 @@
-﻿@{
+﻿@model List<SKSLearningSystem.Models.ViewModels.SingleCourseViewModel>
+@{
     ViewBag.Title = "Home Page";
-  
+
 }
 
 <section class="recipe-recommend">
     <div class="wrapper-scroller-menu slide">
-
-        <article class="recipe" index="0">
-            <a href="">
-                <figure>
-                    <img src="img/ratatouille.jpg" alt="meal">
-                </figure>
-                <ul class="article-info">
-                    <li><span class="article-info-title">Cook Time:</span><br> 20min</li>
-                    <li><span class="article-info-title">Category:</span><br> Dinner, Summer</li>
-                    <li><span class="article-info-title">Tag:</span><br> Chicken, Fish</li>
-                    <li>
-                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                    </li>
-                </ul>
-                <h3 class="recipe-name">Ratatouille</h3>
-                <p class="short-description">
-                    “This moreish Mediterranean-style vegetable stew is perfect for a super-healthy midweek supper.
-                    ”
-                    “This moreish Mediterranean-style vegetable stew is perfect for a super-healthy midweek supper.
-                    ”
-                </p>
-            </a>
-        </article>
-
-        <article class="recipe" index="0">
-            <a href="">
-                <figure>
-                    <img src="img/kugelhopf.jpg" alt="meal">
-                </figure>
-                <ul class="article-info">
-                    <li><span class="article-info-title">Cook Time:</span><br>3h and 20min</li>
-                    <li><span class="article-info-title">Category:</span><br> Cake, Dessert</li>
-                    <li><span class="article-info-title">Tag:</span><br> Baking, Christmas</li>
-                    <li>
-                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                    </li>
-                </ul>
-                <h3 class="recipe-name">Kugelhopf</h3>
-                <p class="short-description">
-                    “A soft sponge with warming hints of cardamom,
-                    this spiced fruit cake is found in Austria, Alsace, Germany and Switzerland. ”
-                </p>
-            </a>
-        </article>
-
-        <article class="recipe" index="1">
-            <a href="">
-                <figure>
-                    <img src="img/beefwellington.jpg" alt="meal">
-                </figure>
-                <ul class="article-info">
-                    <li><span class="article-info-title">Cook Time:</span><br> 1h and 20min</li>
-                    <li><span class="article-info-title">Category:</span><br> Dinner, Special</li>
-                    <li><span class="article-info-title">Tag:</span><br> Pastry, Beef</li>
-                    <li>
-                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                    </li>
-                </ul>
-                <h3 class="recipe-name">Beef Wellington</h3>
-                <p class="short-description">
-                    “This is one of those ultimate blowout dishes that hits the right spot several times in one meal
-                    ”
-                </p>
-            </a>
-        </article>
-
-        <article class="recipe" index="2">
-            <a href="">
-                <figure>
-                    <img src="img/lasagne.jpg" alt="meal">
-                </figure>
-                <ul class="article-info">
-                    <li><span class="article-info-title">Cook Time:</span><br> 2h and 40min</li>
-                    <li><span class="article-info-title">Category:</span><br> Dinner, Family</li>
-                    <li><span class="article-info-title">Tag:</span><br> Italian, Pork, Beef</li>
-                    <li>
-                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                    </li>
-                </ul>
-                <h3 class="recipe-name">Lasagne</h3>
-                <p class="short-description">
-                    "Perfect for batch cooking and freezing.
-                    Invest time in the ragù for this lovely lasagne and freeze the extra portions for a rainy day."
-                </p>
-            </a>
-        </article>
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            <article class="recipe" index="0">
+                @Html.Partial("_SingleCourse", Model[i])
+            </article>
+        }         
     </div>
 
 </section>

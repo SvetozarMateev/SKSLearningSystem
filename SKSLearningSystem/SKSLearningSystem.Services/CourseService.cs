@@ -39,7 +39,7 @@ namespace SKSLearningSystem.Services.CourseServices
             return images.ToList();
         }
 
-        public List<QuestionViewModel> GetQuestionsForCourse(int courseStateId)
+        public TakeTestViewModel GetTestViewModel(int courseStateId)
         {
             var courseState = this.context.CourseStates.First(x => x.Id == courseStateId);
             var questions = courseState.Course.Questions.Select(x => new QuestionViewModel()
@@ -55,7 +55,13 @@ namespace SKSLearningSystem.Services.CourseServices
                 }).ToList(),
                 Statement = x.Statement
             }).ToList();
-            return questions;
+            var model = new TakeTestViewModel()
+            {
+                Questions = questions,
+                CourseName = courseState.Course.Name,
+                CourseStateId = courseStateId
+            };
+            return model;
         }
 
         public bool ValidateTest(TakeTestViewModel questions)

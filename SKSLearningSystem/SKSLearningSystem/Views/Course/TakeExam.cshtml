@@ -16,8 +16,7 @@
     <div class="sheet">
         <div class="inner-sheet">
             <h2 class="exam-name">@Model.CourseName</h2>
-            <hr />
-            
+            <hr />          
 
             @using (Ajax.BeginForm("TakeExam",null, new AjaxOptions() { UpdateTargetId = "result"}
                 ,new { id = "exam" }))
@@ -43,19 +42,21 @@
                            
                         <span class="answer">
                             @Html.HiddenFor(x => x.Questions[i].Options[a].Letter)
-                            @Html.DisplayFor(x => x.Questions[i].Options[a].Letter))
-                            @Html.DisplayFor(x => x.Questions[i].Options[a].Answer)
+                            @Html.LabelFor(x => x.Questions[i].Options[a].IsSelected,$"{Model.Questions[i].Options[a].Letter}"))
+                            @Html.LabelFor(x => x.Questions[i].Options[a].IsSelected, $"{Model.Questions[i].Options[a].Answer}")
                         </span>
                     </p>
                     }
                      </div>
-                                    
-                }
+
+                            }
+                           
                     <button type="submit"  class="btn-upload">Submit Test</button>
             }
-            <div id="result">
+           
+        </div>
+        <div id="result">
 
-            </div>
         </div>
     </div>
 

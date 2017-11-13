@@ -52,9 +52,10 @@ namespace SKSLearningSystem.Controllers
         }
 
         [HttpGet]
-        public ActionResult TakeExam()
+        public ActionResult TakeExam(int? courseStateId)
         {
-            var TakeTestViewModel = new TakeTestViewModel() { Questions = this.services.GetQuestionsForCourse(14),CourseName="Pesho" };
+            courseStateId = 14;
+            var TakeTestViewModel =  this.services.GetTestViewModel(14);
             return this.View(TakeTestViewModel);
         }
 
@@ -63,23 +64,21 @@ namespace SKSLearningSystem.Controllers
         {
             var IsTestStateValid = this.services.ValidateTest(TakeTestViewModel);
 
-
-
             if (IsTestStateValid == false)
             {
                 this.ModelState.AddModelError("answers", "Please select one answer per question");
                 return this.PartialView("InvalidTest",TakeTestViewModel);
             }
             var grade = this.services.GradeExam(TakeTestViewModel);
-            this.ViewBag.Grade = grade;
+            TakeTestViewModel.Grade = grade;
             if (grade >= 50)
             {
-                this.services.ChangeCourseState(TakeTestViewModel.Questions.First().CourseId,"Completed");
-                return this.PartialView("PassedTest");
+                this.services.ChangeCourseState(TakeTestViewModel.CourseStateId,"Completed");
+                return this.PartialView("PassedTest",TakeTestViewModel);
             }
             else
             {
-                return this.PartialView("FailedTest");
+                return this.PartialView("FailedTest",TakeTestViewModel);
             }
         }
     }

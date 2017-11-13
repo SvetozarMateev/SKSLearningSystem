@@ -1,8 +1,10 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using SKSLearningSystem.Areas.Admin.Controllers;
 using SKSLearningSystem.Areas.Admin.Services;
 using SKSLearningSystem.Data;
+using SKSLearningSystem.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,10 +22,11 @@ namespace SKSLearningSystem.Tests.Areas.Admin.Controllers.AdminControllerTests
         public void ReturnJSONFromGridServicesWhenFalseMethod_WhenSearchIsFalse()
         {
             //Arrange
+            var userStore = new Mock<IUserStore<User>>();
             var adminServicesMock = new Mock<IAdminServices>();
             var gridServicesMock = new Mock<IGridServices>();
             var dbMock = new Mock<LearningSystemDbContext>();
-            var applicationUserManagerMock = new Mock<ApplicationUserManager>();
+            var applicationUserManagerMock = new Mock<ApplicationUserManager>(userStore.Object);
             var controller = new AdminController(adminServicesMock.Object,
                 applicationUserManagerMock.Object, dbMock.Object, gridServicesMock.Object);
             var _search = true;
@@ -42,10 +45,11 @@ namespace SKSLearningSystem.Tests.Areas.Admin.Controllers.AdminControllerTests
         public void ReturnJSONFromGridServicesWhenTrueMethod_WhenSearchIsTrue()
         {
             //Arrange
+            var userStore = new Mock<IUserStore<User>>();
             var adminServicesMock = new Mock<IAdminServices>();
             var gridServicesMock = new Mock<IGridServices>();
             var dbMock = new Mock<LearningSystemDbContext>();
-            var applicationUserManagerMock = new Mock<ApplicationUserManager>();
+            var applicationUserManagerMock = new Mock<ApplicationUserManager>(userStore.Object);
             var controller = new AdminController(adminServicesMock.Object, applicationUserManagerMock.Object, dbMock.Object, gridServicesMock.Object);
             var _search = true;
             var rows = It.IsAny<int>();

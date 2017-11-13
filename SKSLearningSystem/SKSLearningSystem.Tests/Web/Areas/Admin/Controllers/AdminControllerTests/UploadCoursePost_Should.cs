@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using SKSLearningSystem.Areas.Admin.Controllers;
 using SKSLearningSystem.Areas.Admin.Models;
@@ -16,11 +17,12 @@ namespace SKSLearningSystem.Tests.Areas.Admin.Controllers.AdminControllerTests
         public void AddErrorToModelState_WhenFileNameIsInvalid()
         {
             //Arrange
+            var userStore = new Mock<IUserStore<User>>();
             var adminServicesMock = new Mock<IAdminServices>();
             var gridServicesMock = new Mock<IGridServices>();
             var dbMock = new Mock<LearningSystemDbContext>();
             var viewModelMock = new UploadCourseViewModel();
-            var applicationUserManagerMock = new Mock<ApplicationUserManager>();
+            var applicationUserManagerMock = new Mock<ApplicationUserManager>(userStore.Object);
             var controller = new AdminController(adminServicesMock.Object,
                 applicationUserManagerMock.Object, dbMock.Object,gridServicesMock.Object);
             adminServicesMock.Setup(x => x.ValidateInputFiles(viewModelMock)).Returns(false);
@@ -37,12 +39,13 @@ namespace SKSLearningSystem.Tests.Areas.Admin.Controllers.AdminControllerTests
         public void ValidateNameExtensions()
         {
             //Arrange
+            var userStore = new Mock<IUserStore<User>>();
             var adminServicesMock = new Mock<IAdminServices>();
             var gridServicesMock = new Mock<IGridServices>();
 
             var dbMock = new Mock<LearningSystemDbContext>();
             var viewModelMock = new UploadCourseViewModel();
-            var applicationUserManagerMock = new Mock<ApplicationUserManager>();
+            var applicationUserManagerMock = new Mock<ApplicationUserManager>(userStore.Object);
             var controller = new AdminController(adminServicesMock.Object,
                 applicationUserManagerMock.Object, dbMock.Object,gridServicesMock.Object);
 
@@ -57,12 +60,13 @@ namespace SKSLearningSystem.Tests.Areas.Admin.Controllers.AdminControllerTests
         public void SaveCourseToDb_WhenFilesAreCorrect()
         {
             //Arrange
+            var userStore = new Mock<IUserStore<User>>();
             var adminServicesMock = new Mock<IAdminServices>();
             var gridServicesMock = new Mock<IGridServices>();
             var dbMock = new Mock<LearningSystemDbContext>();
             var viewModelMock = new UploadCourseViewModel();
             var courseMock = new Course();
-            var applicationUserManagerMock = new Mock<ApplicationUserManager>();
+            var applicationUserManagerMock = new Mock<ApplicationUserManager>(userStore.Object);
 
             var controller = new AdminController(adminServicesMock.Object,
                 applicationUserManagerMock.Object, dbMock.Object,gridServicesMock.Object);
@@ -80,12 +84,13 @@ namespace SKSLearningSystem.Tests.Areas.Admin.Controllers.AdminControllerTests
         public void ReturnDefaultView()
         {
             //Arrange
+            var userStore = new Mock<IUserStore<User>>();
             var adminServicesMock = new Mock<IAdminServices>();
             var gridServicesMock = new Mock<IGridServices>();
 
             var dbMock = new Mock<LearningSystemDbContext>();
             var viewModelMock = new UploadCourseViewModel();
-            var applicationUserManagerMock = new Mock<ApplicationUserManager>();
+            var applicationUserManagerMock = new Mock<ApplicationUserManager>(userStore.Object);
             var controller = new AdminController(adminServicesMock.Object,
                 applicationUserManagerMock.Object, dbMock.Object, gridServicesMock.Object);
 

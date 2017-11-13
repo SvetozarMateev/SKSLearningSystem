@@ -11,7 +11,7 @@ namespace SKSLearningSystem.Services.CourseServices
 
         ICollection<Image> GetImages(int courseId);
 
-        List<QuestionViewModel> GetQuestionsForCourse(int courseId);
+        TakeTestViewModel GetTestViewModel(int courseId);
 
         bool ValidateTest(TakeTestViewModel questions);
 

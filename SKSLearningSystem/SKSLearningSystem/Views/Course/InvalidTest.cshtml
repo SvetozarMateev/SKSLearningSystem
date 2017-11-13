@@ -1,2 +1,4 @@
 ﻿@model SKSLearningSystem.Areas.Admin.Models.TakeTestViewModel
-@Html.ValidationSummary()
+    <div class="failed-box">
+@Html.ValidationSummary("Errors:", new { @class = "text-failed" })
+    </div>

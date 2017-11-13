@@ -9,7 +9,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SKSLearningSystem.Services.UserServices;
+
 
 
 namespace SKSLearningSystem.Tests.UserServices.TakeCourseServiceTests

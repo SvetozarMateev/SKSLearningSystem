@@ -16,7 +16,7 @@ namespace SKSLearningSystem.Areas.Admin.Services
         {
             this.db = db;
         }
-        private IList<User> Filtrator(string propertyName, string shortOp,string inputField,IList<User>users)
+        public IList<User> Filtrator(string propertyName, string shortOp,string inputField,IList<User>users)
         {
             var result = new List<User>();
             switch (propertyName)

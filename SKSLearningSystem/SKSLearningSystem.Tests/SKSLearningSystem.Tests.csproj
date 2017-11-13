@@ -113,8 +113,13 @@
     <Compile Include="Areas\Admin\Services\AdminServicesTests\ReadImagesFromFile_Should.cs" />
     <Compile Include="Areas\Admin\Services\AdminServicesTests\SaveCourseToDb_Should.cs" />
     <Compile Include="Areas\Admin\Services\AdminServicesTests\ValidateInputFiles_Should.cs" />
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="Controllers\CourseControllerTests\TakeExamGet_Should.cs" />
+    <Compile Include="Controllers\CourseControllerTests\TakeExamPost_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\CourseServices\CourseServicesTests\ChangeState_Should.cs" />
+    <Compile Include="Services\CourseServices\CourseServicesTests\GetTestViewModel_Should.cs" />
+    <Compile Include="Services\CourseServices\CourseServicesTests\GradeExam_Should.cs" />
+    <Compile Include="Services\CourseServices\CourseServicesTests\ValidateTest_Should.cs" />
     <Compile Include="UserServices\TakeCourseServiceTests\TakeCourseShould.cs" />
   </ItemGroup>
   <ItemGroup>

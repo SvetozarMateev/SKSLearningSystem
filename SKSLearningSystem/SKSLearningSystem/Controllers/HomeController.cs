@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SKSLearningSystem.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +9,16 @@ namespace SKSLearningSystem.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IHomeServices homeServices;
+
+        public HomeController(IHomeServices homeServices)
+        {
+            this.homeServices = homeServices;
+        }
         public ActionResult Index()
         {
-            return View();
+            var courses = this.homeServices.GetCoursesFromDb();
+            return View(courses);
         }
 
         public ActionResult About()

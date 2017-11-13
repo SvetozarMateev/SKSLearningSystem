@@ -233,6 +233,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CourseServices\CourseService.cs" />
     <Compile Include="Services\CourseServices\ICourseService.cs" />
+    <Compile Include="Services\HomeServices.cs" />
+    <Compile Include="Services\IHomeServices.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -439,6 +441,7 @@
     <Content Include="Views\Course\InvalidTest.cshtml" />
     <Content Include="Views\Course\PassedTest.cshtml" />
     <Content Include="Views\Course\FailedTest.cshtml" />
+    <Content Include="Views\Shared\_SingleCourse.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

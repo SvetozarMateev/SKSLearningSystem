@@ -15,6 +15,7 @@ namespace SKSLearningSystem.App_Start
     using SKSLearningSystem.Areas.Admin.Services;
     using SKSLearningSystem.Services.CourseServices;
     using SKSLearningSystem.Areas.Admin.Models;
+    using SKSLearningSystem.Services;
 
     public static class NinjectWebCommon 
     {
@@ -85,6 +86,7 @@ namespace SKSLearningSystem.App_Start
 
             kernel.Bind<ICourseService>().To<CourseService>();
 
+            kernel.Bind<IHomeServices>().To<HomeServices>();
         }        
     }
 }

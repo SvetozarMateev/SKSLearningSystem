@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SKSLearningSystem.Services.UserServices;
-using SKSLearningSystem.Services.Factories;
+
 
 namespace SKSLearningSystem.Tests.UserServices.TakeCourseServiceTests
 {

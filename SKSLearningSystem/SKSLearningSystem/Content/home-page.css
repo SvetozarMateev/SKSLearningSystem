@@ -253,10 +253,23 @@ header .hvr-underline-from-center:hover:before, .hvr-underline-from-center:focus
 
 }
 
-.recipe a {
-    text-decoration: none;
+.recipe a> p {
+    text-decoration: none !important;
 }
-
+.recipe a > p:hover {
+    text-decoration: none !important;
+}
+.text {
+    text-decoration: none !important;
+}
+    .text:hover {
+      
+        text-decoration: none;
+        cursor: pointer;
+    }
+    .course-picture{
+        height:30%;
+    }
 .wrapper-scroller-menu {
     padding: 20px 0;
     width: 80%;
@@ -268,9 +281,11 @@ header .hvr-underline-from-center:hover:before, .hvr-underline-from-center:focus
     display: inline-block;
     width: 30%;
     border-radius: 18px;
+    border:solid;
     margin: 0 1.0%;
     padding: 15px;
-    background-color: #FAF0E6;
+    background-color: white;
+    border-color:darkgreen;
     min-height: 350px;
 }
 

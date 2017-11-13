@@ -23,34 +23,7 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-
                     <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { })</li>
-
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    @*<li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
-
-
-                    @*<li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new {})</li>
-
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new {})</li>
-
-
-                    <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { })</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { })</li>
-                    @if (this.User.IsInRole("Admin"))
-                    {
-                        <li>@Html.ActionLink("AssignCourse", "AssignCourse", "Admin", new { area = "Admin" }, null)</li>
-
-                    }*@
-
-
-                  
-
-                    
-
-
-
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -60,7 +33,7 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
+        <footer class="footer">
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
     </div>

@@ -99,6 +99,7 @@
     <Compile Include="ViewModels\ManageViewModels.cs" />
     <Compile Include="ViewModels\OptionViewModel.cs" />
     <Compile Include="ViewModels\QuestionViewModel.cs" />
+    <Compile Include="ViewModels\SingleCourseViewModel.cs" />
     <Compile Include="ViewModels\TakeCourseModel.cs" />
     <Compile Include="ViewModels\TakeTestViewModel.cs" />
     <Compile Include="ViewModels\User.cs" />

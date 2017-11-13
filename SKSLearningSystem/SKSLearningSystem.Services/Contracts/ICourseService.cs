@@ -9,7 +9,7 @@ namespace SKSLearningSystem.Services.CourseServices
     {
         string GetCourseName(int courseId);
 
-        ICollection<Image> GetImages(int courseId);
+        ICollection<Image> GetImages(int? courseId);
 
         TakeTestViewModel GetTestViewModel(int courseId);
 

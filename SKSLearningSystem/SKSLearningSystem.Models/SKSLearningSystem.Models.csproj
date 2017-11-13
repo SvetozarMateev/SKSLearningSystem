@@ -95,6 +95,7 @@
     <Compile Include="ViewModels\AdminViewModels\GridRequestViewModel.cs" />
     <Compile Include="ViewModels\AdminViewModels\RulesViewModel.cs" />
     <Compile Include="ViewModels\AdminViewModels\UploadCourseViewModel.cs" />
+    <Compile Include="ViewModels\AdminViewModels\UploadedCourseInfoViewModel.cs" />
     <Compile Include="ViewModels\AdminViewModels\UserViewModel.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
     <Compile Include="ViewModels\OptionViewModel.cs" />

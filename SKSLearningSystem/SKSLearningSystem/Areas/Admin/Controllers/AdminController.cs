@@ -2,9 +2,12 @@
 using SKSLearningSystem.Areas.Admin.Services;
 using SKSLearningSystem.Data;
 using System.Linq;
-using SKSLearningSystem.Data.Models;
+using SKSLearningSystem;
 using System.Web.Mvc;
 using System.Threading.Tasks;
+using SKSLearningSystem.Data.Models;
+using Bytes2you.Validation;
+using SKSLearningSystem.Models.ViewModels.AdminViewModels;
 
 namespace SKSLearningSystem.Areas.Admin.Controllers
 {
@@ -19,7 +22,7 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
         public AdminController(IAdminServices services, ApplicationUserManager userManager, LearningSystemDbContext context
             , IGridServices gridServices)
 
-        {
+        {          
             this.services = services;
             this.userManager = userManager;
             this.context = context;
@@ -103,25 +106,27 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult UploadCourse(UploadCourseViewModel model)
         {
             var IsValid = this.services.ValidateInputFiles(model);
-
+            var infoModel = new UploadedCourseInfoViewModel();
             if (IsValid)
             {
-
                 var course = this.services.ReadCourseFromJSON(model.CourseFile);
                 var images = this.services.ReadImagesFromFiles(model.Photos);
-
+                infoModel.CourseName = course.Name;
+                infoModel.PhotosCount = images.Count;
                 course.Images = images;
                 this.services.SaveCourseToDB(course);
             }
             else
             {
                 this.ModelState.AddModelError("file", "You can upload only json, png or jpg files.");
+                return this.View();
             }
 
-            return this.View();
+            return this.PartialView("CoursesAdded",infoModel);
         }
 
 
@@ -165,7 +170,7 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
             {
                 if (_search == false)
                 {
-                    return Json(this.gridServices.SearchFalseResult(), JsonRequestBehavior.AllowGet);
+                    return Json(this.gridServices.SearchFalseResult(page, rows), JsonRequestBehavior.AllowGet);
                 }
                 else
                 {

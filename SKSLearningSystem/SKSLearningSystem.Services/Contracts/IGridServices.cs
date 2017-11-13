@@ -10,7 +10,7 @@ namespace SKSLearningSystem.Areas.Admin.Services
     {
         IList<User> Filtrator(string propertyName, string shortOp, string inputField, IList<User> users);
 
-         object SearchFalseResult();
+         object SearchFalseResult(int page, int rows);
 
         object SearchResultTrue(string filters);
     }

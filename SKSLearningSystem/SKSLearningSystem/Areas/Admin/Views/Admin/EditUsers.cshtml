@@ -1,17 +1,27 @@
-﻿@{
-    Layout = null;
+﻿@model SKSLearningSystem.Areas.Admin.Models.AssignCourseViewModel
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<!DOCTYPE html>
+<h2>Edit Users</h2>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
-</head>
-<body>
-    <div>
-    
+@using (Html.BeginForm("DeleteUsers", "Admin", FormMethod.Post))
+{
+    <div id="container">
+        <div id="ListUsers">
+            @for (int i = 0; i < Model.Users.Count; i++)
+                {
+                <p>@Html.HiddenFor(x => Model.Users[i].Id)</p>
+                <p>@Html.HiddenFor(x => Model.CourseStates[i].Id)</p>
+                <p>@Html.HiddenFor(x => Model.CourseStates[i].UserId)</p>
+                <p id="userName">@Html.EditorFor(u => Model.Users[i].Checked) @Html.DisplayFor(x => Model.Users[i].UserName) @Html.HiddenFor(x => Model.Users[i].UserName)</p>
+                <p id="mandatory">@Html.LabelFor(u => Model.Users[i].Mandatory) @Html.EditorFor(u => Model.Users[i].Mandatory)</p>
+                <p id="dueDate">@Html.LabelFor(u => Model.Users[i].DueDate) @Html.EditorFor(u => Model.Users[i].DueDate)</p>
+            }
+        </div>
+        
     </div>
-</body>
-</html>
+    <div id="butt">
+        <input type="submit" value="DeAssign">
+    </div>
+}

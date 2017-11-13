@@ -1,4 +1,5 @@
 ﻿using SKSLearningSystem.Data.Models;
+using SKSLearningSystem.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,6 @@ namespace SKSLearningSystem.Areas.Admin.Models
 
         public List<CourseViewModel> Courses { get; set; }
 
-        
+        public List<CourseSateViewModel> CourseStates { get; set; }
     }
 }

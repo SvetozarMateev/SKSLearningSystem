@@ -10,7 +10,7 @@ using System.Web;
 
 namespace SKSLearningSystem.Areas.Admin.Services
 {
-    public class AdminServices:IAdminServices
+    public class AdminServices : IAdminServices
     {
         private readonly LearningSystemDbContext db;
 
@@ -20,7 +20,7 @@ namespace SKSLearningSystem.Areas.Admin.Services
 
             this.db = db;
         }
-        
+
         public bool ValidateInputFiles(UploadCourseViewModel model)
         {
             if (model == null)
@@ -63,7 +63,7 @@ namespace SKSLearningSystem.Areas.Admin.Services
             }
 
             Guard.WhenArgument(course.Name, "course name").IsNullOrWhiteSpace().IsEmpty().Throw();
-            Guard.WhenArgument(course.Description, "course description").IsNullOrWhiteSpace().IsEmpty().Throw();            
+            Guard.WhenArgument(course.Description, "course description").IsNullOrWhiteSpace().IsEmpty().Throw();
 
             return course;
         }
@@ -120,6 +120,13 @@ namespace SKSLearningSystem.Areas.Admin.Services
             return assignCourseViewModel;
         }
 
+        private bool ValidateState(string userId, int courseId)
+        {
+            bool answer = db.CourseStates.Any(x => userId == x.UserId && courseId == x.CourseId);
+
+            return answer;
+        }
+
         public void SaveAssignedCoursesToDb(AssignCourseViewModel assignCourseViewModel)
         {
             var userIds = assignCourseViewModel.Users.Select(y => y.Id).ToArray();
@@ -133,17 +140,22 @@ namespace SKSLearningSystem.Areas.Admin.Services
             {
                 for (int j = 0; j < courses.Count; j++)
                 {
-                    CourseState state = new CourseState()
+                    if (!ValidateState(userIds[i], courseIds[j]))
                     {
-                        User = users[i],
-                        Course = courses[j],
-                        DueDate = assignCourseViewModel.Users[i].DueDate,
-                        Mandatory = assignCourseViewModel.Users[i].Mandatory
-                    };
+                        CourseState state = new CourseState()
+                        {
+                            User = users[i],
+                            Course = courses[j],
+                            DueDate = assignCourseViewModel.Users[i].DueDate,
+                            Mandatory = assignCourseViewModel.Users[i].Mandatory
+                        };
 
-                    users[i].CourseStates.Add(state);
-                    courses[j].Registry.Add(state);
-                    db.CourseStates.Add(state);
+                        users[i].CourseStates.Add(state);
+                        courses[j].Registry.Add(state);
+                        db.CourseStates.Add(state);
+                    }
+
+
                 }
             }
 

@@ -5,6 +5,7 @@ using System.Linq;
 using SKSLearningSystem.Data.Models;
 using System.Web.Mvc;
 using System.Threading.Tasks;
+using SKSLearningSystem.Models.ViewModels;
 
 namespace SKSLearningSystem.Areas.Admin.Controllers
 {
@@ -87,13 +88,50 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
             return this.View(assignCourseViewModel);
         }
 
+        
         public ActionResult EditUsers(AssignCourseViewModel assignCourseViewModel)
         {
             var coureseId = assignCourseViewModel.Courses.First().Id;
-            var users = context.CourseStates.Where(cs => cs.CourseId == coureseId).Select(x => x.UserId).ToList();
+
+            var users = context.CourseStates.Where(cs => cs.CourseId == coureseId)
+                .Select(x => new UserViewModel() {
+                    Id = x.UserId,
+                    UserName =x.User.UserName
+                }).ToList();
+
+            var courseIdInCourseState = assignCourseViewModel.Courses.FirstOrDefault(x => x.Checked == true).Id;
+
+            var courseStates = context.CourseStates
+                .Where(cs => cs.CourseId == courseIdInCourseState)
+                .Select(x => new CourseSateViewModel()
+                {
+                    Id = x.Id,
+                    UserId = x.User.Id
+                })
+                .ToList();
+
+            assignCourseViewModel.Users = users;
+            assignCourseViewModel.CourseStates = courseStates;
 
             return View(assignCourseViewModel);
         }
+
+        [HttpPost]
+        public ActionResult DeleteUsers(AssignCourseViewModel assignCourseViewModel)
+        {
+            var coureseId = assignCourseViewModel.Courses.First(x=>x.Checked==true).Id;
+            var users = context.CourseStates.Where(cs => cs.CourseId == coureseId)
+                .Select(x => new UserViewModel()
+                {
+                    Id = x.UserId,
+                    UserName = x.User.UserName
+                }).ToList();
+
+            assignCourseViewModel.Users = users;
+
+            return View(assignCourseViewModel);
+        }
+
 
         [HttpPost]
         public ActionResult UploadCourse(UploadCourseViewModel model)

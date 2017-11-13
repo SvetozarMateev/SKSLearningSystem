@@ -7,9 +7,13 @@ using System.Threading.Tasks;
 
 namespace SKSLearningSystem.Models.ViewModels
 {
-    class CourseSateViewModel
+    public class CourseSateViewModel
     {
-        public string CourseName {get;set;}
+        public int Id { get; set; }
+
+        public string UserId { get; set; }
+
+        public string CourseName { get; set; }
 
         public bool Passed { get; set; }
 

@@ -12,6 +12,8 @@ namespace SKSLearningSystem.Data.Models
 
         public int CourseId { get; set; }
 
+        public string UserId { get; set; }
+
         public Byte[] CurrentImage { get; set; }
     }
 }

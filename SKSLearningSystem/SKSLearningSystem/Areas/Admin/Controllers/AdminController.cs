@@ -62,12 +62,6 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
         {
             return View();
         }
-
-        public ActionResult BackToAssign()
-        {
-            return RedirectToAction("AssignCourse");
-        }
-
         // end
 
         [HttpPost]
@@ -89,6 +83,11 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
             {
                 this.ModelState.AddModelError("file", "You can upload only json, png or jpg files.");
             }
+            return RedirectToAction("AlertUploadCourses");
+        }
+
+        public ActionResult AlertUploadCourses()
+        {
             return this.View();
         }
 
@@ -98,15 +97,20 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
             return this.View();
         }
 
-        public ActionResult AssignRoles()
+        public async Task<ActionResult> AssignRoles()
         {
             var users = this.userManager
                 .Users
-                .Select(u => new UserViewModel()
+                .Select( u => new UserViewModel()
                 {
                     UserName = u.UserName,
-                    Id = u.Id
+                    Id = u.Id,
                 }).ToList();
+
+            for (int i = 0; i < users.Count; i++)
+            {
+                users[i].Checked = await this.userManager.IsInRoleAsync(users[i].Id, "Admin");
+            }
 
             var assignCourseViewModel = new AssignCourseViewModel()
             {
@@ -123,7 +127,16 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
 
             for (int i = 0; i < users.Count; i++)
             {
-                await this.userManager.AddToRoleAsync(users[i].Id, "Admin");
+                if (assignCourseViewModel.Users[i].Checked==true)
+                {
+                    await this.userManager.AddToRoleAsync(users[i].Id, "Admin");
+                }
+                else
+                {
+                    var roles = await this.userManager.GetRolesAsync(users[i].Id);
+                    await this.userManager.RemoveFromRolesAsync(users[i].Id, roles.ToArray());
+                }
+                
             }
 
             return RedirectToAction("AssignRoles");

@@ -4,21 +4,25 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
+<div class="alertContainer" style="display:none">
+    <h1 id="infoBox" class="alertUser"> text </h1>
+</div>
+
 @using (Html.BeginForm("UploadCourse", "Admin",FormMethod.Post, new { enctype = "multipart/form-data", id = "formForCourse" }))
 {
     @Html.ValidationSummary()
     @Html.AntiForgeryToken()
     @Html.ValidationMessageFor(x => x.Photos);
-    @Html.LabelFor(x=>x.Photos,"Click here to select photos",new { @class = "inputLabel", @multiple = "multiple" })
+    @Html.LabelFor(x=>x.Photos,"Click here to select photos",new { @class = "inputLabel", @multiple = "multiple", })
 
     @Html.TextBoxFor(model => model.Photos, "",
-       new { @type = "file", @multiple = "multiple", @class = "inputField"})
+       new { @type = "file", @multiple = "multiple", @class = "inputField", @onchange = "showInfo('Photos Selected')" })
 
     @Html.ValidationMessageFor(x => x.CourseFile);
     @Html.LabelFor(x => x.CourseFile,"Click here to select file", new { @class = "inputLabel" });
 
     @Html.TextBoxFor(model => model.CourseFile, "",
-    new { @type = "file", @class = "inputField" })
+    new { @type = "file", @class = "inputField", @onchange = "showInfo('JSON Selected')" })
    
 
     <button type="submit"  class="btn-upload">Upload</button>
@@ -28,6 +32,14 @@
     @Scripts.Render("~/bundles/uploadCourse")    
 }
 
-
+<script>
+    function showInfo(msg) {
+        $("#infoBox").text(msg);
+            $(".alertContainer").show();
+            setTimeout(function () {
+                $(".alertContainer").fadeOut();
+            }, 1500);
+        }
+</script>
 
 

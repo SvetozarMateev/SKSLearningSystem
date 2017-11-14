@@ -1,9 +1,9 @@
-﻿@model SKSLearningSystem.Areas.Admin.Models.AssignCourseViewModel
+﻿
 @{
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 <div class="alertContainer">
-    <h1 class="alertUser"> Courses Assigned</h1>
+    <h1 class="alertUser"> Course Uploaded</h1>
 </div>
 
 
@@ -11,7 +11,7 @@
   var wait = window.setTimeout(function(){
 
         // Move to a new location or you can do something else
-        window.location.href = "@Url.Action( "assigncourse","admin")";
+        window.location.href = "@Url.Action( "uploadcourse","admin")";
 
     }, 3000);
 </script>

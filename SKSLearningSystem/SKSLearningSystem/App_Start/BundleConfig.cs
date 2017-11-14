@@ -34,6 +34,7 @@ namespace SKSLearningSystem
                       "~/Content/singleCourse.css",
                       "~/Content/uploadcourse.css",
                        "~/Content/myprofile.css",
+                       "~/Content/Alert.css",
                       "~/Content/home-page.css",
                        "~/Content/allCourses.css",
                     "~/Content/hover.css",

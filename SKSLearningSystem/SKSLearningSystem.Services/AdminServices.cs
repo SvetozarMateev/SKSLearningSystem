@@ -147,7 +147,8 @@ namespace SKSLearningSystem.Areas.Admin.Services
                             User = users[i],
                             Course = courses[j],
                             DueDate = assignCourseViewModel.Users[i].DueDate,
-                            Mandatory = assignCourseViewModel.Users[i].Mandatory
+                            Mandatory = assignCourseViewModel.Users[i].Mandatory,
+                            State = "Pending"
                         };
 
                         users[i].CourseStates.Add(state);

@@ -36,5 +36,7 @@ namespace SKSLearningSystem.Data.Models
             // Add custom user claims here
             return userIdentity;
         }
+
+        public Image ProfilePic { get; set; }
     }
 }

@@ -80,6 +80,10 @@
     <Compile Include="Migrations\201711111552314_hopefix3.Designer.cs">
       <DependentUpon>201711111552314_hopefix3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711141252082_userImage-ImageID.cs" />
+    <Compile Include="Migrations\201711141252082_userImage-ImageID.Designer.cs">
+      <DependentUpon>201711141252082_userImage-ImageID.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -102,6 +106,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711111552314_hopefix3.resx">
       <DependentUpon>201711111552314_hopefix3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711141252082_userImage-ImageID.resx">
+      <DependentUpon>201711141252082_userImage-ImageID.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

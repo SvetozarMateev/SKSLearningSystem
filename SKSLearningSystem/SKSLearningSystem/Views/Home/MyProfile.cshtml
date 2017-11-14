@@ -1,14 +1,19 @@
 ﻿@model SKSLearningSystem.Models.ViewModels.MyProfileViewModel
-    <div id="profileContainer">
-        <div id="profilePicture">
-            <img id="pic" src="@Url.Action("RenderImage", new {})" />
+<div id="profileContainer">
+    <div id="profilePicture">
+        <img id="pic" src="@Url.Action("RenderImage", new {})" />
+        <p>
+            @using (Html.BeginForm("UploadCourse", "Admin", FormMethod.Post, new { enctype = "multipart/form-data", id = "formForCourse" }))
+            {
             <p>
                 change picture
-
-                @Html.LabelFor(x => x.ProfilePicture, "Click here to select photos", new { @class = "picEdit", @multiple = "multiple" })
+            </p>
+            @Html.LabelFor(x => x.ProfilePicture, "Click here to select photos", new { @class = "picEdit" })
 
                 @Html.TextBoxFor(model => model.ProfilePicture, "",
-       new { @type = "file", @multiple = "multiple", @class = "picEdit" })
+       new { @type = "file", @class = "picEdit" })
+            }
+
             </p>
         </div>
     </div>

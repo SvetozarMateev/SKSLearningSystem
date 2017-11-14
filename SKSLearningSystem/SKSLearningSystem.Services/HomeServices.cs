@@ -29,9 +29,23 @@ namespace SKSLearningSystem.Services
             return courses;
         }
 
-        public MyProfileViewModel GetCourseStates(MyProfileViewModel myProfileViewModel)
+        public MyProfileViewModel GetCourseStates()
         {
             var userId = HttpContext.Current.User.Identity.GetUserId();
+            var myProfileViewModel = new MyProfileViewModel();
+            myProfileViewModel.CourseStates =  context.CourseStates
+                .Where(x => x.UserId == userId)
+                .Select(x=>new CourseSateViewModel()
+                {
+                    Grade=x.Grade,
+                    Passed=x.Passed,
+                    DueDate=x.DueDate,
+                    AssignmentDate=x.AssignmentDate,
+                    CompletionDate=x.CompletionDate,
+                    CourseName=x.Course.Name,
+                    Mandatory=x.Mandatory,
+                    State=x.State
+                }).ToList();
 
             return myProfileViewModel;
         }

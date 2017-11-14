@@ -6,5 +6,7 @@ namespace SKSLearningSystem.Services
     public interface IHomeServices
     {
         List<SingleCourseViewModel> GetCoursesFromDb();
+
+        MyProfileViewModel GetCourseStates();
     }
 }

@@ -43,6 +43,7 @@ namespace SKSLearningSystem.Controllers
 
         public ActionResult MyProfile()
         {
+           var myProfileViewModel =  this.homeServices.GetCourseStates();
             return View();
         }
     }

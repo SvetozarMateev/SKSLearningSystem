@@ -332,6 +332,7 @@
     <Content Include="fonts\slick.woff" />
     <Content Include="Areas\Admin\Views\Admin\CoursesAdded.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\AlertUser.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\AlertUploadCourses.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\i18n\grid.locale-ar.js" />
     <Content Include="Scripts\i18n\grid.locale-bg.js" />

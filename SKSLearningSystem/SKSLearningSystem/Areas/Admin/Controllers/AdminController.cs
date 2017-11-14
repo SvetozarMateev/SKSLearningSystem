@@ -83,6 +83,11 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
             {
                 this.ModelState.AddModelError("file", "You can upload only json, png or jpg files.");
             }
+            return RedirectToAction("AlertUploadCourses");
+        }
+
+        public ActionResult AlertUploadCourses()
+        {
             return this.View();
         }
 

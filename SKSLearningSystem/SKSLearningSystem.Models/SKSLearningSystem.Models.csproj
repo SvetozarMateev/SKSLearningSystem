@@ -97,7 +97,9 @@
     <Compile Include="ViewModels\AdminViewModels\UploadCourseViewModel.cs" />
     <Compile Include="ViewModels\AdminViewModels\UploadedCourseInfoViewModel.cs" />
     <Compile Include="ViewModels\AdminViewModels\UserViewModel.cs" />
+    <Compile Include="ViewModels\CourseSateViewModel.cs" />
     <Compile Include="ViewModels\ManageViewModels.cs" />
+    <Compile Include="ViewModels\MyProfileViewModel.cs" />
     <Compile Include="ViewModels\OptionViewModel.cs" />
     <Compile Include="ViewModels\QuestionViewModel.cs" />
     <Compile Include="ViewModels\SingleCourseViewModel.cs" />

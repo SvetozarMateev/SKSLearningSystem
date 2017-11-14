@@ -437,6 +437,7 @@
     <Content Include="Views\Course\FailedTest.cshtml" />
     <Content Include="Views\Shared\_SingleCourse.cshtml" />
     <Content Include="Views\Home\AllCourses.cshtml" />
+    <Content Include="Views\Home\MyProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

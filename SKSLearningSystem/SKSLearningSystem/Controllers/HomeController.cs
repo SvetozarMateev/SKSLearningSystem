@@ -40,5 +40,10 @@ namespace SKSLearningSystem.Controllers
             var courses = this.homeServices.GetCoursesFromDb();
             return View(courses);
         }
+
+        public ActionResult MyProfile()
+        {
+            return View();
+        }
     }
 }

@@ -31,7 +31,7 @@ namespace SKSLearningSystem
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/uploadcourse.css",
-
+                       "~/Content/Alert.css",
                       "~/Content/home-page.css",
                     "~/Content/hover.css",
                     "~/Content/slick-theme.css",

@@ -9,7 +9,7 @@ namespace SKSLearningSystem.Areas.Admin.Models
     {
         public UserViewModel()
         {
-            this.DueDate = DateTime.Now;
+            this.DueDate = DateTime.Now.AddDays(30);
         }
 
         public string Id { get; set; }

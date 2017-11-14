@@ -45,27 +45,27 @@ namespace SKSLearningSystem.Migrations
 
                 //Here we create a Admin super user who will maintain the website                  
 
-                var course = new Course();
-                var courseState = new CourseState();
-                course.Name = "Seed";
-                course.Description = "Seeded";
-                courseState.Course = course;
-                courseState.AssignmentDate = DateTime.Now;
-                courseState.CompletionDate = DateTime.Now;
-                courseState.DueDate = DateTime.Now;
+                //var course = new Course();
+                //var courseState = new CourseState();
+                //course.Name = "Seed";
+                //course.Description = "Seeded";
+                //courseState.Course = course;
+                //courseState.AssignmentDate = DateTime.Now;
+                //courseState.CompletionDate = DateTime.Now;
+                //courseState.DueDate = DateTime.Now;
 
 
-                var course2 = new Course();
-                var courseState2 = new CourseState();
-                course2.Name = "Seed2";
-                course2.Description = "Seeded2";
-                courseState2.Course = course2;
-                courseState2.AssignmentDate = DateTime.Now;
-                courseState2.CompletionDate = DateTime.Now;
-                courseState2.DueDate = DateTime.Now;
+                //var course2 = new Course();
+                //var courseState2 = new CourseState();
+                //course2.Name = "Seed2";
+                //course2.Description = "Seeded2";
+                //courseState2.Course = course2;
+                //courseState2.AssignmentDate = DateTime.Now;
+                //courseState2.CompletionDate = DateTime.Now;
+                //courseState2.DueDate = DateTime.Now;
 
-                context.Courses.Add(course);
-                context.Courses.Add(course2);
+                //context.Courses.Add(course);
+                //context.Courses.Add(course2);
 
 
                 var user = new User();

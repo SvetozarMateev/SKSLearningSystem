@@ -322,7 +322,7 @@
     <Content Include="Areas\Admin\Views\Admin\UploadCourse.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\SuccessMessage.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\AssignCourse.cshtml" />
-    <Content Include="Areas\Admin\Views\Admin\CompleteAssignment.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\ConfirmAssignment.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\MonitorUsersProgress.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\AssignRoles.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\Index.cshtml" />
@@ -330,6 +330,7 @@
     <Content Include="fonts\slick.ttf" />
     <Content Include="fonts\slick.woff" />
     <Content Include="Areas\Admin\Views\Admin\CoursesAdded.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\AlertUser.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\i18n\grid.locale-ar.js" />
     <Content Include="Scripts\i18n\grid.locale-bg.js" />

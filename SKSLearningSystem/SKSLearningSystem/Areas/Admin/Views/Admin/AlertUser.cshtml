@@ -1,0 +1,30 @@
+﻿@model SKSLearningSystem.Areas.Admin.Models.AssignCourseViewModel
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 @*onload="foo()"*@> Courses Assigned</h2>
+
+
+
+<script type="text/javascript">
+  var wait = window.setTimeout(function(){
+
+        // Move to a new location or you can do something else
+        window.location.href = "@Url.Action( "assigncourse","admin")";
+
+    }, 10000);
+
+    @*function foo() {
+        window.location.href = '@Url.Action("admin", "assigncourse")';
+    }*@
+
+</script>
+ 
+
+
+
+@*@{
+    System.Threading.Thread.Sleep(3000);
+    Response.Redirect("assigncourse");
+}*@

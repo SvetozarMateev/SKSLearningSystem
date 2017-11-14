@@ -91,5 +91,75 @@ namespace SKSLearningSystem.Areas.Admin.Services
             this.db.Courses.Add(course);
             this.db.SaveChanges();
         }
+
+        public AssignCourseViewModel GetUsersAndCoursesFromDB()
+        {
+            var users = this.db
+               .Users
+               .Select(u => new UserViewModel()
+               {
+                   UserName = u.UserName,
+                   Id = u.Id
+               }).ToList();
+
+            var courses = this.db
+                .Courses
+                .Select(c => new CourseViewModel()
+                {
+                    Name = c.Name,
+                    Id = c.Id
+                })
+                .ToList();
+
+            var assignCourseViewModel = new AssignCourseViewModel()
+            {
+                Courses = courses,
+                Users = users
+            };
+
+            return assignCourseViewModel;
+        }
+
+        private bool ValidateState(string userId, int courseId)
+        {
+            bool answer = db.CourseStates.Any(x => userId == x.UserId && courseId == x.CourseId);
+
+            return answer;
+        }
+
+        public void SaveAssignedCoursesToDb(AssignCourseViewModel assignCourseViewModel)
+        {
+            var userIds = assignCourseViewModel.Users.Select(y => y.Id).ToArray();
+            var courseIds = assignCourseViewModel.Courses.Select(cr => cr.Id).ToArray();
+
+            var users = db.Users.Where(x => userIds.Contains(x.Id)).ToList();
+            var courses = db.Courses.Where(c => courseIds.Contains(c.Id)).ToList();
+
+
+            for (int i = 0; i < users.Count; i++)
+            {
+                for (int j = 0; j < courses.Count; j++)
+                {
+                    if (!ValidateState(userIds[i], courseIds[j]))
+                    {
+                        CourseState state = new CourseState()
+                        {
+                            User = users[i],
+                            Course = courses[j],
+                            DueDate = assignCourseViewModel.Users[i].DueDate,
+                            Mandatory = assignCourseViewModel.Users[i].Mandatory
+                        };
+
+                        users[i].CourseStates.Add(state);
+                        courses[j].Registry.Add(state);
+                        db.CourseStates.Add(state);
+                    }
+
+
+                }
+            }
+
+            db.SaveChanges();
+        }
     }
 }

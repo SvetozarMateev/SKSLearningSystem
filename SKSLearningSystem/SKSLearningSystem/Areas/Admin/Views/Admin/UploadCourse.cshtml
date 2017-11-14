@@ -3,10 +3,8 @@
 @{ 
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
-<div id="added-courses">
 
-</div>
-@using (Ajax.BeginForm("UploadCourse", "Admin",null, new AjaxOptions() { UpdateTargetId="added-courses"}, new { enctype = "multipart/form-data", id = "formForCourse" }))
+@using (Html.BeginForm("UploadCourse", "Admin",FormMethod.Post, new { enctype = "multipart/form-data", id = "formForCourse" }))
 {
     @Html.ValidationSummary()
     @Html.AntiForgeryToken()

@@ -13,6 +13,10 @@ namespace SKSLearningSystem.Models.ViewModels
 
         public string UserId { get; set; }
 
+        public int PicId { get; set; }
+
+        public string Description { get; set; }
+
         public string CourseName { get; set; }
 
         public bool Passed { get; set; }

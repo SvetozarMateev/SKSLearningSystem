@@ -265,7 +265,7 @@ header .hvr-underline-from-center:hover:before, .hvr-underline-from-center:focus
         cursor: pointer;
     }
 .course-picture{
-    height:50px%;
+    height:100px;
 }
 .wrapper-scroller-menu {
     padding: 20px 0;

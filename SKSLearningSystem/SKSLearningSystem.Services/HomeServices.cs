@@ -44,7 +44,9 @@ namespace SKSLearningSystem.Services
                     CompletionDate=x.CompletionDate,
                     CourseName=x.Course.Name,
                     Mandatory=x.Mandatory,
-                    State=x.State
+                    State=x.State,
+                    PicId=x.Course.Images.FirstOrDefault().Id,
+                    Description=x.Course.Description                   
                 }).ToList();
 
             return myProfileViewModel;

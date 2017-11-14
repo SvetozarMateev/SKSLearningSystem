@@ -1,4 +1,5 @@
 ﻿@model SKSLearningSystem.Models.ViewModels.MyProfileViewModel
+    @using System.Linq;
 <div id="profileContainer">
     <div id="profilePicture">
         <img id="pic" src="@Url.Action("RenderImage", new {})" />
@@ -16,7 +17,94 @@
 
                 <button type="submit"></button>
             }
-
+       
             </p>
         </div>
+    <div class="course-container">
+        
+        <div class="current-selected">
+            <div class="nav-buttons">
+                <button id="completed" class="nav-one-button">Completed</button>
+                <button id="pending" class="nav-one-button">Pending</button>
+                <button id="started" class="nav-one-button">Started</button>
+
+            </div>
+            <hr />
+            <div class="pending" >
+                @for (int i = 0; i < Model.CourseStates.Take(5).ToList().Count; i++)
+            {
+                    <div class="single-course">
+                        <div id="image-course"><img src="@Url.Action("RenderImage","Course", new { id = Model.CourseStates[i].PicId})" /></div>
+                        <div id="mandatory-course"> <span class="descriptive">Priority:</span>
+                        @if (Model.CourseStates[i].Mandatory)
+                        {
+                            @:Mandatory
+                        }
+                        else
+                        {
+                            @:Optional
+                        }
+                        </div>
+                        <div id="coursename"> <span class="descriptive">Course:</span>  @Html.DisplayFor(x => x.CourseStates[i].CourseName)</div>
+                        <div id="assignementdate"> <span class="descriptive">Assignement Date:</span>  @Html.DisplayFor(x => x.CourseStates[i].AssignmentDate)</div>
+                        <div id="duedate"> <span class="descriptive">Due date:</span> @Html.DisplayFor(x => x.CourseStates[i].DueDate)</div>
+                        <div id=" Filler"></div>
+                        
+                        <input id="course-button" value="Take Course" type="button"/>
+                    </div>
+                }
+            </div>
+            <div class="started" hidden="hidden">
+              @for (int i = 0; i < Model.CourseStates.Take(5).ToList().Count; i++)
+            {
+                <div class="single-course">
+                    <div id="image-course"><img src="@Url.Action("RenderImage","Course", new { id = Model.CourseStates[i].PicId})" /></div>
+                    <div id="mandatory-course">
+                        <span class="descriptive">Priority:</span>
+                        @if (Model.CourseStates[i].Mandatory)
+                        {
+                            @:Mandatory
+                        }
+                        else
+                        {
+                            @:Optional
+                        }
+                    </div>
+                    <div id="coursename"> <span class="descriptive">Course:</span>  @Html.DisplayFor(x => x.CourseStates[i].CourseName)</div>
+                    <div id="assignementdate"> <span class="descriptive">Assignement Date:</span>  @Html.DisplayFor(x => x.CourseStates[i].AssignmentDate)</div>
+                    <div id="duedate"> <span class="descriptive">Due date:</span> @Html.DisplayFor(x => x.CourseStates[i].DueDate)</div>
+                    <div id=" Filler"></div>
+
+                    <input id="course-button" value="Take Course" type="button" />
+                </div>
+              }
+            </div>
+            <div class="completed" hidden="hidden">
+           @for (int i = 0; i < Model.CourseStates.Take(0).ToList().Count; i++)
+            {
+            <div class="single-course">
+                <div id="image-course"><img src="@Url.Action("RenderImage","Course", new { id = Model.CourseStates[i].PicId})" /></div>
+                <div id="mandatory-course">
+                    <span class="descriptive">Priority:</span>
+                    @if (Model.CourseStates[i].Mandatory)
+                    {
+                        @:Mandatory
+                        }
+                    else
+                    {
+                        @:Optional
+                        }
+                </div>
+                <div id="coursename"> <span class="descriptive">Course:</span>  @Html.DisplayFor(x => x.CourseStates[i].CourseName)</div>
+                <div id="assignementdate"> <span class="descriptive">Assignement Date:</span>  @Html.DisplayFor(x => x.CourseStates[i].AssignmentDate)</div>
+                <div id="duedate"> <span class="descriptive">Grade :</span> @Html.DisplayFor(x => x.CourseStates[i].Grade)</div>
+                <div id=" Filler"></div>
+
+                <input id="course-button" value="Take Course" type="button" />
+            </div>
+           }
+            </div>
+        </div>
+      
+    </div>
     </div>

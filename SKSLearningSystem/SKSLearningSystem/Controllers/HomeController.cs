@@ -1,4 +1,5 @@
-﻿using SKSLearningSystem.Services;
+﻿using SKSLearningSystem.Models.ViewModels;
+using SKSLearningSystem.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,10 +42,18 @@ namespace SKSLearningSystem.Controllers
             return View(courses);
         }
 
+        [HttpGet]
         public ActionResult MyProfile()
         {
            var myProfileViewModel =  this.homeServices.GetCourseStates();
-            return View();
+            return View(myProfileViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult MyProfile(MyProfileViewModel myProfileViewModel,HttpPostedFileBase image)
+        {
+            this.homeServices.ReadImagesFromFiles(image);
+            return View(myProfileViewModel);
         }
     }
 }

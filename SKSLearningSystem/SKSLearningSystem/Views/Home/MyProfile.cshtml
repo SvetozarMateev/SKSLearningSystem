@@ -3,15 +3,18 @@
     <div id="profilePicture">
         <img id="pic" src="@Url.Action("RenderImage", new {})" />
         <p>
-            @using (Html.BeginForm("UploadCourse", "Admin", FormMethod.Post, new { enctype = "multipart/form-data", id = "formForCourse" }))
+            @using (Html.BeginForm("MyProfile", "Home", FormMethod.Post,
+                new { enctype = "multipart/form-data", id = "formForCourse" }))
             {
             <p>
                 change picture
             </p>
             @Html.LabelFor(x => x.ProfilePicture, "Click here to select photos", new { @class = "picEdit" })
 
-                @Html.TextBoxFor(model => model.ProfilePicture, "",
-       new { @type = "file", @class = "picEdit" })
+                @Html.TextBox("image", null,
+       new { @type = "file", @class = "picEdit", @name = "image" })
+
+                <button type="submit"></button>
             }
 
             </p>

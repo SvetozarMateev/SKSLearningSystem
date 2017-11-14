@@ -1,5 +1,6 @@
 ﻿using SKSLearningSystem.Models.ViewModels;
 using System.Collections.Generic;
+using System.Web;
 
 namespace SKSLearningSystem.Services
 {
@@ -8,5 +9,7 @@ namespace SKSLearningSystem.Services
         List<SingleCourseViewModel> GetCoursesFromDb();
 
         MyProfileViewModel GetCourseStates();
+
+        void ReadImagesFromFiles(HttpPostedFileBase file);
     }
 }

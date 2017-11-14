@@ -230,7 +230,11 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+
+    <Content Include="Content\allCourses.css" />
+
     <Content Include="Content\Alert.css" />
+
     <Content Include="Content\AssignCourse.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -239,6 +243,7 @@
     <Content Include="Content\jquery.jqGrid\ellipsis-xbl.xml" />
     <Content Include="Content\jquery.jqGrid\ui.jqgrid.css" />
     <Content Include="Content\monitorAdmin.css" />
+    <Content Include="Content\myprofile.css" />
     <Content Include="Content\slick-theme.css" />
     <Content Include="Content\slick.css" />
     <Content Include="Content\CompleteAssignment.css" />
@@ -309,6 +314,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
+    <Content Include="Content\singleCourse.css" />
     <Content Include="Content\uploadcourse.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -392,6 +398,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\monitoringAdminSide.js" />
+    <Content Include="Scripts\myProfile.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\slick.min.js" />

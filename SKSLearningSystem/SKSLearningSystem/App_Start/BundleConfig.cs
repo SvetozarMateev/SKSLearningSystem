@@ -10,7 +10,8 @@ namespace SKSLearningSystem
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js",
-                        "~/Scripts/jquery.unobtrusive-ajax.js"));
+                        "~/Scripts/jquery.unobtrusive-ajax.js",
+                        "~/Scripts/myProfile.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -30,9 +31,12 @@ namespace SKSLearningSystem
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
+                      "~/Content/singleCourse.css",
                       "~/Content/uploadcourse.css",
+                       "~/Content/myprofile.css",
                        "~/Content/Alert.css",
                       "~/Content/home-page.css",
+                       "~/Content/allCourses.css",
                     "~/Content/hover.css",
                     "~/Content/slick-theme.css",
                     "~/Content/slick.css"

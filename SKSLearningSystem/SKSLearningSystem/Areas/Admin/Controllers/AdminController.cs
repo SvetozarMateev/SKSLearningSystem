@@ -62,12 +62,6 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
         {
             return View();
         }
-
-        public ActionResult BackToAssign()
-        {
-            return RedirectToAction("AssignCourse");
-        }
-
         // end
 
         [HttpPost]

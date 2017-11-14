@@ -4,18 +4,22 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
+<div class="alertContainer" style="display:none">
+    <h1 class="alertUser"> Photos Selected </h1>
+</div>
+
 @using (Html.BeginForm("UploadCourse", "Admin",FormMethod.Post, new { enctype = "multipart/form-data", id = "formForCourse" }))
 {
     @Html.ValidationSummary()
     @Html.AntiForgeryToken()
     @Html.ValidationMessageFor(x => x.Photos);
-    @Html.LabelFor(x=>x.Photos,"Click here to select photos",new { @class = "inputLabel", @multiple = "multiple" })
+    @Html.LabelFor(x=>x.Photos,"Click here to select photos",new { @class = "inputLabel", @multiple = "multiple", })
 
     @Html.TextBoxFor(model => model.Photos, "",
-       new { @type = "file", @multiple = "multiple", @class = "inputField"})
+       new { @type = "file", @multiple = "multiple", @class = "inputField", @onchange = "showInfo()" })
 
     @Html.ValidationMessageFor(x => x.CourseFile);
-    @Html.LabelFor(x => x.CourseFile,"Click here to select file", new { @class = "inputLabel" });
+    @Html.LabelFor(x => x.CourseFile,"Click here to select file", new { @class = "inputLabel", @onclick = "showInfo()" });
 
     @Html.TextBoxFor(model => model.CourseFile, "",
     new { @type = "file", @class = "inputField" })
@@ -28,6 +32,13 @@
     @Scripts.Render("~/bundles/uploadCourse")    
 }
 
-
+<script>
+        function showInfo() {
+            $(".alertContainer").show();
+            setTimeout(function () {
+                $(".alertContainer").fadeOut();
+            }, 3500);
+        }
+</script>
 
 

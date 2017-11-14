@@ -32,7 +32,7 @@ namespace SKSLearningSystem.Services.CourseServices
             return courseName;
         }
 
-        public ICollection<Image> GetImages(int courseId)
+        public ICollection<Image> GetImages(int? courseId)
         {
             var images = this.context.Courses.First(c => c.Id == courseId).Images;
 

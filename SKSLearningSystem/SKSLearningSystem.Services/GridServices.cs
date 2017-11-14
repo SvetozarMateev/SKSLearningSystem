@@ -67,9 +67,9 @@ namespace SKSLearningSystem.Areas.Admin.Services
             var needed = new { total = 1, page = 1, records = result.Count, rows = result };
             return needed;
         }
-        public object SearchFalseResult()
+        public object SearchFalseResult(int page, int rows)
         {
-            var counter = 1;
+            var counter = page*rows-9;
             var users = db.Users.ToList();
             var result = new List<CourseStateRowViewModel>();
             foreach (var user in users)
@@ -89,9 +89,10 @@ namespace SKSLearningSystem.Areas.Admin.Services
                         DueDate = courses.DueDate,
                         State = courses.State
                     });
+                    counter++;
                 }
             }
-            var needed = new { total = 1, page = 1, records = result.Count, rows = result };
+            var needed = new { total = result.Count/rows+1, page = page, records = result.Count, rows = result.Skip((page-1)*rows).Take(rows).ToList() };
             return needed;
         }
     }

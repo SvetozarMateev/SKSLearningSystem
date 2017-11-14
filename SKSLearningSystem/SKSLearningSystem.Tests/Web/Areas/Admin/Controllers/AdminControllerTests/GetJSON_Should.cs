@@ -36,7 +36,7 @@ namespace SKSLearningSystem.Tests.Areas.Admin.Controllers.AdminControllerTests
             //Act & Assert
             controller
                 .WithCallTo(c => c.GetJSON(_search, rows, pages, filters))
-                .ShouldReturnJson(x => gridServicesMock.Object.SearchFalseResult())
+                .ShouldReturnJson(x => gridServicesMock.Object.SearchFalseResult(rows,pages))
                 .JsonRequestBehavior.HasFlag(JsonRequestBehavior.AllowGet);
                 
         }

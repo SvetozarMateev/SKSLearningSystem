@@ -16,6 +16,7 @@ namespace SKSLearningSystem.Services
         public List<SingleCourseViewModel> GetCoursesFromDb()
         {
             var courses = context.Courses.Select(x=> new SingleCourseViewModel() {
+               CourseStateId=x.Id,
                 CourseName=x.Name,
                 Descrtiption=x.Description,
                 CourseImageId=x.Images.FirstOrDefault().Id

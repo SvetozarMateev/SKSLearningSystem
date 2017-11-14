@@ -247,9 +247,6 @@ header .hvr-underline-from-center:hover:before, .hvr-underline-from-center:focus
 /*___________ARTICLE_SCROLLER_________*/
 .recipe-recommend {
     padding: 120px 0;
-    background: url("img/table-BG.jpg") no-repeat;
-    background-size: cover;
-    background-position-y: 50%;
 
 }
 
@@ -267,9 +264,9 @@ header .hvr-underline-from-center:hover:before, .hvr-underline-from-center:focus
         text-decoration: none;
         cursor: pointer;
     }
-    .course-picture{
-        height:30%;
-    }
+.course-picture{
+    height:50px%;
+}
 .wrapper-scroller-menu {
     padding: 20px 0;
     width: 80%;
@@ -297,12 +294,12 @@ figure {
     display: inline-block;
     width: 55%;
     margin: 0 10px 10px 0;
-    background-color: #fff;;
+    background-color: #fff;
 
 }
 
 .recipe img {
-    width: 100%;
+    width: 100px;
     height: auto;
 
 }

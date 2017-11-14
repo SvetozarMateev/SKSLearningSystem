@@ -4,10 +4,10 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-@using (Html.BeginForm("UploadCourse", "Admin", FormMethod.Post, new { enctype = "multipart/form-data", id = "formForCourse" }))
+@using (Html.BeginForm("UploadCourse", "Admin",FormMethod.Post, new { enctype = "multipart/form-data", id = "formForCourse" }))
 {
     @Html.ValidationSummary()
-
+    @Html.AntiForgeryToken()
     @Html.ValidationMessageFor(x => x.Photos);
     @Html.LabelFor(x=>x.Photos,"Click here to select photos",new { @class = "inputLabel", @multiple = "multiple" })
 

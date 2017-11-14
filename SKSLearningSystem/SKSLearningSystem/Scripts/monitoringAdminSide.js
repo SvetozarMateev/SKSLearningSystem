@@ -5,7 +5,7 @@
         height: 'auto',
         width: 800,
         rowNum: 30,
-        rowList: [10, 20, 30],
+        rowList: [10, 20, 30,40,50,100],
         colNames: ['Index', 'Username', 'Course', 'AssignementDate', 'DueDate', 'State'],
         colModel: [
             { name: 'Index', key: true, index: 'Index', width: 30, formatter: "integer", search: false },

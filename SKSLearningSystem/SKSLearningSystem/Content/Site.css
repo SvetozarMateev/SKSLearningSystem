@@ -57,46 +57,46 @@ textarea {
     transition: width 0.4s ease;
 }
 
-    .navbar-fixed-left:hover {
-        -webkit-box-shadow: 54px 0px 124px 36px rgba(0,0,0,0.56);
-        -moz-box-shadow: 54px 0px 124px 36px rgba(0,0,0,0.56);
-        box-shadow: 54px 0px 124px 36px rgba(0,0,0,0.56);
-        position: fixed;
-        width: 176px;
-        /*transition: box-shadow 0.4s ease;*/
-    }
+.navbar-fixed-left:hover {
+    -webkit-box-shadow: 54px 0px 124px 36px rgba(0,0,0,0.56);
+    -moz-box-shadow: 54px 0px 124px 36px rgba(0,0,0,0.56);
+    box-shadow: 54px 0px 124px 36px rgba(0,0,0,0.56);
+    position: fixed;
+    width: 176px;
+    /*transition: box-shadow 0.4s ease;*/
+}
 
 
 
-    .navbar-fixed-left .navbar-nav > li {
-        float: none; /* Cancel default li float: left */
-    }
+.navbar-fixed-left .navbar-nav > li {
+    float: none; /* Cancel default li float: left */
+}
 
-        .navbar-fixed-left .navbar-nav > li > a {
-            height: 70px;
-            padding-left: 0;
-            padding-right: 0;
-            box-sizing: border-box;
-            padding-left: 15px;
-            color: white;
-        }
+.navbar-fixed-left .navbar-nav > li > a {
+    height: 70px;
+    padding-left: 0;
+    padding-right: 0;
+    box-sizing: border-box;
+    padding-left: 15px;
+    color: white;
+}
 
-            .navbar-fixed-left .navbar-nav > li > a:hover {
-                background-color: #305030;
-            }
+.navbar-fixed-left .navbar-nav > li > a:hover {
+    background-color: #305030;
+}
 
-    .navbar-fixed-left + .container {
-        padding-left: 160px;
-    }
+.navbar-fixed-left + .container {
+    padding-left: 160px;
+}
 
 
 
     /* On using dropdown menu (To right shift popuped) */
 
-    .navbar-fixed-left .navbar-nav > li > .dropdown-menu {
-        margin-top: -50px;
-        margin-left: 140px;
-    }
+.navbar-fixed-left .navbar-nav > li > .dropdown-menu {
+    margin-top: -50px;
+    margin-left: 140px;
+}
 
 .text-for-icons {
     position: relative;
@@ -133,17 +133,19 @@ textarea {
 .navbar-fixed-left:hover #side {
     width: 175px;
 }
+
 .navbar-inverse .navbar-nav > li > a {
     color: white;
 }
-    .navbar-inverse .navbar-nav > li > a:hover {
-        background-color: #305030;
-    }
-.navbar-inverse .navbar-brand{
-    color:white;
-}
-    .navbar-inverse .navbar-brand:hover {
-        
-        background-color: #305030;
-    }
 
+.navbar-inverse .navbar-nav > li > a:hover {
+    background-color: #305030;
+}
+
+.navbar-inverse .navbar-brand {
+    color: white;
+}
+
+.navbar-inverse .navbar-brand:hover {
+    background-color: #305030;
+}

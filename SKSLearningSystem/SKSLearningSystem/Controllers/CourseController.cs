@@ -29,9 +29,10 @@ namespace SKSLearningSystem.Controllers
         }
 
         // GET: Course
-        public ActionResult TakeCourse(TakeCourseModel model)
+        [Authorize]
+        public ActionResult TakeCourse(TakeCourseModel model, int? courseId)
         {
-            int courseId = 7;
+            
             var course = this.context.Courses.First(c => c.Id == courseId);
             var images = this.services.GetImages(courseId);
 
@@ -41,6 +42,8 @@ namespace SKSLearningSystem.Controllers
 
             return View(model);
         }
+
+       
 
         public async Task<ActionResult> RenderImage(int id)
         {
@@ -52,6 +55,7 @@ namespace SKSLearningSystem.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult TakeExam(int? courseStateId)
         {
             courseStateId = 14;
@@ -60,6 +64,8 @@ namespace SKSLearningSystem.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult TakeExam(TakeTestViewModel TakeTestViewModel)
         {
             var IsTestStateValid = this.services.ValidateTest(TakeTestViewModel);

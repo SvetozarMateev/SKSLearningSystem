@@ -183,5 +183,16 @@ namespace SKSLearningSystem.Services
                  }).ToList();
             return deasignCourseViewModel;
         }
+
+        public void DeleteCourseStates(DeasignCourseViewModel deasignCourseViewModel)
+        {
+            var courseStatesIDs = deasignCourseViewModel.CourseStates.Select(x => x.Checked == false);
+
+            for (int i = 0; i < courseStatesIDs.Count(); i++)
+            {
+                context.CourseStates.Remove(courseStatesIDs[i].id);
+            }
+            
+        }
     }
 }

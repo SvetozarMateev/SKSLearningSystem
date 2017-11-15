@@ -214,6 +214,7 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
         }
 
         // DeAssign
+        
          public ActionResult DeasignCourse()
         {
             var deasignCourseViewModel = new DeasignCourseViewModel();
@@ -222,5 +223,7 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
             deasignCourseViewModel = this.dBServices.GetCourseStates(deasignCourseViewModel);
             return View();
         }
+
+        
     }
 }

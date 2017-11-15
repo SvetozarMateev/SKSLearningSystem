@@ -20,9 +20,9 @@ namespace SKSLearningSystem.Services
             this.context = context;
         }
 
-        public Course GetCoursesFromDB(int? courseId)
+        public  Course GetCoursesFromDB(int courseId)
         {
-            return this.context.Courses.First(c => c.Id == courseId);
+            return  this.context.Courses.First(c => c.Id == courseId);
         }
 
 
@@ -43,53 +43,62 @@ namespace SKSLearningSystem.Services
                 Id = x.Id
             }).ToList();
         }
-        public void SaveAssignementsForDepartment(DepToCourseViewModel model)
+        public async Task SaveAssignementsForDepartment(DepToCourseViewModel model)
         {
             var users = this.context.Users.Where(x => x.Department == model.Department).ToList();
             var course = this.context.Courses.First(x => x.Name == model.CourseName);
 
             for (int i = 0; i < users.Count; i++)
             {
-                this.context.CourseStates.Add(new CourseState()
+                if(await this.context.CourseStates.AnyAsync(x => x.CourseId == course.Id && users[i].Id == x.UserId) == false)
                 {
-                    User = users[i],
-                    Course = course,
-                    DueDate = model.DueDate,
-                    Mandatory = model.Mandatory,
-                    Grade = model.Grade,
-                    State = "Pending"
-                });
+                    this.context.CourseStates.Add(new CourseState()
+                    {
+                        User = users[i],
+                        Course = course,
+                        DueDate = model.DueDate,
+                        Mandatory = model.Mandatory,
+                        Grade = model.Grade,
+                        State = "Pending"
+                    });
+                }              
             }
-            this.context.SaveChanges();
+            await this.context.SaveChangesAsync();
         }
 
-        public void SaveAssignementsToDb(int courseId, IList<UserViewModel> users)
+        public async Task SaveAssignementsToDb(int courseId, IList<UserViewModel> users)
         {
             var userIds = users.Select(x => x.Id).ToArray();
             var course = this.context.Courses.First(x => x.Id == courseId);
             var usersFromDB = this.context.Users.Where(x => userIds.Contains(x.Id)).ToList();
             for (int i = 0; i < users.Count; i++)
             {
-
-                this.context.CourseStates.Add(new CourseState()
+                if (await this.context.CourseStates.AnyAsync(x => x.CourseId == course.Id && users[i].Id == x.UserId) == false)
                 {
-                    User = usersFromDB.First(x => x.Id == users[i].Id),
-                    Course = course,
-                    DueDate = users[i].DueDate,
-                    Mandatory = users[i].Mandatory,
-                    State = "Pending"
-                });
+                    this.context.CourseStates.Add(new CourseState()
+                    {
+                        User = usersFromDB.First(x => x.Id == users[i].Id),
+                        Course = course,
+                        DueDate = users[i].DueDate,
+                        Mandatory = users[i].Mandatory,
+                        State = "Pending"
+                    });
+                }
+               
             }
-            this.context.SaveChanges();
+            await this.context.SaveChangesAsync();
         }
 
-        public void SaveAssignementsToDb(CourseState state)
+        public async Task SaveAssignementsToDb(CourseState state)
         {
-            this.context.CourseStates.Add(state);
-            this.context.SaveChanges();
+            if (await this.context.CourseStates.AnyAsync(x => x.CourseId == state.CourseId && state.UserId == x.UserId) == false)
+            {
+                this.context.CourseStates.Add(state);
+                await this.context.SaveChangesAsync();
+            }
         }
         //alt end
-        public ICollection<Image> GetImages(int? courseId)
+        public ICollection<Image> GetImages(int courseId)
         {
             var images = this.context.Courses.First(c => c.Id == courseId).Images;
 

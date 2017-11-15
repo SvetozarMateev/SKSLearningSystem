@@ -4,6 +4,7 @@ using SKSLearningSystem.Data.Models;
 using SKSLearningSystem.Models.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace SKSLearningSystem.Services
 {
@@ -47,12 +48,12 @@ namespace SKSLearningSystem.Services
             return myProfileViewModel;
         }
 
-        public void SaveImagesToUser(Image file, string userId)
+        public async Task SaveImagesToUser(Image file, string userId)
         {
             Guard.WhenArgument(file, "file").IsNull().Throw();
             file.UserId = userId;
             context.Images.Add(file);
-            context.SaveChanges();
+           await context.SaveChangesAsync();
         }
     }
 }

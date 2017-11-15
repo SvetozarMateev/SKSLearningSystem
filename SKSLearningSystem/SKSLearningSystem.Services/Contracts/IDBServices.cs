@@ -9,9 +9,9 @@ namespace SKSLearningSystem.Services.Contracts
 {
     public interface IDBServices
     {
-        Course GetCoursesFromDB(int? courseId);
+        Course GetCoursesFromDB(int courseId);
 
-        ICollection<Image> GetImages(int? courseId);
+        ICollection<Image> GetImages(int courseId);
 
         string GetCourseName(int courseId);
 
@@ -26,9 +26,9 @@ namespace SKSLearningSystem.Services.Contracts
         Course GetCoursesFromDBByName(string courseName);
 
         IList<UserViewModel> GetUserViewModels();
-        void SaveAssignementsToDb(int courseId, IList<UserViewModel> users);
-        void SaveAssignementsForDepartment(DepToCourseViewModel model);
+        Task SaveAssignementsToDb(int courseId, IList<UserViewModel> users);
+        Task SaveAssignementsForDepartment(DepToCourseViewModel model);
         CourseState GetStateFromDB(int courStateId);
-        void SaveAssignementsToDb(CourseState state);
+        Task SaveAssignementsToDb(CourseState state);
     }
 }

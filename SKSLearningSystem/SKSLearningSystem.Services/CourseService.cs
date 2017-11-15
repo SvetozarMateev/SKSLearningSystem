@@ -74,7 +74,7 @@ namespace SKSLearningSystem.Services.CourseServices
             return correctAnswersCount/questions.Questions.Count*100;
         }
 
-        public void ChangeCourseState(int courseStateId, string newState,double grade)
+        public async Task ChangeCourseState(int courseStateId, string newState,double grade)
         {
             var course = this.context.CourseStates.First(x => x.Id == courseStateId);
             if (course.State != "Completed")
@@ -82,7 +82,7 @@ namespace SKSLearningSystem.Services.CourseServices
                 course.Grade = grade;
                 course.Passed = true;
                 course.State = newState;
-                this.context.SaveChanges();
+               await this.context.SaveChangesAsync();
             }
             
         }

@@ -21,7 +21,7 @@ namespace SKSLearningSystem.Services.Contracts
 
         AssignCourseViewModel GetUsersAndCoursesFromDB();
 
-        List<SingleCourseViewModel> GetCoursesFromDb();
+        //List<SingleCourseViewModel> GetCoursesFromDb();
 
         Course GetCoursesFromDBByName(string courseName);
 

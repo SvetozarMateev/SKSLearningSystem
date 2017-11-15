@@ -154,17 +154,17 @@ namespace SKSLearningSystem.Services
             return assignCourseViewModel;
         }
 
-        public List<SingleCourseViewModel> GetCoursesFromDb()
-        {
-            var courses = context.Courses.Select(x => new SingleCourseViewModel()
-            {
-                CourseId=x.Id,
-                CourseStateId = x.Id,
-                CourseName = x.Name,
-                Descrtiption = x.Description,
-                CourseImageId = x.Images.FirstOrDefault().Id
-            }).Take(10).ToList();
-            return courses;
-        }
+        //public List<SingleCourseViewModel> GetCoursesFromDb()
+        //{
+        //    var courses = context.Courses.Select(x => new SingleCourseViewModel()
+        //    {
+        //        CourseId=x.Id,
+        //        CourseStateId = x.Id,
+        //        CourseName = x.Name,
+        //        Descrtiption = x.Description,
+        //        CourseImageId = x.Images.FirstOrDefault().Id
+        //    }).Take(10).ToList();
+        //    return courses;
+        //}
     }
 }

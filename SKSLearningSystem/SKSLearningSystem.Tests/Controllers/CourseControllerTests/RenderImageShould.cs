@@ -26,32 +26,18 @@ namespace SKSLearningSystem.Tests.Controllers.CourseControllerTests
             // Arrange
             var contextMock = new Mock<LearningSystemDbContext>();
             var courseServiceMock = new Mock<ICourseService>();
-            var courses = new List<Course>();
 
-            byte[] imageAsArray = File.ReadAllBytes("../../solid-OOP_wall-skills.jpg");
+            byte[] imageAsArray = new byte[] { 1, 20, 10 };
 
             var image = new Image()
             {
                 Id = 1,
                 CurrentImage = imageAsArray
             };
-
-            var images = new List<Image>() { image };
-
-            var course = new Course()
-            {
-                Id = 1,
-                Images = images
-            };
-
-            courses.Add(course);
-
-            var courseSetMock = new Mock<DbSet<Course>>().SetupData(courses);
+            
             var dbServicesMock = new Mock<IDBServices>();
 
-            var imageSetMock = new Mock<DbSet<Image>>().SetupData(images);
-            contextMock.Setup(c => c.Courses).Returns(courseSetMock.Object);
-            contextMock.Setup(c => c.Images).Returns(imageSetMock.Object);
+            dbServicesMock.Setup(c => c.GetImageByID(image.Id)).Returns(Task.FromResult(image));
 
             var controller = new CourseController(courseServiceMock.Object,dbServicesMock.Object);
             

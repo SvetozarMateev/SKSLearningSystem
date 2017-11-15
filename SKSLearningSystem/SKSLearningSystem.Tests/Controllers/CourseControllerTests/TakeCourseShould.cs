@@ -25,27 +25,36 @@ namespace SKSLearningSystem.Tests.Controllers.CourseControllerTests
         {
             // Arrange
             var courseServiceMock = new Mock<ICourseService>();
-            
-            var dbServicesMock = new Mock<IDBServices>();
+            var dbSevrviceMock = new Mock<IDBServices>();
 
-            var takeCourseModel = new TakeCourseModel();
+            var courseId = 0;
+            var courseStateId = 1;
+            var courseName = "DSA";
+            var images = new List<Image>();
 
-            var courseMock = new Course() { Id=7};
+            var course = new Course()
+            {
+                Id = courseId,
+                Name = courseName,
+                Images = images
+            };
 
-            List<Course> courses = new List<Course>();
-            courses.Add(courseMock);
-            var courseSetMock = new Mock<DbSet<Course>>();
-            courseSetMock.SetupData(courses);
+            dbSevrviceMock.Setup(d => d.GetCoursesFromDB(courseId)).Returns(course);
+            dbSevrviceMock.Setup(d => d.GetImages(courseId)).Returns(images);
 
-            //contextMock.Setup(c => c.Courses).Returns(courseSetMock.Object);
-            
-            var controller = new CourseController(courseServiceMock.Object,dbServicesMock.Object );
+            var model = new TakeCourseModel();
+            model.CourseStateId = courseStateId;
+            model.CourseName = courseName;
+            model.Images = images;
+
+            var controller = new CourseController(courseServiceMock.Object, dbSevrviceMock.Object);
 
             // Act & Assert
-            //controller
-            //    .WithCallTo(c => c.TakeCourse(takeCourseModel, courseMock.Id))
-            //    .ShouldRenderDefaultView()
-            //    .WithModel(takeCourseModel);
+            controller
+                .WithCallTo(c => c.TakeCourse(courseStateId, courseId))
+                .ShouldRenderDefaultView()
+                .WithModel<TakeCourseModel>();
+
         }
     }
 }

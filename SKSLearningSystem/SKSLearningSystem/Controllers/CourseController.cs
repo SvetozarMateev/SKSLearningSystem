@@ -35,7 +35,6 @@ namespace SKSLearningSystem.Controllers
             TakeCourseModel model = new TakeCourseModel() { CourseStateId=courseStateId};
             var course = this.dBServices.GetCoursesFromDB(courseId);
             var images = this.dBServices.GetImages(courseId);
-            var userId = HttpContext.User.Identity.GetUserId();
             //var user=
             model.CourseName = course.Name;
 

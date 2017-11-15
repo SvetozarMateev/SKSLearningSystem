@@ -64,7 +64,8 @@ namespace SKSLearningSystem.Services
         public async Task SaveImagesToUser(Image file, string userId)
         {
             Guard.WhenArgument(file, "file").IsNull().Throw();
-            file.UserId = userId;
+            var userRealId = this.context.Users.First(x => x.UserName == userId).Id;
+            file.UserId = userRealId;
             context.Images.Add(file);
             await context.SaveChangesAsync();
         }

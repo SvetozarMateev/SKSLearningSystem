@@ -22,9 +22,9 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
         private readonly IGridServices gridServices;
         private readonly ApplicationUserManager userManager;
         private readonly IDBServices dBServices;
-       
 
-        public AdminController(IAdminServices services, ApplicationUserManager userManager, 
+
+        public AdminController(IAdminServices services, ApplicationUserManager userManager,
             IGridServices gridServices, IDBServices dBServices)
 
         {
@@ -37,12 +37,12 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
             this.userManager = userManager;
             this.dBServices = dBServices;
             this.gridServices = gridServices;
-            
-        }     
+
+        }
 
         [HttpGet]
         public ActionResult UploadCourse()
-        {                      
+        {
             return this.View();
         }
 
@@ -56,7 +56,7 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
         public ActionResult AssignDepToCourse(string depName, string courseName)
         {
             var model = new DepToCourseViewModel() { Department = depName, CourseName = courseName };
-            return this.PartialView("ConfirmDepToCourse",model);
+            return this.PartialView("ConfirmDepToCourse", model);
         }
 
         [HttpPost]
@@ -81,18 +81,18 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
             var course = this.dBServices.GetCoursesFromDBByName(courseName);
             var users = this.dBServices.GetUserViewModels();
             var model = new AssignCourseToUsersViewModel() { CourseId = course.Id, Users = users };
-            return this.PartialView("Assigning",model);
+            return this.PartialView("Assigning", model);
         }
 
         public ActionResult FinalAssign(AssignCourseToUsersViewModel model)
         {
-            this.dBServices.SaveAssignementsToDb(model.CourseId,model.Users.Where(x=>x.Checked).ToList());
+            this.dBServices.SaveAssignementsToDb(model.CourseId, model.Users.Where(x => x.Checked).ToList());
             return this.RedirectToAction("AssignChoose");
         }
 
 
 
-            //end of alternative
+        //end of alternative
         // Assign Course Methods Start
         [HttpGet]
         public ActionResult AssignCourse()
@@ -154,11 +154,11 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
             return this.View();
         }
 
-        public  ActionResult AssignRoles()
+        public ActionResult AssignRoles()
         {
             var users = this.userManager
                 .Users
-                .Select( u => new UserViewModel()
+                .Select(u => new UserViewModel()
                 {
                     UserName = u.UserName,
                     Id = u.Id,
@@ -166,7 +166,7 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
 
             for (int i = 0; i < users.Count; i++)
             {
-                users[i].Checked =  this.userManager.IsInRole(users[i].Id, "Admin");
+                users[i].Checked = this.userManager.IsInRole(users[i].Id, "Admin");
             }
 
             var assignCourseViewModel = new AssignCourseViewModel()
@@ -184,33 +184,43 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
 
             for (int i = 0; i < users.Count; i++)
             {
-               
-                if (assignCourseViewModel.Users[i].Checked==true)
+
+                if (assignCourseViewModel.Users[i].Checked == true)
                 {
                     await this.userManager.AddToRoleAsync(users.Single(x => x.Id == userIds[i]).Id, "Admin");
                 }
-                else 
+                else
                 {
-                    var roles = await  this.userManager.GetRolesAsync(users.Single(x => x.Id == userIds[i]).Id);
-                    await this.userManager.RemoveFromRolesAsync(users.Single(x=>x.Id==userIds[i]).Id, roles.ToArray());
+                    var roles = await this.userManager.GetRolesAsync(users.Single(x => x.Id == userIds[i]).Id);
+                    await this.userManager.RemoveFromRolesAsync(users.Single(x => x.Id == userIds[i]).Id, roles.ToArray());
                 }
-                
+
             }
 
             return RedirectToAction("AssignRoles");
         }
 
-            public ActionResult GetJSON(bool _search, int rows, int page, string filters)
+        public ActionResult GetJSON(bool _search, int rows, int page, string filters)
+        {
+            if (_search == false)
             {
-                if (_search == false)
-                {
-                    return Json(this.gridServices.SearchFalseResult(page, rows), JsonRequestBehavior.AllowGet);
-                }
-                else
-                {
-                    return Json(this.gridServices.SearchResultTrue(filters), JsonRequestBehavior.AllowGet);
-                }
-
+                return Json(this.gridServices.SearchFalseResult(page, rows), JsonRequestBehavior.AllowGet);
             }
+            else
+            {
+                return Json(this.gridServices.SearchResultTrue(filters), JsonRequestBehavior.AllowGet);
+            }
+
+        }
+
+        // DeAssign
+         public ActionResult DeasignCourse()
+        {
+            var deasignCourseViewModel = new DeasignCourseViewModel();
+
+            //get states from db
+            deasignCourseViewModel = this.dBServices.GetCourseStates(deasignCourseViewModel);
+            return View();
         }
     }
+}

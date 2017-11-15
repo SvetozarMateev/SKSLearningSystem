@@ -21,7 +21,7 @@ namespace SKSLearningSystem.Services.Contracts
 
         AssignCourseViewModel GetUsersAndCoursesFromDB();
 
-        List<SingleCourseViewModel> GetCoursesFromDb();
+        //List<SingleCourseViewModel> GetCoursesFromDb();
 
         Course GetCoursesFromDBByName(string courseName);
 
@@ -30,5 +30,7 @@ namespace SKSLearningSystem.Services.Contracts
         Task SaveAssignementsForDepartment(DepToCourseViewModel model);
         CourseState GetStateFromDB(int courStateId);
         Task SaveAssignementsToDb(CourseState state);
+
+        DeasignCourseViewModel GetCourseStates(DeasignCourseViewModel deasignCourseViewModel);
     }
 }

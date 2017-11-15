@@ -13,5 +13,6 @@ namespace SKSLearningSystem.Areas.Admin.Models
         public DateTime AssignementDate { get; set; }
         public DateTime DueDate { get; set; }
         public string State { get; set; }
+        public bool Checked { get; set; }
     }
 }

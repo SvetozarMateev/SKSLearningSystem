@@ -1,0 +1,10 @@
+﻿@model SKSLearningSystem.Models.ViewModels.AdminViewModels.DeasignCourseViewModel
+
+@*@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}*@
+
+@for (int i = 0; i < Model.CourseStates.Count; i++)
+{
+    <p id="userName">@Html.EditorFor(u => Model.CourseStates[i].Checked) @Html.DisplayFor(x => Model.CourseStates[i].Username) @Html.HiddenFor(x => Model.CourseStates[i].Coursename)</p>
+}

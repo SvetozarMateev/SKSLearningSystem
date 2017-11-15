@@ -139,9 +139,7 @@
       <DependentUpon>201711151154378_validations.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\SKSLearningSystem.Models\SKSLearningSystem.Models.csproj">
       <Project>{002F7687-91BD-41F3-ABEE-33485FF11EFA}</Project>

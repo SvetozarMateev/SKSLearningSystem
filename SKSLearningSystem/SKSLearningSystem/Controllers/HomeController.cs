@@ -28,8 +28,9 @@ namespace SKSLearningSystem.Controllers
         }
         public ActionResult Index()
         {
-            var courses = this.dBServices.GetCoursesFromDb();
-            return View(courses);
+            //var courses = this.dBServices.GetCoursesFromDb();
+            //return View(courses);
+            return View();
         }
 
         public ActionResult About()
@@ -46,11 +47,11 @@ namespace SKSLearningSystem.Controllers
             return View();
         }
 
-        public ActionResult AllCourses()
-        {
-            var courses = this.dBServices.GetCoursesFromDb();
-            return View(courses);
-        }
+        //public ActionResult AllCourses()
+        //{
+        //    var courses = this.dBServices.GetCoursesFromDb();
+        //    return View(courses);
+        //}
 
         [HttpGet]
         public ActionResult MyProfile()

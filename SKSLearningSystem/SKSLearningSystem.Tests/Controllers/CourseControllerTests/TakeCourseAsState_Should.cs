@@ -24,19 +24,13 @@ namespace SKSLearningSystem.Tests.Controllers.CourseControllerTests
             // Arrange
             var courseServiceMock = new Mock<ICourseService>();
             var dbSevrviceMock = new Mock<IDBServices>();
-            var contextMock = new Mock<LearningSystemDbContext>();
 
             var courseStateId = 1;
             var courseId = 1;
 
             var courseState = new CourseState() { Id = courseStateId };
 
-            var courseStates = new List<CourseState>() { courseState };
-
-            var courseStateSetMock = new Mock<DbSet<CourseState>>();
-            courseStateSetMock.SetupData(courseStates);
-
-            contextMock.Setup(c => c.CourseStates).Returns(courseStateSetMock.Object);
+            dbSevrviceMock.Setup(d => d.GetStateFromDB(courseStateId)).Returns(courseState);
 
             var controller = new CourseController(courseServiceMock.Object, dbSevrviceMock.Object);
 

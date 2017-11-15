@@ -34,7 +34,7 @@ namespace SKSLearningSystem.Tests.Web.Controllers.HomeControllerTests
             list.Add(image);
             var controller = new HomeController(homeServicesMock.Object, adminServicesMock.Object, dbServicesMock.Object)
             {
-                GetUserId = () => id
+               // GetUserId = () => id
             };
 
             homeServicesMock.Setup(x => x.GetCourseStates(id)).Returns(model);
@@ -58,8 +58,10 @@ namespace SKSLearningSystem.Tests.Web.Controllers.HomeControllerTests
             list.Add(image);
             var controller = new HomeController(homeServicesMock.Object, adminServicesMock.Object, dbServicesMock.Object)
             {
-                GetUserId = () => id
+                
             };
+
+
 
             homeServicesMock.Setup(x => x.GetCourseStates(id)).Returns(model);
             adminServicesMock.Setup(x => x.ReadImagesFromFiles(new List<HttpPostedFileBase>() { fileMock.Object })).Returns(list);

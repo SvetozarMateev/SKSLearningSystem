@@ -36,7 +36,7 @@ namespace SKSLearningSystem.Tests.Web.Controllers.HomeControllerTests
            
             var controller = new HomeController(homeServicesMock.Object, adminServicesMock.Object, dbServicesMock.Object)
             {
-                GetUserId = () => id
+                //GetUserId = () => id
             };
 
             homeServicesMock.Setup(x => x.GetCourseStates(id)).Returns(model);

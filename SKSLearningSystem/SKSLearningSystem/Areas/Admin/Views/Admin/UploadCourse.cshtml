@@ -29,10 +29,14 @@
   
 }
 @section scripts{
-    @Scripts.Render("~/bundles/uploadCourse")    
+    @Scripts.Render("~/bundles/uploadCourse");
+    @Scripts.Render("~/bundles/infoBox");
+
 }
 
-<script>
+
+
+@*<script>
     function showInfo(msg) {
         $("#infoBox").text(msg);
             $(".alertContainer").show();
@@ -40,6 +44,6 @@
                 $(".alertContainer").fadeOut();
             }, 1500);
         }
-</script>
+</script>*@
 
 

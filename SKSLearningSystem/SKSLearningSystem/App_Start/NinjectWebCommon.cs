@@ -18,6 +18,7 @@ namespace SKSLearningSystem.App_Start
     using SKSLearningSystem.Areas.Admin.Services;
     using SKSLearningSystem.Services.CourseServices;
     using SKSLearningSystem.Services;
+    using SKSLearningSystem.Services.Contracts;
 
     public static class NinjectWebCommon 
     {
@@ -81,14 +82,16 @@ namespace SKSLearningSystem.App_Start
             .GetOwinContext()
             .Get<LearningSystemDbContext>());
 
-            kernel.Bind<IAdminServices>().To<AdminServices>();
+            kernel.Bind<IAdminServices>().To<AdminServices>().InRequestScope();
 
 
-            kernel.Bind<IGridServices>().To<GridServices>();
+            kernel.Bind<IGridServices>().To<GridServices>().InRequestScope();
 
-            kernel.Bind<ICourseService>().To<CourseService>();
+            kernel.Bind<ICourseService>().To<CourseService>().InRequestScope();
 
-            kernel.Bind<IHomeServices>().To<HomeServices>();
+            kernel.Bind<IHomeServices>().To<HomeServices>().InRequestScope();
+
+            kernel.Bind<IDBServices>().To<DBServices>().InRequestScope();
         }        
     }
 }

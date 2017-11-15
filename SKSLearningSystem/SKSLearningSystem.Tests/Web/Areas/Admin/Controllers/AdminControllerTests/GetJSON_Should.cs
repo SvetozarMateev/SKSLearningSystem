@@ -5,6 +5,7 @@ using SKSLearningSystem.Areas.Admin.Controllers;
 using SKSLearningSystem.Areas.Admin.Services;
 using SKSLearningSystem.Data;
 using SKSLearningSystem.Data.Models;
+using SKSLearningSystem.Services.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,10 +26,12 @@ namespace SKSLearningSystem.Tests.Areas.Admin.Controllers.AdminControllerTests
             var userStore = new Mock<IUserStore<User>>();
             var adminServicesMock = new Mock<IAdminServices>();
             var gridServicesMock = new Mock<IGridServices>();
+            var dbServicesMock = new Mock<IDBServices>();
+
             var dbMock = new Mock<LearningSystemDbContext>();
             var applicationUserManagerMock = new Mock<ApplicationUserManager>(userStore.Object);
             var controller = new AdminController(adminServicesMock.Object,
-                applicationUserManagerMock.Object, dbMock.Object, gridServicesMock.Object);
+                applicationUserManagerMock.Object, gridServicesMock.Object,dbServicesMock.Object);
             var _search = true;
             var rows = It.IsAny<int>();
             var pages = It.IsAny<int>();
@@ -49,8 +52,10 @@ namespace SKSLearningSystem.Tests.Areas.Admin.Controllers.AdminControllerTests
             var adminServicesMock = new Mock<IAdminServices>();
             var gridServicesMock = new Mock<IGridServices>();
             var dbMock = new Mock<LearningSystemDbContext>();
+            var dbServicesMock = new Mock<IDBServices>();
+
             var applicationUserManagerMock = new Mock<ApplicationUserManager>(userStore.Object);
-            var controller = new AdminController(adminServicesMock.Object, applicationUserManagerMock.Object, dbMock.Object, gridServicesMock.Object);
+            var controller = new AdminController(adminServicesMock.Object, applicationUserManagerMock.Object, gridServicesMock.Object,dbServicesMock.Object);
             var _search = true;
             var rows = It.IsAny<int>();
             var pages = It.IsAny<int>();

@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using EntityFramework.Testing;
 using TestStack.FluentMVCTesting;
 using System.IO;
+using SKSLearningSystem.Services.Contracts;
 
 namespace SKSLearningSystem.Tests.Controllers.CourseControllerTests
 {
@@ -46,11 +47,13 @@ namespace SKSLearningSystem.Tests.Controllers.CourseControllerTests
             courses.Add(course);
 
             var courseSetMock = new Mock<DbSet<Course>>().SetupData(courses);
+            var dbServicesMock = new Mock<IDBServices>();
+
             var imageSetMock = new Mock<DbSet<Image>>().SetupData(images);
             contextMock.Setup(c => c.Courses).Returns(courseSetMock.Object);
             contextMock.Setup(c => c.Images).Returns(imageSetMock.Object);
 
-            var controller = new CourseController(courseServiceMock.Object, contextMock.Object);
+            var controller = new CourseController(courseServiceMock.Object,dbServicesMock.Object);
             
             // Act & Assert
             controller.WithCallTo(x => x.RenderImage(image.Id)).ShouldRenderAnyFile();

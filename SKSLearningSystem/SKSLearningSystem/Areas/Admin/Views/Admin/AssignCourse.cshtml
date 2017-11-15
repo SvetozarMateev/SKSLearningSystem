@@ -12,7 +12,7 @@
             @for (int i = 0; i < Model.Users.Count; i++)
                 {
                 <p>@Html.HiddenFor(x => Model.Users[i].Id)</p>
-                <p id="userName">@Html.EditorFor(u => Model.Users[i].Checked) @Html.DisplayFor(x => Model.Users[i].UserName) @Html.HiddenFor(x => Model.Users[i].UserName)</p>
+                <p id="userName">@Html.EditorFor(u => Model.Users[i].Checked) @Html.DisplayFor(x => Model.Users[i].UserName) @Html.HiddenFor(x => Model.Users[i].UserName)</p>            
                 <p id="mandatory">@Html.LabelFor(u => Model.Users[i].Mandatory) @Html.EditorFor(u => Model.Users[i].Mandatory)</p>
                 <p id="dueDate">@Html.LabelFor(u => Model.Users[i].DueDate) @Html.EditorFor(u => Model.Users[i].DueDate)</p>
             }

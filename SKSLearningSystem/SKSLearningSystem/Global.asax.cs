@@ -21,7 +21,9 @@ namespace SKSLearningSystem
             ViewEngines.Engines.Add(new RazorViewEngine());
 
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<LearningSystemDbContext, Configuration>());
-            
+
+            Checker.Start();
+
         }
 
         //protected void Application_Error(object sender, EventArgs e)

@@ -9,6 +9,8 @@ namespace SKSLearningSystem.Models
 
         public int CourseId { get; set; }
 
+        public int CourseStateId { get; set; }
+
         public string Description { get; set; }
 
         public ICollection<Image> Images { get; set; }

@@ -3,6 +3,7 @@ using Moq;
 using SKSLearningSystem.Areas.Admin.Models;
 using SKSLearningSystem.Controllers;
 using SKSLearningSystem.Data;
+using SKSLearningSystem.Services.Contracts;
 using SKSLearningSystem.Services.CourseServices;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,9 @@ namespace SKSLearningSystem.Tests.Controllers.CourseControllerTests
             //Arrange
             var db = new Mock<LearningSystemDbContext>();
             var courseServicesMock = new Mock<ICourseService>();
-            var controller = new CourseController(courseServicesMock.Object, db.Object);
+            var dbServicesMock = new Mock<IDBServices>();
+
+            var controller = new CourseController(courseServicesMock.Object,dbServicesMock.Object);
             var courseStateId = 14;
             var model = new TakeTestViewModel() { CourseStateId = courseStateId };
 

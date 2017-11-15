@@ -149,3 +149,7 @@ textarea {
 .navbar-inverse .navbar-brand:hover {
     background-color: #305030;
 }
+.reduced{
+    width:200px;
+    height:150px;
+}

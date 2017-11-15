@@ -5,6 +5,7 @@ using SKSLearningSystem.Data.Models;
 using SKSLearningSystem.Services.CourseServices;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Threading.Tasks;
 
 namespace SKSLearningSystem.Tests.Services.CourseServices.CourseServicesTests
 {
@@ -12,7 +13,7 @@ namespace SKSLearningSystem.Tests.Services.CourseServices.CourseServicesTests
     public class ChangeState_Should
     {
         [TestMethod]
-        public void ChangeCourseState_WhenParametersAreCorrect()
+        public async Task ChangeCourseState_WhenParametersAreCorrect()
         {
             //Arrange
             var dbMock = new Mock<LearningSystemDbContext>();
@@ -26,14 +27,14 @@ namespace SKSLearningSystem.Tests.Services.CourseServices.CourseServicesTests
             dbMock.Setup(x => x.CourseStates).Returns(courseStatesMock.Object);
 
             //Act
-           // courseServices.ChangeCourseState(1, expected);
+            await courseServices.ChangeCourseState(state.Id, expected, 6);
 
             //Assert
             Assert.AreEqual(expected, state.State);
         }
 
         [TestMethod]
-        public void SaveChanges_WhenParametersAreCorrect()
+        public async Task SaveChanges_WhenParametersAreCorrect()
         {
             //Arrange
             var dbMock = new Mock<LearningSystemDbContext>();
@@ -45,11 +46,13 @@ namespace SKSLearningSystem.Tests.Services.CourseServices.CourseServicesTests
             courseStatesMock.SetupData(states);
             dbMock.Setup(x => x.CourseStates).Returns(courseStatesMock.Object);
 
+
             //Act
+            await courseServices.ChangeCourseState(state.Id, It.IsAny<string>(), 6);
             //courseServices.ChangeCourseState(1, It.IsAny<string>());
 
             //Assert
-            dbMock.Verify(x => x.SaveChanges(), Times.Once);
+            dbMock.Verify(x => x.SaveChangesAsync(), Times.Once);
         }
     }
 }

@@ -23,7 +23,8 @@ namespace SKSLearningSystem.Controllers
 
         public CourseController(ICourseService services,IDBServices dBServices)
         {
-            Guard.WhenArgument(services, "services").IsNull().Throw();                   
+            Guard.WhenArgument(services, "services").IsNull().Throw();
+            Guard.WhenArgument(dBServices, "dbServices").IsNull().Throw();
             this.services = services;
             this.dBServices = dBServices;
         }

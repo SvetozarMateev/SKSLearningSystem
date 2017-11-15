@@ -1,9 +1,11 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using SKSLearningSystem.Areas.Admin.Services;
 using SKSLearningSystem.Controllers;
 using SKSLearningSystem.Data.Models;
 using SKSLearningSystem.Models.ViewModels;
 using SKSLearningSystem.Services;
+using SKSLearningSystem.Services.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,11 +23,12 @@ namespace SKSLearningSystem.Tests.Controllers.HomeControllerTests
         {
             // Arrange
             var homeServiceMock = new Mock<IHomeServices>();
+            var adminServiceMock = new Mock<IAdminServices>();
+            var dbServiceMock = new Mock<IDBServices>();
+
             var courses = new List<SingleCourseViewModel>();
-
-            homeServiceMock.Setup(x => x.GetCoursesFromDb()).Returns(courses);
-
-            var controller = new HomeController(homeServiceMock.Object);
+            
+            var controller = new HomeController(homeServiceMock.Object, adminServiceMock.Object, dbServiceMock.Object);
 
             
             // Act & Assert

@@ -63,7 +63,7 @@ namespace SKSLearningSystem.Controllers
         [HttpPost]
         public ActionResult MyProfile(MyProfileViewModel myProfileViewModel,HttpPostedFileBase image)
         {
-            var userId = HttpContext.User.Identity.GetUserId();
+            var userId = HttpContext.User.Identity.Name;
             var singleImage = this.adminServices.ReadImagesFromFiles(new List<HttpPostedFileBase>() { image }).Single();
             this.homeServices.SaveImagesToUser(singleImage, userId);
             return View(myProfileViewModel);

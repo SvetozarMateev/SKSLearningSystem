@@ -27,33 +27,38 @@ namespace SKSLearningSystem.Tests.Areas.Admin.Services.AdminServicesTests
             //Act & Assert
             Assert.ThrowsException<ArgumentNullException>(() => services.ReadImagesFromFiles(null));
         }
+
+        [TestMethod]
+        public void ReturnImages_WhenParametersAreCorrect()
+        {
+            //Arrange
+            var dbMock = new Mock<LearningSystemDbContext>();
+            var services = new AdminServices(dbMock.Object);
+            var model = new UploadCourseViewModel();
+            var imageMock = new Mock<HttpPostedFileBase>();
+
+            MemoryStream fileStream = new MemoryStream();
+            byte[] imageArray = new byte[256];
+            for (int i = 0; i < 256; i++)
+            {
+                imageArray[i] = (byte)i;
+            }
+            fileStream.Write(imageArray, 0, 256);
+            fileStream.Position = 0;
+
+            imageMock.SetupGet(i => i.InputStream).Returns(fileStream);
+
+            List<HttpPostedFileBase> files = new List<HttpPostedFileBase>() { imageMock.Object };
+
+            AdminServices service = new AdminServices(dbMock.Object);
+
+            // Act
+            var result = service.ReadImagesFromFiles(files);
+
+            // Assert
+            CollectionAssert.AreEquivalent(imageArray, result.Single().CurrentImage);
+        }
     }
 
-    //[TestMethod]
-    //public void ReturnImages_WhenParametersAreCorrect()
-    //{
-    //    //Arrange
-    //    var dbMock = new Mock<LearningSystemDbContext>();
-    //    var services = new AdminServices(dbMock.Object);
-    //    var model = new UploadCourseViewModel();
-    //    var image = new Mock<HttpPostedFileBase>();
-        
-
-    //    model.Photos= new List<HttpPostedFileBase>() { image.Object };
-
-    //    ICollection<Image> expected = new List<Image>();
-        
-    //        using (MemoryStream ms = new MemoryStream())
-    //        {
-    //            item.InputStream.CopyTo(ms);
-    //            byte[] array = ms.GetBuffer();
-    //            expected.Add(new Image() { CurrentImage = array });
-    //        }
-        
-
-    //    FileStream stream = new FileStream(@"..\..\MyTestPhoto.png", FileMode.Open);
-    //    image.Setup(x => x.InputStream).Returns(stream);
-
-
-    //}
+    
 }

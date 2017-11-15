@@ -3,24 +3,6 @@
     margin: 30px;
 }
 
-input[type=submit] {
-    background: #437043;
-    color: white;
-    height: 50px;
-    width: 130px;
-    border-radius: 25px;
-}
-
-    input[type=submit]:hover {
-        background: darkgreen;
-    }
-
-/*.carousel-background {
-    .item{
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-}*/
 
 
 .courseImg{

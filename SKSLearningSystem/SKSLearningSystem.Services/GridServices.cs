@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Bytes2you.Validation;
+using Newtonsoft.Json;
 using SKSLearningSystem.Areas.Admin.Models;
 using SKSLearningSystem.Data;
 using SKSLearningSystem.Data.Models;
@@ -14,6 +15,7 @@ namespace SKSLearningSystem.Areas.Admin.Services
 
         public GridServices(LearningSystemDbContext db)
         {
+            Guard.WhenArgument(db, "db").IsNull().Throw();
             this.db = db;
         }
         public IList<User> Filtrator(string propertyName, string shortOp,string inputField,IList<User>users)

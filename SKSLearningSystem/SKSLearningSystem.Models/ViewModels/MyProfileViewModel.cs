@@ -9,6 +9,7 @@ namespace SKSLearningSystem.Models.ViewModels
 {
    public class MyProfileViewModel
     {
+       
         public Image ProfilePicture { get; set; }
 
         public List<CourseSateViewModel> Pendings { get; set; }

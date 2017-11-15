@@ -340,7 +340,6 @@
     <Content Include="Areas\Admin\Views\Admin\AlertUser.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\AlertUploadCourses.cshtml" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\AssignCourseToUsers.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\Assigning.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\AssignChoose.cshtml" />
@@ -459,6 +458,7 @@
     <Content Include="Views\Home\AllCourses.cshtml" />
     <Content Include="Views\Home\MyProfile.cshtml" />
     <Content Include="Scripts\swiper.min.js.map" />
+    <Content Include="Views\Shared\_CoursesPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

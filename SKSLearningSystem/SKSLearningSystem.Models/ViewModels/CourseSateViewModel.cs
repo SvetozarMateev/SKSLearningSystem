@@ -9,6 +9,12 @@ namespace SKSLearningSystem.Models.ViewModels
 {
     public class CourseSateViewModel
     {
+        public CourseSateViewModel()
+        {
+            AssignmentDate = DateTime.Now;
+            DueDate = DateTime.Now.AddDays(30);
+
+        }
         public int Id { get; set; }
 
         public string UserId { get; set; }

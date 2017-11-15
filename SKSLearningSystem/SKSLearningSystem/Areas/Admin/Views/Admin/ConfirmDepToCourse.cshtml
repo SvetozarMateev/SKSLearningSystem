@@ -1,13 +1,26 @@
 ﻿@model SKSLearningSystem.Models.ViewModels.AdminViewModels.DepToCourseViewModel
     @using (Html.BeginForm("ConfirmDepToCourse", "admin", FormMethod.Post, new {@class="form-assign" }))
     {
-        @Html.HiddenFor(x => x.CourseName);
-        @Html.HiddenFor(x => x.Department);
-        @Html.DisplayFor(x => x.CourseName);
-        @Html.DisplayFor(x => x.Department);
-        @Html.EditorFor(x => x.Mandatory);
-        @Html.EditorFor(x => x.DueDate);
-        @Html.EditorFor(x => x.Grade);
+        <div class="attrs">
+            <div id="name">Course</div>
+            <div id="dep">Department</div>
+            <div id="mand">Mandatory</div>
+            <div id="due">DueDate</div>
+            <div id="grade">Grade</div>
+        </div>
+      
+        <div class="info">
+            <div>@Html.HiddenFor(x => x.CourseName)</div>
+            <div>@Html.HiddenFor(x => x.Department)</div>
+            <div id="name" >@Html.DisplayFor(x => x.CourseName)</div>
+            <div id="dep" >@Html.DisplayFor(x => x.Department)</div>
+            <div id="mand" >@Html.EditorFor(x => x.Mandatory)</div>
+            <div id="due" >@Html.EditorFor(x => x.DueDate)</div>
+            <div id="grade" >@Html.EditorFor(x => x.Grade)</div>
+        </div>
+       
+        <div class="button">
+            <button type="submit">Confirm</button>
 
-        <button type="submit">Confirm</button>
+        </div>
     }

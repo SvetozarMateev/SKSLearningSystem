@@ -1,4 +1,5 @@
-﻿using SKSLearningSystem.Areas.Admin.Models;
+﻿using Bytes2you.Validation;
+using SKSLearningSystem.Areas.Admin.Models;
 using SKSLearningSystem.Data;
 using SKSLearningSystem.Data.Models;
 using SKSLearningSystem.Models.ViewModels;
@@ -17,6 +18,7 @@ namespace SKSLearningSystem.Services
 
         public DBServices(LearningSystemDbContext context)
         {
+            Guard.WhenArgument(context, "context").IsNull().Throw();
             this.context = context;
         }
 

@@ -82,6 +82,7 @@ namespace SKSLearningSystem.Services.CourseServices
                 course.Grade = grade;
                 course.Passed = true;
                 course.State = newState;
+                course.CompletionDate = DateTime.Now;
                await this.context.SaveChangesAsync();
             }
             

@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using System.Web;
 using TestStack.FluentMVCTesting;
 using SKSLearningSystem.Data.Models;
+using System.Security.Principal;
 
 namespace SKSLearningSystem.Tests.Web.Controllers.HomeControllerTests
 {
@@ -31,6 +32,10 @@ namespace SKSLearningSystem.Tests.Web.Controllers.HomeControllerTests
             var id = "validId";
             var model = new MyProfileViewModel();
             var image = new Image();
+            var httpContext = new Mock<HttpContextBase>();
+            var mockIdentity = new Mock<IIdentity>();
+            httpContext.SetupGet(x => x.User.Identity).Returns(mockIdentity.Object);
+           // mockIdentity.Setup(x => x.Name).Returns(username);
             list.Add(image);
             var controller = new HomeController(homeServicesMock.Object, adminServicesMock.Object, dbServicesMock.Object)
             {

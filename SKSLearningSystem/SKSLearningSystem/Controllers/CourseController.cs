@@ -23,7 +23,8 @@ namespace SKSLearningSystem.Controllers
 
         public CourseController(ICourseService services,IDBServices dBServices)
         {
-            Guard.WhenArgument(services, "services").IsNull().Throw();                   
+            Guard.WhenArgument(services, "services").IsNull().Throw();
+            Guard.WhenArgument(dBServices, "dBServices").IsNull().Throw();
             this.services = services;
             this.dBServices = dBServices;
         }
@@ -32,11 +33,11 @@ namespace SKSLearningSystem.Controllers
         [Authorize]
         public ActionResult TakeCourse(int courseStateId, int courseId)
         {
+            
             TakeCourseModel model = new TakeCourseModel() { CourseStateId=courseStateId};
             var course = this.dBServices.GetCoursesFromDB(courseId);
             var images = this.dBServices.GetImages(courseId);
-            var userId = HttpContext.User.Identity.GetUserId();
-            //var user=
+                      
             model.CourseName = course.Name;
 
             model.Images = images;

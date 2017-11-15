@@ -2,7 +2,6 @@
 using SKSLearningSystem.Data;
 using SKSLearningSystem.Data.Models;
 using SKSLearningSystem.Models.ViewModels;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,15 +13,16 @@ namespace SKSLearningSystem.Services
 
         public HomeServices(LearningSystemDbContext context)
         {
+            Guard.WhenArgument(context, "context").IsNull().Throw();
             this.context = context;
         }
 
-
-        public MyProfileViewModel GetCourseStates(string userId)
+        public MyProfileViewModel GetCourseStates(string username)
         {
 
             var myProfileViewModel = new MyProfileViewModel();
-            var user = this.context.Users.First(x => x.UserName == userId);
+           
+            var user = this.context.Users.First(x => x.UserName == username);
             var allStates = context.CourseStates
             .Where(x => x.UserId == user.Id)
             .Select(x => new CourseSateViewModel()
@@ -51,7 +51,8 @@ namespace SKSLearningSystem.Services
         public async Task SaveImagesToUser(Image file, string userId)
         {
             Guard.WhenArgument(file, "file").IsNull().Throw();
-            file.UserId = userId;
+            var userRealId = this.context.Users.First(x => x.UserName == userId).Id;
+            file.UserId = userRealId;
             context.Images.Add(file);
            await context.SaveChangesAsync();
         }

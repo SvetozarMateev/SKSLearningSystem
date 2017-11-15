@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using Bytes2you.Validation;
+using Microsoft.AspNet.Identity;
 using SKSLearningSystem.Areas.Admin.Services;
 using SKSLearningSystem.Models.ViewModels;
 using SKSLearningSystem.Services;
@@ -21,15 +22,28 @@ namespace SKSLearningSystem.Controllers
         public HomeController(IHomeServices homeServices, IAdminServices adminServices,
             IDBServices dBServices)
         {
+            Guard.WhenArgument(homeServices, "homeServices").IsNull().Throw();
+            Guard.WhenArgument(adminServices, "adminServices").IsNull().Throw();
+            Guard.WhenArgument(dBServices, "dBServices").IsNull().Throw();
+
             this.homeServices = homeServices;
             this.adminServices = adminServices;
             this.dBServices = dBServices;
             //GetUserId = () => HttpContext.User.Identity.GetUserId();
         }
+
         public ActionResult Index()
         {
+            return View();
+        }
+
+        [ChildActionOnly]
+        [OutputCache(Duration = 180)]
+        public ActionResult GetCoursesPartial()
+        {
             var courses = this.dBServices.GetCoursesFromDb();
-            return View(courses);
+
+            return this.PartialView("_CoursesPartial", courses);
         }
 
         public ActionResult About()
@@ -46,6 +60,7 @@ namespace SKSLearningSystem.Controllers
             return View();
         }
 
+        //[OutputCache(Duration =180)]
         public ActionResult AllCourses()
         {
             var courses = this.dBServices.GetCoursesFromDb();
@@ -63,7 +78,7 @@ namespace SKSLearningSystem.Controllers
         [HttpPost]
         public ActionResult MyProfile(MyProfileViewModel myProfileViewModel,HttpPostedFileBase image)
         {
-            var userId = HttpContext.User.Identity.GetUserId();
+            var userId = HttpContext.User.Identity.Name;
             var singleImage = this.adminServices.ReadImagesFromFiles(new List<HttpPostedFileBase>() { image }).Single();
             this.homeServices.SaveImagesToUser(singleImage, userId);
             return View(myProfileViewModel);

@@ -16,6 +16,8 @@ namespace SKSLearningSystem.Areas.Admin.Models
 
         public string UserName { get; set; }
 
+        public double Grade { get; set; }
+
         public bool Checked { get; set; }
 
         public DateTime DueDate { get; set; }

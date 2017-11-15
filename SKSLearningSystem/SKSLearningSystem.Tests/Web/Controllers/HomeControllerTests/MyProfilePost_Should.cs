@@ -62,7 +62,6 @@ namespace SKSLearningSystem.Tests.Web.Controllers.HomeControllerTests
             };
 
 
-
             homeServicesMock.Setup(x => x.GetCourseStates(id)).Returns(model);
             adminServicesMock.Setup(x => x.ReadImagesFromFiles(new List<HttpPostedFileBase>() { fileMock.Object })).Returns(list);
             //Act 

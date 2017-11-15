@@ -54,6 +54,7 @@ namespace SKSLearningSystem.Tests.Controllers.CourseControllerTests
                 .WithCallTo(c => c.TakeCourse(courseStateId, courseId))
                 .ShouldRenderDefaultView()
                 .WithModel<TakeCourseModel>();
+
         }
     }
 }

@@ -5,6 +5,7 @@ using SKSLearningSystem.Models.ViewModels;
 using SKSLearningSystem.Models.ViewModels.AdminViewModels;
 using SKSLearningSystem.Services.Contracts;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,7 +21,7 @@ namespace SKSLearningSystem.Services
             this.context = context;
         }
 
-        public Course GetCoursesFromDB(int? courseId)
+        public Course GetCoursesFromDB(int courseId)
         {
             return this.context.Courses.First(c => c.Id == courseId);
         }
@@ -31,6 +32,7 @@ namespace SKSLearningSystem.Services
         {
             return this.context.Courses.First(c => c.Name == courseName);
         }
+
         public CourseState GetStateFromDB(int courStateId)
         {
             return this.context.CourseStates.First(c => c.Id == courStateId);
@@ -43,55 +45,69 @@ namespace SKSLearningSystem.Services
                 Id = x.Id
             }).ToList();
         }
-        public void SaveAssignementsForDepartment(DepToCourseViewModel model)
+        public async Task SaveAssignementsForDepartment(DepToCourseViewModel model)
         {
-            var users = this.context.Users.Where(x => x.Department == model.Department).ToList();
-            var course = this.context.Courses.First(x => x.Name == model.CourseName);
+            var users = this.context.Users
+                .Where(x => x.Department == model.Department).ToList();
+            var course = this.context.Courses
+                .First(x => x.Name == model.CourseName);
 
             for (int i = 0; i < users.Count; i++)
             {
-                this.context.CourseStates.Add(new CourseState()
+                if (await this.context.CourseStates
+                    .AnyAsync(x => x.CourseId == course.Id && users[i].Id == x.UserId) == false)
                 {
-                    User = users[i],
-                    Course = course,
-                    DueDate = model.DueDate,
-                    Mandatory = model.Mandatory,
-                    Grade = model.Grade,
-                    State = "Pending"
-                });
+                    this.context.CourseStates.Add(new CourseState()
+                    {
+                        User = users[i],
+                        Course = course,
+                        DueDate = model.DueDate,
+                        Mandatory = model.Mandatory,
+                        Grade = model.Grade,
+                        State = "Pending"
+                    });
+                }
             }
-            this.context.SaveChanges();
+            await this.context.SaveChangesAsync();
         }
 
-        public void SaveAssignementsToDb(int courseId, IList<UserViewModel> users)
+        public async Task SaveAssignementsToDb(int courseId, IList<UserViewModel> users)
         {
             var userIds = users.Select(x => x.Id).ToArray();
             var course = this.context.Courses.First(x => x.Id == courseId);
             var usersFromDB = this.context.Users.Where(x => userIds.Contains(x.Id)).ToList();
             for (int i = 0; i < users.Count; i++)
             {
-
-                this.context.CourseStates.Add(new CourseState()
+                if (await this.context.CourseStates
+                    .AnyAsync(x => x.CourseId == course.Id && users[i].Id == x.UserId) == false)
                 {
-                    User = usersFromDB.First(x => x.Id == users[i].Id),
-                    Course = course,
-                    DueDate = users[i].DueDate,
-                    Mandatory = users[i].Mandatory,
-                    State = "Pending"
-                });
+                    this.context.CourseStates.Add(new CourseState()
+                    {
+                        User = usersFromDB.First(x => x.Id == users[i].Id),
+                        Course = course,
+                        DueDate = users[i].DueDate,
+                        Mandatory = users[i].Mandatory,
+                        State = "Pending"
+                    });
+                }
+
             }
-            this.context.SaveChanges();
+            await this.context.SaveChangesAsync();
         }
 
-        public void SaveAssignementsToDb(CourseState state)
+        public async Task SaveAssignementsToDb(CourseState state)
         {
-            this.context.CourseStates.Add(state);
-            this.context.SaveChanges();
+            if (await this.context.CourseStates
+                .AnyAsync(x => x.CourseId == state.CourseId && state.UserId == x.UserId) == false)
+            {
+                this.context.CourseStates.Add(state);
+                await this.context.SaveChangesAsync();
+            }
         }
         //alt end
-        public ICollection<Image> GetImages(int? courseId)
+        public List<Image> GetImages(int courseId)
         {
-            var images = this.context.Courses.First(c => c.Id == courseId).Images;
+            var images = this.context.Images.Where(i => i.CourseId == courseId);
 
             return images.ToList();
         }
@@ -145,14 +161,14 @@ namespace SKSLearningSystem.Services
 
         public List<SingleCourseViewModel> GetCoursesFromDb()
         {
-            var courses = context.Courses.Select(x => new SingleCourseViewModel()
+            var courses = context.Courses.Take(10).Select(x => new SingleCourseViewModel()
             {
-                CourseId=x.Id,
+                CourseId = x.Id,
                 CourseStateId = x.Id,
                 CourseName = x.Name,
                 Descrtiption = x.Description,
                 CourseImageId = x.Images.FirstOrDefault().Id
-            }).Take(10).ToList();
+            }).ToList();
             return courses;
         }
     }

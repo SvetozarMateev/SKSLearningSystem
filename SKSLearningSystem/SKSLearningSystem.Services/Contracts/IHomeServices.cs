@@ -8,8 +8,6 @@ namespace SKSLearningSystem.Services
 {
     public interface IHomeServices
     {
-
-
         MyProfileViewModel GetCourseStates(string userId);
 
         Task SaveImagesToUser(Image file, string userId);

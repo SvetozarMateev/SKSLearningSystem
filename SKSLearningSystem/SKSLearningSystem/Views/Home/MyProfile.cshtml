@@ -1,21 +1,25 @@
 ﻿@model SKSLearningSystem.Models.ViewModels.MyProfileViewModel
     @using System.Linq;
 <div id="profileContainer">
+    <div class="alertContainer" style="display:none">
+        <h1 id="infoBox" class="alertUser"> text </h1>
+    </div>
     <div id="profilePicture">
         <img class="reduced" id="pic" src="@Url.Action("RenderImage", new {})" />
         <p>
             @using (Html.BeginForm("MyProfile", "Home", FormMethod.Post,
                 new { enctype = "multipart/form-data", id = "formForCourse" }))
             {
-            <p>
-                change picture
-            </p>
+           
             @Html.LabelFor(x => x.ProfilePicture, "Click here to select photos", new { @class = "picEdit" })
 
                 @Html.TextBox("image", null,
-       new { @type = "file", @class = "picEdit", @name = "image" })
+       new { @type = "file", @class = "picEdit", @name = "image", @onchange = "showInfo('JSON Selected')" })
 
-                <button type="submit"></button>
+                @Html.TextBoxFor(model => model.ProfilePicture, "",
+       new { @type = "file", @multiple = "multiple", @class = "inputField", @onchange = "showInfo('Photos Selected')" })
+
+                <button type="submit" class="btn-upload">Upload</button>
             }
        
             </p>

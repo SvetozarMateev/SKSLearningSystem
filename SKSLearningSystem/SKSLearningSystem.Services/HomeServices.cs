@@ -22,12 +22,25 @@ namespace SKSLearningSystem.Services
         {
 
             var myProfileViewModel = new MyProfileViewModel();
+
             var user = this.context.Users.First(x => x.UserName == userId);
+
+            //Image pic = new Image();
+            //pic.CurrentImage = context
+            //    .Images
+            //    .FirstOrDefault(p => p.UserId == userId).CurrentImage;
+
+            //if (pic.CurrentImage != null)
+            //{
+            //    myProfileViewModel.ProfilePicture.CurrentImage = pic.CurrentImage;
+            //}
+
+
             var allStates = context.CourseStates
             .Where(x => x.UserId == user.Id)
             .Select(x => new CourseSateViewModel()
             {
-                CourseId=x.CourseId,
+                CourseId = x.CourseId,
                 Id = x.Id,
                 Grade = x.Grade,
                 Passed = x.Passed,

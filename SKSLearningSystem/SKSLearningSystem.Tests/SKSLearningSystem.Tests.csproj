@@ -108,11 +108,21 @@
   <ItemGroup>
     <Compile Include="Controllers\CourseControllerTests\TakeCourseAsState_Should.cs" />
     <Compile Include="Services\GridServicesTests\FIltrator_Should.cs" />
+
+    <Compile Include="Services\DbServicesTests\GetCourseName_Should.cs" />
+    <Compile Include="Services\DbServicesTests\GetCoursesFromDBByName_Should.cs" />
+    <Compile Include="Services\DbServicesTests\GetImageByID_Should.cs" />
+    <Compile Include="Services\DbServicesTests\GetImages_Should.cs" />
+    <Compile Include="Services\DbServicesTests\GetStateFromDB_Should.cs" />
+    <Compile Include="Services\DbServicesTests\SaveAssignementsForDepartment_Should.cs" />
     <Compile Include="Services\GridServicesTests\SearchResultFalse_Should.cs" />
     <Compile Include="Services\GridServicesTests\SearchResultTrue_Should.cs" />
     <Compile Include="Controllers\HomeControllerTests\AllCoursesShould.cs" />
     <Compile Include="Controllers\HomeControllerTests\MyProfileShould.cs" />
     <Compile Include="Controllers\HomeControllerTests\MyProfilePost_Should.cs" />
+
+    <Compile Include="Services\DbServicesTests\GetCoursesFromDbShould.cs" />
+    <Compile Include="Services\HomeServicesTests\GetCourseStatesShould.cs" />
     <Compile Include="Web\Areas\Admin\Controllers\AdminControllerTests\GetJSON_Should.cs" />
     <Compile Include="Web\Areas\Admin\Controllers\AdminControllerTests\MonitorUsersProgress_Should.cs" />
     <Compile Include="Web\Areas\Admin\Controllers\AdminControllerTests\UploadCourseGet_Should.cs" />

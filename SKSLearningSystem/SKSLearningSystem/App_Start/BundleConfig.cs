@@ -73,6 +73,9 @@ namespace SKSLearningSystem
 
             bundles.Add(new ScriptBundle("~/bundles/swiper").Include(
                       "~/Scripts/swiper.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/infoBox").Include(
+                      "~/Scripts/infoBox.js"));
         }
     }
 }

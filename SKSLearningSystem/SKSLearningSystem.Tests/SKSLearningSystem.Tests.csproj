@@ -113,8 +113,6 @@
     <Compile Include="Controllers\HomeControllerTests\AllCoursesShould.cs" />
     <Compile Include="Controllers\HomeControllerTests\MyProfileShould.cs" />
     <Compile Include="Controllers\HomeControllerTests\MyProfilePost_Should.cs" />
-    <Compile Include="Services\HomeServicesTests\GetCoursesFromDbShould.cs" />
-    <Compile Include="Services\HomeServicesTests\GetCourseStatesShould.cs" />
     <Compile Include="Web\Areas\Admin\Controllers\AdminControllerTests\GetJSON_Should.cs" />
     <Compile Include="Web\Areas\Admin\Controllers\AdminControllerTests\MonitorUsersProgress_Should.cs" />
     <Compile Include="Web\Areas\Admin\Controllers\AdminControllerTests\UploadCourseGet_Should.cs" />
@@ -162,7 +160,9 @@
       <Name>SKSLearningSystem</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Services\HomeServicesTests\" />
+  </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

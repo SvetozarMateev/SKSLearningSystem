@@ -5,6 +5,7 @@ using SKSLearningSystem.Models.ViewModels;
 using SKSLearningSystem.Models.ViewModels.AdminViewModels;
 using SKSLearningSystem.Services.Contracts;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,9 +21,9 @@ namespace SKSLearningSystem.Services
             this.context = context;
         }
 
-        public  Course GetCoursesFromDB(int courseId)
+        public Course GetCoursesFromDB(int courseId)
         {
-            return  this.context.Courses.First(c => c.Id == courseId);
+            return this.context.Courses.First(c => c.Id == courseId);
         }
 
 
@@ -31,6 +32,7 @@ namespace SKSLearningSystem.Services
         {
             return this.context.Courses.First(c => c.Name == courseName);
         }
+
         public CourseState GetStateFromDB(int courStateId)
         {
             return this.context.CourseStates.First(c => c.Id == courStateId);
@@ -45,12 +47,15 @@ namespace SKSLearningSystem.Services
         }
         public async Task SaveAssignementsForDepartment(DepToCourseViewModel model)
         {
-            var users = this.context.Users.Where(x => x.Department == model.Department).ToList();
-            var course = this.context.Courses.First(x => x.Name == model.CourseName);
+            var users = this.context.Users
+                .Where(x => x.Department == model.Department).ToList();
+            var course = this.context.Courses
+                .First(x => x.Name == model.CourseName);
 
             for (int i = 0; i < users.Count; i++)
             {
-                if(await this.context.CourseStates.AnyAsync(x => x.CourseId == course.Id && users[i].Id == x.UserId) == false)
+                if (await this.context.CourseStates
+                    .AnyAsync(x => x.CourseId == course.Id && users[i].Id == x.UserId) == false)
                 {
                     this.context.CourseStates.Add(new CourseState()
                     {
@@ -61,7 +66,7 @@ namespace SKSLearningSystem.Services
                         Grade = model.Grade,
                         State = "Pending"
                     });
-                }              
+                }
             }
             await this.context.SaveChangesAsync();
         }
@@ -73,7 +78,8 @@ namespace SKSLearningSystem.Services
             var usersFromDB = this.context.Users.Where(x => userIds.Contains(x.Id)).ToList();
             for (int i = 0; i < users.Count; i++)
             {
-                if (await this.context.CourseStates.AnyAsync(x => x.CourseId == course.Id && users[i].Id == x.UserId) == false)
+                if (await this.context.CourseStates
+                    .AnyAsync(x => x.CourseId == course.Id && users[i].Id == x.UserId) == false)
                 {
                     this.context.CourseStates.Add(new CourseState()
                     {
@@ -84,23 +90,24 @@ namespace SKSLearningSystem.Services
                         State = "Pending"
                     });
                 }
-               
+
             }
             await this.context.SaveChangesAsync();
         }
 
         public async Task SaveAssignementsToDb(CourseState state)
         {
-            if (await this.context.CourseStates.AnyAsync(x => x.CourseId == state.CourseId && state.UserId == x.UserId) == false)
+            if (await this.context.CourseStates
+                .AnyAsync(x => x.CourseId == state.CourseId && state.UserId == x.UserId) == false)
             {
                 this.context.CourseStates.Add(state);
                 await this.context.SaveChangesAsync();
             }
         }
         //alt end
-        public ICollection<Image> GetImages(int courseId)
+        public List<Image> GetImages(int courseId)
         {
-            var images = this.context.Courses.First(c => c.Id == courseId).Images;
+            var images = this.context.Images.Where(i => i.CourseId == courseId);
 
             return images.ToList();
         }
@@ -154,14 +161,14 @@ namespace SKSLearningSystem.Services
 
         public List<SingleCourseViewModel> GetCoursesFromDb()
         {
-            var courses = context.Courses.Select(x => new SingleCourseViewModel()
+            var courses = context.Courses.Take(10).Select(x => new SingleCourseViewModel()
             {
-                CourseId=x.Id,
+                CourseId = x.Id,
                 CourseStateId = x.Id,
                 CourseName = x.Name,
                 Descrtiption = x.Description,
                 CourseImageId = x.Images.FirstOrDefault().Id
-            }).Take(10).ToList();
+            }).ToList();
             return courses;
         }
     }

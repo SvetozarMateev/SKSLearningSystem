@@ -11,7 +11,7 @@ namespace SKSLearningSystem.Services.Contracts
     {
         Course GetCoursesFromDB(int courseId);
 
-        ICollection<Image> GetImages(int courseId);
+        List<Image> GetImages(int courseId);
 
         string GetCourseName(int courseId);
 

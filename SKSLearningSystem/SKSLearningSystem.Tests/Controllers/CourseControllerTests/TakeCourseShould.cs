@@ -41,10 +41,10 @@ namespace SKSLearningSystem.Tests.Controllers.CourseControllerTests
             var controller = new CourseController(courseServiceMock.Object, contextMock.Object);
 
             // Act & Assert
-            //controller
-            //    .WithCallTo(c => c.TakeCourse(takeCourseModel))
-            //    .ShouldRenderDefaultView()
-            //    .WithModel(takeCourseModel);
+            controller
+                .WithCallTo(c => c.TakeCourse(takeCourseModel, courseMock.Id))
+                .ShouldRenderDefaultView()
+                .WithModel(takeCourseModel);
         }
     }
 }

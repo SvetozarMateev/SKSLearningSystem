@@ -88,9 +88,11 @@
     <Compile Include="DbModels\Question.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
+    <Compile Include="ViewModels\AdminViewModels\AssignCourseToUsersViewModel.cs" />
     <Compile Include="ViewModels\AdminViewModels\AssignCourseViewModel.cs" />
     <Compile Include="ViewModels\AdminViewModels\CourseStateRowViewModel.cs" />
     <Compile Include="ViewModels\AdminViewModels\CourseViewModel.cs" />
+    <Compile Include="ViewModels\AdminViewModels\DepToCourseViewModel.cs" />
     <Compile Include="ViewModels\AdminViewModels\FilterViewModel.cs" />
     <Compile Include="ViewModels\AdminViewModels\GridRequestViewModel.cs" />
     <Compile Include="ViewModels\AdminViewModels\RulesViewModel.cs" />

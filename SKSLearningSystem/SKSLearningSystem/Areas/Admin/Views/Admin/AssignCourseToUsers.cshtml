@@ -1,0 +1,8 @@
+﻿@using (Ajax.BeginForm("assigncoursetousers", "admin", null, new AjaxOptions() { UpdateTargetId = "field-assign" }, new { @class="form-assign" }))
+{
+    @Html.TextBox("courseName");
+    <button type="submit">Search</button>
+}
+<div id="field-assign">
+
+</div>

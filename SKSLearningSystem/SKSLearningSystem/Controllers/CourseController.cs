@@ -11,55 +11,64 @@ using System.Web.Mvc;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using SKSLearningSystem.Areas.Admin.Models;
+using Microsoft.AspNet.Identity;
+using SKSLearningSystem.Services.Contracts;
 
 namespace SKSLearningSystem.Controllers
 {
     public class CourseController : Controller
     { 
         private readonly ICourseService services;
-        private readonly LearningSystemDbContext context;
+        private readonly IDBServices dBServices;
 
-        public CourseController(ICourseService services, LearningSystemDbContext context)
+        public CourseController(ICourseService services,IDBServices dBServices)
         {
-            Guard.WhenArgument(services, "services").IsNull().Throw();
-            Guard.WhenArgument(context, "context").IsNull().Throw();
-            
+            Guard.WhenArgument(services, "services").IsNull().Throw();                   
             this.services = services;
-            this.context = context;
+            this.dBServices = dBServices;
         }
 
         // GET: Course
         [Authorize]
-        public ActionResult TakeCourse(TakeCourseModel model, int? courseId)
+        public ActionResult TakeCourse(int courseStateId, int courseId)
         {
-            
-            var course = this.context.Courses.First(c => c.Id == courseId);
-            var images = this.services.GetImages(courseId);
-
+            TakeCourseModel model = new TakeCourseModel() { CourseStateId=courseStateId};
+            var course = this.dBServices.GetCoursesFromDB(courseId);
+            var images = this.dBServices.GetImages(courseId);
+            var userId = HttpContext.User.Identity.GetUserId();
+            //var user=
             model.CourseName = course.Name;
 
             model.Images = images;
 
-            return View(model);
+            return this.View(model);
         }
 
-       
+        [Authorize]
+        public ActionResult TakeCourseAsState( int courseStateId)
+        {
+
+            var state = this.dBServices.GetStateFromDB(courseStateId);
+            state.State = "Started";
+            this.dBServices.SaveAssignementsToDb(state);
+            return RedirectToAction("TakeCourse",new { courseStateId =state.Id, courseId=state.CourseId });
+        }
 
         public async Task<ActionResult> RenderImage(int id)
         {
-            Image image = await context.Images.FirstAsync(x => x.Id == id);
+            Image image = await this.dBServices.GetImageByID(id);
 
             byte[] currentImage = image.CurrentImage;
 
-            return File(currentImage, "image/png");
+            return this.File(currentImage, "image/png");
         }
 
         [HttpGet]
         [Authorize]
-        public ActionResult TakeExam(int? courseStateId)
+        public ActionResult TakeExam(int courseStateId)
         {
-            courseStateId = 14;
-            var TakeTestViewModel =  this.services.GetTestViewModel(14);
+            
+            var TakeTestViewModel =  this.services.GetTestViewModel(courseStateId);
             return this.View(TakeTestViewModel);
         }
 
@@ -79,7 +88,8 @@ namespace SKSLearningSystem.Controllers
             TakeTestViewModel.Grade = grade;
             if (grade >= 50)
             {
-                this.services.ChangeCourseState(TakeTestViewModel.CourseStateId,"Completed");
+                
+                this.services.ChangeCourseState(TakeTestViewModel.CourseStateId,"Completed",grade);
                 return this.PartialView("PassedTest",TakeTestViewModel);
             }
             else

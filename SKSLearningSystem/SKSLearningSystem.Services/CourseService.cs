@@ -9,6 +9,7 @@ using System.IO;
 using SKSLearningSystem.Models;
 using Bytes2you.Validation;
 using SKSLearningSystem.Areas.Admin.Models;
+using System.Data.Entity;
 
 namespace SKSLearningSystem.Services.CourseServices
 {
@@ -21,22 +22,6 @@ namespace SKSLearningSystem.Services.CourseServices
             Guard.WhenArgument(context, "context").IsNull().Throw();
 
             this.context = context;
-        }
-
-        public string GetCourseName(int courseId)
-        {
-            // Get the assigned from admin course to user
-            var assignedCourse = this.context.Courses.First(c => c.Id == courseId);
-            var courseName = assignedCourse.Name;
-
-            return courseName;
-        }
-
-        public ICollection<Image> GetImages(int? courseId)
-        {
-            var images = this.context.Courses.First(c => c.Id == courseId).Images;
-
-            return images.ToList();
         }
 
         public TakeTestViewModel GetTestViewModel(int courseStateId)
@@ -89,11 +74,19 @@ namespace SKSLearningSystem.Services.CourseServices
             return correctAnswersCount/questions.Questions.Count*100;
         }
 
-        public void ChangeCourseState(int courseStateId, string newState)
+        public void ChangeCourseState(int courseStateId, string newState,double grade)
         {
             var course = this.context.CourseStates.First(x => x.Id == courseStateId);
-            course.State = newState;
-            this.context.SaveChanges();
+            if (course.State != "Completed")
+            {
+                course.Grade = grade;
+                course.Passed = true;
+                course.State = newState;
+                this.context.SaveChanges();
+            }
+            
         }
+
+        
     }
 }

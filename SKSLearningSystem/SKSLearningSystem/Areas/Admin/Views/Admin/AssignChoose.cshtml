@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "AssignChoose";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>AssignChoose</h2>
+
+@Ajax.ActionLink("Assign course to users", "assigncoursetousers",null, new AjaxOptions() { UpdateTargetId = "place-select" },new { @class="choose-btn"})
+@Ajax.ActionLink("Assign department to course", "assigndeptocourse", null, new AjaxOptions() { UpdateTargetId = "place-select" }, new { @class = "choose-btn" })
+<div id="place-select">
+
+</div>

@@ -1,5 +1,8 @@
-﻿using SKSLearningSystem.Models.ViewModels;
+﻿using Microsoft.AspNet.Identity;
+using SKSLearningSystem.Areas.Admin.Services;
+using SKSLearningSystem.Models.ViewModels;
 using SKSLearningSystem.Services;
+using SKSLearningSystem.Services.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,21 +14,28 @@ namespace SKSLearningSystem.Controllers
     public class HomeController : Controller
     {
         private readonly IHomeServices homeServices;
+        private readonly IAdminServices adminServices;
+        private readonly IDBServices dBServices;
+       // public Func<string> GetUserId; //For testing
 
-        public HomeController(IHomeServices homeServices)
+        public HomeController(IHomeServices homeServices, IAdminServices adminServices,
+            IDBServices dBServices)
         {
             this.homeServices = homeServices;
+            this.adminServices = adminServices;
+            this.dBServices = dBServices;
+            //GetUserId = () => HttpContext.User.Identity.GetUserId();
         }
         public ActionResult Index()
         {
-            var courses = this.homeServices.GetCoursesFromDb();
+            var courses = this.dBServices.GetCoursesFromDb();
             return View(courses);
         }
 
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
-
+           
             return View();
         }
 
@@ -38,21 +48,24 @@ namespace SKSLearningSystem.Controllers
 
         public ActionResult AllCourses()
         {
-            var courses = this.homeServices.GetCoursesFromDb();
+            var courses = this.dBServices.GetCoursesFromDb();
             return View(courses);
         }
 
         [HttpGet]
         public ActionResult MyProfile()
         {
-           var myProfileViewModel =  this.homeServices.GetCourseStates();
+            var userId = HttpContext.User.Identity.Name;
+            var myProfileViewModel =  this.homeServices.GetCourseStates(userId);
             return View(myProfileViewModel);
         }
 
         [HttpPost]
         public ActionResult MyProfile(MyProfileViewModel myProfileViewModel,HttpPostedFileBase image)
         {
-            this.homeServices.ReadImagesFromFiles(image);
+            var userId = HttpContext.User.Identity.GetUserId();
+            var singleImage = this.adminServices.ReadImagesFromFiles(new List<HttpPostedFileBase>() { image }).Single();
+            this.homeServices.SaveImagesToUser(singleImage, userId);
             return View(myProfileViewModel);
         }
     }

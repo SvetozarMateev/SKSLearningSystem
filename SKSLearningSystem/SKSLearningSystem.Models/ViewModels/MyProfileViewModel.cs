@@ -11,7 +11,13 @@ namespace SKSLearningSystem.Models.ViewModels
     {
         public Image ProfilePicture { get; set; }
 
-        public List<CourseSateViewModel> CourseStates { get; set; }
+        public List<CourseSateViewModel> Pendings { get; set; }
+
+        public List<CourseSateViewModel> Overdues { get; set; }
+
+        public List<CourseSateViewModel> Completed { get; set; }
+
+        public List<CourseSateViewModel> Started { get; set; }
 
     }
 }

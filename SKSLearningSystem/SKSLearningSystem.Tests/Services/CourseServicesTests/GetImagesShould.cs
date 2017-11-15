@@ -2,6 +2,7 @@
 using Moq;
 using SKSLearningSystem.Data;
 using SKSLearningSystem.Data.Models;
+using SKSLearningSystem.Services.Contracts;
 using SKSLearningSystem.Services.CourseServices;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace SKSLearningSystem.Tests.Services.CourseServices.CourseServiceTests
         {
             // Arrange
             var contextMock = new Mock<LearningSystemDbContext>();
-            var courseServiceMock = new Mock<ICourseService>();
+            var dbServicesMock = new Mock<IDBServices>();
             var courseMock = new Course();
 
             List<Course> courses = new List<Course>();
@@ -31,7 +32,7 @@ namespace SKSLearningSystem.Tests.Services.CourseServices.CourseServiceTests
             contextMock.Setup(c => c.Courses).Returns(courseSetMock.Object);
             var dbImages = contextMock.Object.Courses.First(c => c.Id == courseMock.Id).Images;
             // Act
-            var images = courseServiceMock.Object.GetImages(courseMock.Id);
+            var images = dbServicesMock.Object.GetImages(courseMock.Id);
 
             // Assert
             Assert.AreSame(dbImages, images);

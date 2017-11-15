@@ -1,74 +1,57 @@
 ﻿using Bytes2you.Validation;
-using Microsoft.AspNet.Identity;
 using SKSLearningSystem.Data;
 using SKSLearningSystem.Data.Models;
 using SKSLearningSystem.Models.ViewModels;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Web;
 
 namespace SKSLearningSystem.Services
 {
-    public class HomeServices :IHomeServices
+    public class HomeServices : IHomeServices
     {
         private LearningSystemDbContext context;
 
         public HomeServices(LearningSystemDbContext context)
         {
-            this.context = context;   
-        }
-        public List<SingleCourseViewModel> GetCoursesFromDb()
-        {
-            var courses = context.Courses.Select(x=> new SingleCourseViewModel() {
-               CourseStateId=x.Id,
-                CourseName=x.Name,
-                Descrtiption=x.Description,
-                CourseImageId=x.Images.FirstOrDefault().Id
-            }).Take(10).ToList();
-            return courses;
+            this.context = context;
         }
 
-        public MyProfileViewModel GetCourseStates()
+
+        public MyProfileViewModel GetCourseStates(string userId)
         {
-            var userId = HttpContext.Current.User.Identity.GetUserId();
+
             var myProfileViewModel = new MyProfileViewModel();
-            myProfileViewModel.CourseStates =  context.CourseStates
-                .Where(x => x.UserId == userId)
-                .Select(x=>new CourseSateViewModel()
-                {
-                    Grade=x.Grade,
-                    Passed=x.Passed,
-                    DueDate=x.DueDate,
-                    AssignmentDate=x.AssignmentDate,
-                    CompletionDate=x.CompletionDate,
-                    CourseName=x.Course.Name,
-                    Mandatory=x.Mandatory,
-                    State=x.State,
-                    PicId=x.Course.Images.FirstOrDefault().Id,
-                    Description=x.Course.Description                   
-                }).ToList();
+            var user = this.context.Users.First(x => x.UserName == userId);
+            var allStates = context.CourseStates
+            .Where(x => x.UserId == user.Id)
+            .Select(x => new CourseSateViewModel()
+            {
+                CourseId=x.CourseId,
+                Id = x.Id,
+                Grade = x.Grade,
+                Passed = x.Passed,
+                DueDate = x.DueDate,
+                AssignmentDate = x.AssignmentDate,
+                CompletionDate = x.CompletionDate,
+                CourseName = x.Course.Name,
+                Mandatory = x.Mandatory,
+                State = x.State,
+                PicId = x.Course.Images.FirstOrDefault().Id,
+                Description = x.Course.Description
+            }).ToList();
+            myProfileViewModel.Overdues = allStates.Where(x => x.State == "Overdue").ToList();
+            myProfileViewModel.Pendings = allStates.Where(x => x.State == "Pending").ToList();
+            myProfileViewModel.Completed = allStates.Where(x => x.State == "Completed").ToList();
+            myProfileViewModel.Started = allStates.Where(x => x.State == "Started").ToList();
 
             return myProfileViewModel;
         }
 
-        public void ReadImagesFromFiles(HttpPostedFileBase file)
+        public void SaveImagesToUser(Image file, string userId)
         {
-            var userId = HttpContext.Current.User.Identity.GetUserId();
             Guard.WhenArgument(file, "file").IsNull().Throw();
-
-            Image image = new Image();
-
-            using (MemoryStream ms = new MemoryStream())
-            {
-                file.InputStream.CopyTo(ms);
-                byte[] array = ms.GetBuffer();
-                image = new Image() { CurrentImage = array };
-            }
-
-            image.UserId = userId;
-
-            context.Images.Add(image);
+            file.UserId = userId;
+            context.Images.Add(file);
             context.SaveChanges();
         }
     }

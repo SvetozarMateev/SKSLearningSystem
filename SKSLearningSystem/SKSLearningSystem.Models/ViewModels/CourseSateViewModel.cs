@@ -27,6 +27,8 @@ namespace SKSLearningSystem.Models.ViewModels
 
         public string State { get; set; }
 
+        public int CourseId { get; set; }
+
         [Column(TypeName = "DateTime2")]
         public DateTime AssignmentDate { get; set; }
 

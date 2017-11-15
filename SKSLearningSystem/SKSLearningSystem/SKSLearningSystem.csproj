@@ -230,11 +230,8 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-
     <Content Include="Content\allCourses.css" />
-
     <Content Include="Content\Alert.css" />
-
     <Content Include="Content\AssignCourse.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -244,12 +241,15 @@
     <Content Include="Content\jquery.jqGrid\ui.jqgrid.css" />
     <Content Include="Content\monitorAdmin.css" />
     <Content Include="Content\myprofile.css" />
+    <Content Include="Content\MySlider.css" />
     <Content Include="Content\slick-theme.css" />
     <Content Include="Content\slick.css" />
     <Content Include="Content\CompleteAssignment.css" />
     <Content Include="Content\jquery.jqGrid\ellipsis-xbl.xml" />
     <Content Include="Content\jquery.jqGrid\ui.jqgrid.css" />
     <Content Include="Content\monitorAdmin.css" />
+    <Content Include="Content\swiper.css" />
+    <Content Include="Content\swiper.min.css" />
     <Content Include="Content\TakeCourse.css" />
     <Content Include="Content\takeExam.css" />
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
@@ -339,6 +339,13 @@
     <Content Include="Areas\Admin\Views\Admin\CoursesAdded.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\AlertUser.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\AlertUploadCourses.cshtml" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\AssignCourseToUsers.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\Assigning.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\AssignChoose.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\AssignDepToCourse.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\ConfirmDepToCourse.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\i18n\grid.locale-ar.js" />
     <Content Include="Scripts\i18n\grid.locale-bg.js" />
@@ -403,6 +410,10 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\slick.min.js" />
     <Content Include="Scripts\slider.js" />
+    <Content Include="Scripts\swiper.esm.bundle.js" />
+    <Content Include="Scripts\swiper.esm.js" />
+    <Content Include="Scripts\swiper.js" />
+    <Content Include="Scripts\swiper.min.js" />
     <Content Include="Scripts\takeExamValidator.js" />
     <Content Include="Scripts\uploadCourse.js" />
     <Content Include="Web.config" />
@@ -447,6 +458,7 @@
     <Content Include="Views\Shared\_SingleCourse.cshtml" />
     <Content Include="Views\Home\AllCourses.cshtml" />
     <Content Include="Views\Home\MyProfile.cshtml" />
+    <Content Include="Scripts\swiper.min.js.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

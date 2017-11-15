@@ -13,8 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TestStack.FluentMVCTesting;
 using EntityFramework.Testing;
-
-
+using SKSLearningSystem.Services.Contracts;
 
 namespace SKSLearningSystem.Tests.Controllers.CourseControllerTests
 {
@@ -26,7 +25,9 @@ namespace SKSLearningSystem.Tests.Controllers.CourseControllerTests
         {
             // Arrange
             var courseServiceMock = new Mock<ICourseService>();
-            var contextMock = new Mock<LearningSystemDbContext>();
+            
+            var dbServicesMock = new Mock<IDBServices>();
+
             var takeCourseModel = new TakeCourseModel();
 
             var courseMock = new Course() { Id=7};
@@ -36,9 +37,9 @@ namespace SKSLearningSystem.Tests.Controllers.CourseControllerTests
             var courseSetMock = new Mock<DbSet<Course>>();
             courseSetMock.SetupData(courses);
 
-            contextMock.Setup(c => c.Courses).Returns(courseSetMock.Object);
+            //contextMock.Setup(c => c.Courses).Returns(courseSetMock.Object);
             
-            var controller = new CourseController(courseServiceMock.Object, contextMock.Object);
+            var controller = new CourseController(courseServiceMock.Object,dbServicesMock.Object );
 
             // Act & Assert
             controller

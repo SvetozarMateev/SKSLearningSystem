@@ -6,6 +6,8 @@ using SKSLearningSystem.Areas.Admin.Models;
 using SKSLearningSystem.Areas.Admin.Services;
 using SKSLearningSystem.Data;
 using SKSLearningSystem.Data.Models;
+using SKSLearningSystem.Services.Contracts;
+using System.Collections.Generic;
 using TestStack.FluentMVCTesting;
 
 namespace SKSLearningSystem.Tests.Areas.Admin.Controllers.AdminControllerTests
@@ -20,11 +22,13 @@ namespace SKSLearningSystem.Tests.Areas.Admin.Controllers.AdminControllerTests
             var userStore = new Mock<IUserStore<User>>();
             var adminServicesMock = new Mock<IAdminServices>();
             var gridServicesMock = new Mock<IGridServices>();
-            var dbMock = new Mock<LearningSystemDbContext>();
+            var dbServicesMock = new Mock<IDBServices>();
+
+          
             var viewModelMock = new UploadCourseViewModel();
             var applicationUserManagerMock = new Mock<ApplicationUserManager>(userStore.Object);
             var controller = new AdminController(adminServicesMock.Object,
-                applicationUserManagerMock.Object, dbMock.Object,gridServicesMock.Object);
+                applicationUserManagerMock.Object,gridServicesMock.Object,dbServicesMock.Object);
             adminServicesMock.Setup(x => x.ValidateInputFiles(viewModelMock)).Returns(false);
             var expected = 1;
 
@@ -42,12 +46,13 @@ namespace SKSLearningSystem.Tests.Areas.Admin.Controllers.AdminControllerTests
             var userStore = new Mock<IUserStore<User>>();
             var adminServicesMock = new Mock<IAdminServices>();
             var gridServicesMock = new Mock<IGridServices>();
+            var dbServicesMock = new Mock<IDBServices>();
 
-            var dbMock = new Mock<LearningSystemDbContext>();
+           
             var viewModelMock = new UploadCourseViewModel();
             var applicationUserManagerMock = new Mock<ApplicationUserManager>(userStore.Object);
             var controller = new AdminController(adminServicesMock.Object,
-                applicationUserManagerMock.Object, dbMock.Object,gridServicesMock.Object);
+                applicationUserManagerMock.Object,gridServicesMock.Object,dbServicesMock.Object);
 
             //Act 
             controller.UploadCourse(viewModelMock);
@@ -64,15 +69,18 @@ namespace SKSLearningSystem.Tests.Areas.Admin.Controllers.AdminControllerTests
             var adminServicesMock = new Mock<IAdminServices>();
             var gridServicesMock = new Mock<IGridServices>();
             var dbMock = new Mock<LearningSystemDbContext>();
+            var dbServicesMock = new Mock<IDBServices>();
+
+            var images = new Image();
             var viewModelMock = new UploadCourseViewModel();
             var courseMock = new Course();
             var applicationUserManagerMock = new Mock<ApplicationUserManager>(userStore.Object);
 
             var controller = new AdminController(adminServicesMock.Object,
-                applicationUserManagerMock.Object, dbMock.Object,gridServicesMock.Object);
+                applicationUserManagerMock.Object,gridServicesMock.Object,dbServicesMock.Object);
             adminServicesMock.Setup(x => x.ValidateInputFiles(viewModelMock)).Returns(true);
             adminServicesMock.Setup(x => x.ReadCourseFromJSON(viewModelMock.CourseFile)).Returns(courseMock);
-
+            adminServicesMock.Setup(x => x.ReadImagesFromFiles(viewModelMock.Photos)).Returns(new List<Image>() { images });
             //Act 
             controller.UploadCourse(viewModelMock);
 
@@ -87,12 +95,13 @@ namespace SKSLearningSystem.Tests.Areas.Admin.Controllers.AdminControllerTests
             var userStore = new Mock<IUserStore<User>>();
             var adminServicesMock = new Mock<IAdminServices>();
             var gridServicesMock = new Mock<IGridServices>();
+            var dbServicesMock = new Mock<IDBServices>();
 
-            var dbMock = new Mock<LearningSystemDbContext>();
+
             var viewModelMock = new UploadCourseViewModel();
             var applicationUserManagerMock = new Mock<ApplicationUserManager>(userStore.Object);
             var controller = new AdminController(adminServicesMock.Object,
-                applicationUserManagerMock.Object, dbMock.Object, gridServicesMock.Object);
+                applicationUserManagerMock.Object,  gridServicesMock.Object,dbServicesMock.Object);
 
             adminServicesMock.Setup(x => x.ValidateInputFiles(viewModelMock)).Returns(true);
 

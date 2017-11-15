@@ -68,9 +68,11 @@
     <Compile Include="AdminServices.cs" />
     <Compile Include="Contracts\IAdminServices.cs" />
     <Compile Include="Contracts\ICourseService.cs" />
+    <Compile Include="Contracts\IDBServices.cs" />
     <Compile Include="Contracts\IGridServices.cs" />
     <Compile Include="Contracts\IHomeServices.cs" />
     <Compile Include="CourseService.cs" />
+    <Compile Include="DBServices.cs" />
     <Compile Include="GridServices.cs" />
     <Compile Include="HomeServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

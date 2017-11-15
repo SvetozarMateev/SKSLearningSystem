@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "AssignDepToCourse";
+    Layout = null;
+}
+
+
+@using (Ajax.BeginForm("AssignDepToCourse", "admin", null, new AjaxOptions() { UpdateTargetId = "field-assign" }, new {@class="form-assign" }))
+{
+    
+    <label  for="depname">Department</label>
+    @Html.TextBox("depName");
+    
+
+    <label  for="courseName">Course</label>
+    @Html.TextBox("courseName");
+
+    <button type="submit">Search</button>
+}
+<div id="field-assign">
+
+</div>

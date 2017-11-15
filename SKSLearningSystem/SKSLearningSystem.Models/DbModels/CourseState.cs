@@ -34,15 +34,19 @@ namespace SKSLearningSystem.Data.Models
 
         [Range(0,100)]
         public double Grade { get; set; }
-        
+
+        [Required]
         public string State { get; set; }
 
+        [Required]
         [Column(TypeName = "DateTime2")]
         public DateTime AssignmentDate { get; set; }
 
+        [Required]
         [Column(TypeName = "DateTime2")]
         public DateTime DueDate { get; set; }
 
+        [Required]
         [Column(TypeName = "DateTime2")]
         public DateTime CompletionDate { get; set; }
     }

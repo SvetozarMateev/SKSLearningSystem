@@ -67,7 +67,12 @@ namespace SKSLearningSystem
                    "~/Content/takeExam.css"));
 
             bundles.Add(new StyleBundle("~/Content/TakeCourse").Include(
-                   "~/Content/TakeCourse.css"));
+                   "~/Content/swiper.css",
+                    "~/Content/MySLider.css"));
+
+
+            bundles.Add(new ScriptBundle("~/bundles/swiper").Include(
+                      "~/Scripts/swiper.js"));
         }
     }
 }

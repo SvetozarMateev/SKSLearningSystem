@@ -20,7 +20,7 @@ namespace SKSLearningSystem.Areas.Admin.Services
 
             this.db = db;
         }
-        
+                
         public bool ValidateInputFiles(UploadCourseViewModel model)
         {
             if (model == null)
@@ -90,34 +90,6 @@ namespace SKSLearningSystem.Areas.Admin.Services
             Guard.WhenArgument(course, "course").IsNull().Throw();
             this.db.Courses.Add(course);
             this.db.SaveChanges();
-        }
-
-        public AssignCourseViewModel GetUsersAndCoursesFromDB()
-        {
-            var users = this.db
-               .Users
-               .Select(u => new UserViewModel()
-               {
-                   UserName = u.UserName,
-                   Id = u.Id
-               }).ToList();
-
-            var courses = this.db
-                .Courses
-                .Select(c => new CourseViewModel()
-                {
-                    Name = c.Name,
-                    Id = c.Id
-                })
-                .ToList();
-
-            var assignCourseViewModel = new AssignCourseViewModel()
-            {
-                Courses = courses,
-                Users = users
-            };
-
-            return assignCourseViewModel;
         }
 
         private bool ValidateState(string userId, int courseId)

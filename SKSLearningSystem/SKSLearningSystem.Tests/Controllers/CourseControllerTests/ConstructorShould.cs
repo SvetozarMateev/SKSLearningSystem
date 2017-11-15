@@ -2,6 +2,7 @@
 using Moq;
 using SKSLearningSystem.Controllers;
 using SKSLearningSystem.Data;
+using SKSLearningSystem.Services.Contracts;
 using SKSLearningSystem.Services.CourseServices;
 using System;
 using System.Collections.Generic;
@@ -15,10 +16,10 @@ namespace SKSLearningSystem.Tests.Services.CourseServices.CourseServiceTests
     public class ConstructorShould
     {
         [TestMethod]
-        public void ThrowException_WhenDbContextIsNull()
+        public void ThrowException_WhenDbServicesIsNull()
         {
             // Arrange
-            var contextMock = new Mock<LearningSystemDbContext>();
+           
             var serviceMock = new Mock<ICourseService>();
 
             //Act & Assert
@@ -29,22 +30,24 @@ namespace SKSLearningSystem.Tests.Services.CourseServices.CourseServiceTests
         public void ThrowException_WhenCourseServiceIsNull()
         {
             // Arrange
-            var contextMock = new Mock<LearningSystemDbContext>();
+            var dbServicesMock = new Mock<IDBServices>();
+
             var serviceMock = new Mock<ICourseService>();
 
             //Act & Assert
-            Assert.ThrowsException<ArgumentNullException>(() => new CourseController(null, contextMock.Object));
+            Assert.ThrowsException<ArgumentNullException>(() => new CourseController(null,dbServicesMock.Object));
         }
 
         [TestMethod]
         public void ReturnInstance_WhenParametersAreCorrect()
         {
             // Arrange
-            var contextMock = new Mock<LearningSystemDbContext>();
+            var dbServicesMock = new Mock<IDBServices>();
+
             var serviceMock = new Mock<ICourseService>();
 
             //Act
-            var controller = new CourseController(serviceMock.Object, contextMock.Object);
+            var controller = new CourseController(serviceMock.Object, dbServicesMock.Object);
 
             //Assert
             Assert.IsNotNull(controller);

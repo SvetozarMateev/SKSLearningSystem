@@ -28,7 +28,7 @@ namespace SKSLearningSystem.Tests.Controllers.CourseControllerTests
             var courseServiceMock = new Mock<ICourseService>();
             var courses = new List<Course>();
 
-            byte[] imageAsArray = File.ReadAllBytes("solid-OOP_wall-skills.jpg");
+            byte[] imageAsArray = File.ReadAllBytes("../../solid-OOP_wall-skills.jpg");
 
             var image = new Image()
             {

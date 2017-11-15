@@ -5,6 +5,7 @@
 }
 
 
+
 <div class="swiper-container">
     <div class="swiper-wrapper">
         @foreach (var image in Model.Images)
@@ -19,17 +20,16 @@
     <div class="swiper-button-prev"></div>
 </div>
 @Html.ActionLink("Take Exam","takeexam",new { courseStateId = Model.CourseStateId })
-@*<div id="myCarousel" class="carousel slide" data-ride="carousel">
+
     <div class="carousel-inner">
         <div class="item active">
-            <img src="@Url.Action("RenderImage", new {id = 1})" >
+            <img class="courseImg" src="@Url.Action("RenderImage", new {id = 1})", style="width:100%;">
         </div>
 
         @foreach (var image in Model.Images)
         {
-
             <div class="item">
-                <img src="@Url.Action("RenderImage", new {id = image.Id})" />
+                <img class="courseImg" src="@Url.Action("RenderImage", new {id = image.Id})" , style="width:100%;">
             </div>
         }
     </div>
@@ -46,7 +46,9 @@
 
 </div>*@
 
->
+
+
+
 
 @section styles{
     @Styles.Render("~/Content/TakeCourse")

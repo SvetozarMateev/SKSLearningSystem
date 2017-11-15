@@ -29,7 +29,7 @@ namespace SKSLearningSystem.Tests.Controllers.HomeControllerTests
             var courses = new List<SingleCourseViewModel>();
             
             var controller = new HomeController(homeServiceMock.Object, adminServiceMock.Object, dbServiceMock.Object);
-            var courses = new List<SingleCourseViewModel>();
+           // var courses = new List<SingleCourseViewModel>();
 
             //homeServiceMock.Setup(x => x.GetCoursesFromDb()).Returns(courses);
 

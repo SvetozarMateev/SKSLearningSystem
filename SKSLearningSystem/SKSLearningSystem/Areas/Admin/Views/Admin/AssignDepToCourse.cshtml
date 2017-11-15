@@ -5,17 +5,22 @@
 }
 
 
-@using (Ajax.BeginForm("AssignDepToCourse", "admin", null, new AjaxOptions() { UpdateTargetId = "field-assign" }, new {@class="form-assign" }))
+@using (Ajax.BeginForm("AssignDepToCourse", "admin", null, new AjaxOptions() { UpdateTargetId = "field-assign" }, new {@class="form-assign dept-assign" }))
 {
+    <div class="half-search" >
+        <label for="depname">Department</label>
+        @Html.TextBox("depName")
+    </div>
     
-    <label  for="depname">Department</label>
-    @Html.TextBox("depName");
     
+    
+    <div class="full-search">
+        <label for="courseName">Course</label>
+        @Html.TextBox("courseName")
+    </div>
+   
 
-    <label  for="courseName">Course</label>
-    @Html.TextBox("courseName");
-
-    <button type="submit">Search</button>
+    <button class="search-btn" type="submit">Search</button>
 }
 <div id="field-assign">
 

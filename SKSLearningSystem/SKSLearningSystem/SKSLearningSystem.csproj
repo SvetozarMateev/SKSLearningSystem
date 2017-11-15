@@ -230,6 +230,11 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Views\Admin\AssignChoose.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\AssignCourse.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\AssignCourseToUsers.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\AssignDepToCourse.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\Assigning.cshtml" />
     <Content Include="Content\allCourses.css" />
     <Content Include="Content\Alert.css" />
     <Content Include="Content\AssignCourse.css" />
@@ -328,7 +333,6 @@
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\Admin\UploadCourse.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\SuccessMessage.cshtml" />
-    <Content Include="Areas\Admin\Views\Admin\AssignCourse.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\ConfirmAssignment.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\MonitorUsersProgress.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\AssignRoles.cshtml" />
@@ -341,10 +345,6 @@
     <Content Include="Areas\Admin\Views\Admin\AlertUploadCourses.cshtml" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Admin\Views\Admin\AssignCourseToUsers.cshtml" />
-    <Content Include="Areas\Admin\Views\Admin\Assigning.cshtml" />
-    <Content Include="Areas\Admin\Views\Admin\AssignChoose.cshtml" />
-    <Content Include="Areas\Admin\Views\Admin\AssignDepToCourse.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\ConfirmDepToCourse.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\i18n\grid.locale-ar.js" />
@@ -463,7 +463,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

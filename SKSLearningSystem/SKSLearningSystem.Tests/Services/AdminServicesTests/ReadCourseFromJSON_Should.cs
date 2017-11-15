@@ -7,6 +7,7 @@ using SKSLearningSystem.Data;
 using SKSLearningSystem.Data.Models;
 using System;
 using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Web;
 
 namespace SKSLearningSystem.Tests.Areas.Admin.Services.AdminServicesTests
@@ -62,29 +63,28 @@ namespace SKSLearningSystem.Tests.Areas.Admin.Services.AdminServicesTests
             var dbMock = new Mock<LearningSystemDbContext>();
             var services = new AdminServices(dbMock.Object);
             var jsonFileMock = new Mock<HttpPostedFileBase>();
-            var model = new UploadCourseViewModel();
 
-            Course expected;
-            using (StreamReader reader = new StreamReader(@"..\..\Full.json"))
-            {
-                var allContent = reader.ReadToEnd();
-                expected = JsonConvert.DeserializeObject<Course>(allContent);
-            }
-            FileStream stream = new FileStream(@"..\..\Full.json", FileMode.Open);
+            Course expected = new Course() { Id = 1, Description = "desc", Name = "name" };
+            var courseJson = JsonConvert.SerializeObject(expected);
 
-            model.CourseFile = jsonFileMock.Object;
+            MemoryStream memoryStream = new MemoryStream();
+            StreamWriter writer = new StreamWriter(memoryStream);
+            writer.Write(courseJson);
+            writer.Flush();
+            
+            memoryStream.Position = 0;
 
-            jsonFileMock.Setup(x => x.InputStream).Returns(stream);
+            jsonFileMock.SetupGet(m => m.InputStream).Returns(memoryStream);
 
             //Act 
-            var actual = services.ReadCourseFromJSON(model.CourseFile);
+            Course actual = services.ReadCourseFromJSON(jsonFileMock.Object);
 
             //Assert
+            Assert.AreEqual(expected.Id, actual.Id);
             Assert.AreEqual(expected.Name, actual.Name);
             Assert.AreEqual(expected.Description, actual.Description);
-            Assert.AreEqual(expected.Questions.Count, actual.Questions.Count);
 
-            stream.Dispose();
+            writer.Dispose();
         }
     }
 }

@@ -16,7 +16,7 @@
             @Html.EditorFor(x => x.Users[i].Checked, new { @class = "user-checked" });
              @Html.EditorFor(x => x.Users[i].Mandatory, new { @class = "user-mand" })
              @Html.EditorFor(x => x.Users[i].DueDate, new { @class = "user-duedate" })
-            <div class="filler"></div>
+            @Html.EditorFor(x => x.Users[i].Grade, new { @class = "filler" })
         }
         <button type="submit"> Assign</button>
     }

@@ -10,10 +10,7 @@ namespace SKSLearningSystem.Services
 {
    public class JSONservices
     {
-        public JSONservices()
-        {
 
-        }
 
         public static void SaveToFile(Object obj)
         {

@@ -31,7 +31,7 @@ namespace SKSLearningSystem.Tests.Web.Controllers.HomeControllerTests
             var adminServicesMock = new Mock<IAdminServices>();
             var dbServicesMock = new Mock<IDBServices>();
            
-            var username = "validname";
+            var username = "valid name";
             var model = new MyProfileViewModel();
             var httpContext = new Mock<HttpContextBase>();
             var mockIdentity = new Mock<IIdentity>();

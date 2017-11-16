@@ -27,14 +27,14 @@ namespace SKSLearningSystem.Services.Contracts
         Course GetCoursesFromDBByName(string courseName);
 
         IList<UserViewModel> GetUserViewModels();
-        Task SaveAssignementsToDb(int courseId, IList<UserViewModel> users);
-        Task SaveAssignementsForDepartment(DepToCourseViewModel model);
+       void  SaveAssignementsToDb(int courseId, IList<UserViewModel> users);
+        void SaveAssignementsForDepartment(DepToCourseViewModel model);
         CourseState GetStateFromDB(int courStateId);
-        Task SaveAssignementsToDb(CourseState state);
+        void SaveAssignementsToDb(CourseState state);
 
         List<CourseState> GetAllStates();
 
-         void SaveToFile(Object obj);
+         //void SaveToFile(Object obj);
 
     }
 }

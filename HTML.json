@@ -1,0 +1,164 @@
+{
+    "Name": "Basic HTML",
+    "Description": "This is a course for Basic HTML skills",
+    "Registry": [],
+    "Images": [],
+    "Questions": [
+        {
+            "Statement": "1. What does HTML stand for?",
+            "Answer": "C",
+            "Options": [
+                {
+                    "Letter": "A",
+                    "Answer": "Home Tool Markup Language"
+                },
+                {
+                    "Letter": "B",
+                    "Answer": "Hyperlinks and Text Markup Language"
+                },
+                {
+                    "Letter": "C",
+                    "Answer": "Hyper Text Markup Language"
+                    
+                }
+            ]
+        },
+        {
+            "Statement": "Who is making the Web standards?",
+            "Answer": "A",
+            "Options": [
+                {
+                    "Letter": "A",
+                    "Answer": "The World Wide Web Consortium"
+                },
+                {
+                    "Letter": "B",
+                    "Answer": "Google"
+                },
+                {
+                    "Letter": "C",
+                    "Answer": "Mozila"
+                },
+                {
+                    "Letter": "D",
+                    "Answer": "Microsoft"
+                }
+            ]
+        },
+        {
+            "Statement": "Choose the correct HTML element for the largest heading:",
+            "Answer": "C",
+            "Options": [
+                {
+                    "Letter": "A",
+                    "Answer": "h6"
+                },
+                {
+                    "Letter": "B",
+                    "Answer": "head"
+                },
+                {
+                    "Letter": "C",
+                    "Answer": "h1"
+                },
+                {
+                    "Letter": "D",
+                    "Answer": "heading"
+                }
+            ]
+        },
+        {
+            "Statement": "What is the correct HTML element for inserting a line break?",
+            "Answer": "A",
+            "Options": [
+                {
+                    "Letter": "A",
+                    "Answer": "br"
+                },
+                {
+                    "Letter": "B",
+                    "Answer": "break"
+                },
+                {
+                    "Letter": "C",
+                    "Answer": "lb"
+                }
+            ]
+        },
+        {
+            "Statement": "Choose the correct HTML element to define important text",
+            "Answer": "C",
+            "Options": [
+                {
+                    "Letter": "A",
+                    "Answer": "i"
+                },
+                {
+                    "Letter": "B",
+                    "Answer": "important"
+                }, {
+                    "Letter": "C",
+                    "Answer": "strong"
+                },
+                {
+                    "Letter": "D",
+                    "Answer": "b"
+                }
+            ]
+        },
+        {
+            "Statement": "Choose the correct HTML element to define emphasized text",
+            "Answer": "C",
+            "Options": [
+                {
+                    "Letter": "A",
+                    "Answer": "i"
+                },
+                {
+                    "Letter": "B",
+                    "Answer": "italic"
+                },
+                {
+                    "Letter": "C",
+                    "Answer": "em"
+                }
+            ]
+        },
+        {
+            "Statement": "Which of these elements are all <table> elements?",
+            "Answer": "A",
+            "Options": [
+                {
+                    "Letter": "A",
+                    "Answer": "<table><tr><td>"
+                },
+                {
+                    "Letter": "B",
+                    "Answer": "<table><head><tfoot>"
+                },
+                {
+                    "Letter": "C",
+                    "Answer": "<thead><body><tr>"
+                },
+                {
+                    "Letter": "D",
+                    "Answer": "<table><tr><tt>"
+                }
+            ]
+        },
+        {
+            "Statement": "Inline elements are normally displayed without starting a new line.",
+            "Answer": "B",
+            "Options": [
+                {
+                    "Letter": "A",
+                    "Answer": "False"
+                },
+                {
+                    "Letter": "B",
+                    "Answer": "True"
+                }
+            ]
+        }
+    ]
+}

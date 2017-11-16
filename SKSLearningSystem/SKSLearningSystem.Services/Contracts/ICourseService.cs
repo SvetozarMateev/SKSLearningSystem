@@ -14,6 +14,8 @@ namespace SKSLearningSystem.Services.CourseServices
 
         double GradeExam(TakeTestViewModel questions);
 
-        Task ChangeCourseState(int courseId,string newState,double grade);              
+        Task ChangeCourseState(int courseId,string newState,double grade);
+
+        int AssignUserToCourse(int courseId, string name);
     }
 }

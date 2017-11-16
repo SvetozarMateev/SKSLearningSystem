@@ -5,7 +5,6 @@ using SKSLearningSystem.Models.ViewModels;
 using SKSLearningSystem.Models.ViewModels.AdminViewModels;
 using SKSLearningSystem.Services.Contracts;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
@@ -37,6 +36,12 @@ namespace SKSLearningSystem.Services
         {
             return this.context.CourseStates.First(c => c.Id == courStateId);
         }
+
+        public List< CourseState> GetAllStates()
+        {
+            return this.context.CourseStates.ToList();
+        }
+
         public IList<UserViewModel> GetUserViewModels()
         {
             return this.context.Users.Select(x => new UserViewModel()
@@ -161,15 +166,26 @@ namespace SKSLearningSystem.Services
 
         public List<SingleCourseViewModel> GetCoursesFromDb()
         {
-            var courses = context.Courses.Take(10).Select(x => new SingleCourseViewModel()
+            var courses = context.Courses.Take(100).Select(x => new SingleCourseViewModel()
             {
-                CourseId = x.Id,
-                CourseStateId = x.Id,
+                CourseId = x.Id,               
                 CourseName = x.Name,
                 Descrtiption = x.Description,
                 CourseImageId = x.Images.FirstOrDefault().Id
             }).ToList();
             return courses;
+        }
+
+        public List<CourseViewModel> GetCoursesAsVM()
+        {
+            return this.context
+                .Courses
+                .Select(c => new CourseViewModel()
+                {
+                    Name = c.Name,
+                    Id = c.Id
+                })
+                .ToList();
         }
     }
 }

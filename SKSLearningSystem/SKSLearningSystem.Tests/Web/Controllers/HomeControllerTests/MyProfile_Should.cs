@@ -30,16 +30,19 @@ namespace SKSLearningSystem.Tests.Web.Controllers.HomeControllerTests
             var homeServicesMock = new Mock<IHomeServices>();
             var adminServicesMock = new Mock<IAdminServices>();
             var dbServicesMock = new Mock<IDBServices>();
-            var httpContext = new Mock<HttpContextBase>();
-            var id = "validId";
-            var model = new MyProfileViewModel();
            
-            var controller = new HomeController(homeServicesMock.Object, adminServicesMock.Object, dbServicesMock.Object)
-            {
-                //GetUserId = () => id
-            };
+            var username = "validname";
+            var model = new MyProfileViewModel();
+            var httpContext = new Mock<HttpContextBase>();
+            var mockIdentity = new Mock<IIdentity>();
+            httpContext.SetupGet(x => x.User.Identity).Returns(mockIdentity.Object);
+            mockIdentity.Setup(x => x.Name).Returns(username);
+           
+            var controller = new HomeController(homeServicesMock.Object, adminServicesMock.Object, dbServicesMock.Object);
+            controller.ControllerContext = new ControllerContext(httpContext.Object,
+                                                                    new RouteData(), controller);
 
-            homeServicesMock.Setup(x => x.GetCourseStates(id)).Returns(model);
+            homeServicesMock.Setup(x => x.GetCourseStates(username)).Returns(model);
 
             //Act & Assert
             controller.WithCallTo(x => x.MyProfile()).ShouldRenderDefaultView().WithModel(model);

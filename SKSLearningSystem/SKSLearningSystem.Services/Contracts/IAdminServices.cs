@@ -1,5 +1,6 @@
 ﻿using SKSLearningSystem.Areas.Admin.Models;
 using SKSLearningSystem.Data.Models;
+using SKSLearningSystem.Models.ViewModels.AdminViewModels;
 using System.Collections.Generic;
 using System.Web;
 
@@ -16,7 +17,8 @@ namespace SKSLearningSystem.Areas.Admin.Services
         void SaveCourseToDB(Course course);
 
         // Assign Course Methods Start
-       
+
+        void DeleteCourseStates(List<DeassignViewModel> model);
 
         void SaveAssignedCoursesToDb(AssignCourseViewModel assignCourseViewModel);
         // end

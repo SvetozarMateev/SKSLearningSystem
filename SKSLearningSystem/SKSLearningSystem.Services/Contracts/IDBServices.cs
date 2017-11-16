@@ -30,5 +30,7 @@ namespace SKSLearningSystem.Services.Contracts
         Task SaveAssignementsForDepartment(DepToCourseViewModel model);
         CourseState GetStateFromDB(int courStateId);
         Task SaveAssignementsToDb(CourseState state);
+
+        List<CourseState> GetAllStates();
     }
 }

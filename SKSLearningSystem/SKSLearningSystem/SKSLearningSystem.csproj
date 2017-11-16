@@ -240,6 +240,7 @@
     <Content Include="Content\AssignCourse.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\deassign.css" />
     <Content Include="Content\home-page.css" />
     <Content Include="Content\hover.css" />
     <Content Include="Content\jquery.jqGrid\ellipsis-xbl.xml" />
@@ -344,8 +345,8 @@
     <Content Include="Areas\Admin\Views\Admin\AlertUser.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\AlertUploadCourses.cshtml" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\ConfirmDepToCourse.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\Deassign.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\i18n\grid.locale-ar.js" />
     <Content Include="Scripts\i18n\grid.locale-bg.js" />

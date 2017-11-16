@@ -74,6 +74,28 @@ namespace SKSLearningSystem.Services.CourseServices
             return correctAnswersCount/questions.Questions.Count*100;
         }
 
+
+        public int AssignUserToCourse(int courseId, string name)
+        {
+            
+            if (this.context.CourseStates.Any(x => x.User.UserName == name && x.CourseId == courseId)==false)
+            {
+                this.context.CourseStates.Add(new CourseState()
+                {
+                    CourseId = courseId,
+                    User = this.context.Users.First(x => x.UserName == name),
+                    AssignmentDate = DateTime.Now,
+                    DueDate = DateTime.Now.AddYears(1),
+                    Mandatory = false,
+                    State = "Started"
+                });
+
+                this.context.SaveChanges();
+            }
+           
+            return this.context.CourseStates.First(x => x.User.UserName == name && x.CourseId == courseId).Id;
+        }
+
         public async Task ChangeCourseState(int courseStateId, string newState,double grade)
         {
             var course = this.context.CourseStates.First(x => x.Id == courseStateId);

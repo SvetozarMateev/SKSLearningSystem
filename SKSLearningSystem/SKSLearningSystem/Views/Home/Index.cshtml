@@ -3,19 +3,53 @@
     ViewBag.Title = "Home Page";
 
 }
+@section styles{
+    @Styles.Render("~/Content/TakeCourse")
+}
 
-<section class="recipe-recommend">
-    <div class="wrapper-scroller-menu slide">
-        @for (int i = 0; i < Model.Count; i++)
-        {
-            <article class="recipe" index="0">
-                @Html.Partial("_SingleCourse", Model[i])
-            </article>
-        }         
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+       
+            <div class="swiper-slide">
+                <img id="slide-img" src="https://static.pexels.com/photos/159621/open-book-library-education-read-159621.jpeg" alt="firstSlide">
+            </div>
+        
+        <div class="swiper-slide">
+            <img id="slide-img" src="https://static.pexels.com/photos/207691/pexels-photo-207691.jpeg" alt="firstSlide">
+        </div>
+        <div class="swiper-slide">
+            <img id="slide-img" src="https://static.pexels.com/photos/159353/survey-opinion-research-voting-fill-159353.jpeg" alt="firstSlide">
+        </div>
+       
     </div>
-
-</section>
+    <div class="swiper-pagination"></div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+</div>
 
 @section scripts{
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+@Scripts.Render("~/bundles/swiper")
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        loop: true,
+        pagination: {
+            el: '.swiper-pagination',
+            type: 'progressbar',
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        on: {
+            init: function () {
+                console.log('swiper initialized');
+            }
+
+        },
+        autoplay: true
+
+    });
+</script>
+
 }

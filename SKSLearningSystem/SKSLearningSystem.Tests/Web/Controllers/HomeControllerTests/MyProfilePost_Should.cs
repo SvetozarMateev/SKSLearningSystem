@@ -13,6 +13,9 @@ using System.Threading.Tasks;
 using System.Web;
 using TestStack.FluentMVCTesting;
 using SKSLearningSystem.Data.Models;
+using System.Security.Principal;
+using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace SKSLearningSystem.Tests.Web.Controllers.HomeControllerTests
 {
@@ -28,16 +31,20 @@ namespace SKSLearningSystem.Tests.Web.Controllers.HomeControllerTests
             var dbServicesMock = new Mock<IDBServices>();
             var fileMock = new Mock<HttpPostedFileBase>();
             var list = new List<Image>();
-            var id = "validId";
+            var name = "validusername";
             var model = new MyProfileViewModel();
             var image = new Image();
             list.Add(image);
-            var controller = new HomeController(homeServicesMock.Object, adminServicesMock.Object, dbServicesMock.Object)
-            {
-               // GetUserId = () => id
-            };
+            var httpContext = new Mock<HttpContextBase>();
+            var mockIdentity = new Mock<IIdentity>();
+            httpContext.SetupGet(x => x.User.Identity).Returns(mockIdentity.Object);
+            mockIdentity.Setup(x => x.Name).Returns(name);
 
-            homeServicesMock.Setup(x => x.GetCourseStates(id)).Returns(model);
+            var controller = new HomeController(homeServicesMock.Object, adminServicesMock.Object, dbServicesMock.Object);
+            controller.ControllerContext = new ControllerContext(httpContext.Object,
+                                                                    new RouteData(), controller);
+
+            homeServicesMock.Setup(x => x.GetCourseStates(name)).Returns(model);
             adminServicesMock.Setup(x => x.ReadImagesFromFiles(new List<HttpPostedFileBase>() { fileMock.Object })).Returns(list);
             //Act & Assert
             controller.WithCallTo(x => x.MyProfile(model,fileMock.Object)).ShouldRenderDefaultView().WithModel(model);
@@ -52,23 +59,26 @@ namespace SKSLearningSystem.Tests.Web.Controllers.HomeControllerTests
             var dbServicesMock = new Mock<IDBServices>();
             var fileMock = new Mock<HttpPostedFileBase>();
             var list = new List<Image>();
-            var id = "validId";
+            var username = "validName";
             var model = new MyProfileViewModel();
             var image = new Image();
             list.Add(image);
-            var controller = new HomeController(homeServicesMock.Object, adminServicesMock.Object, dbServicesMock.Object)
-            {
-                
-            };
+            var httpContext = new Mock<HttpContextBase>();
+            var mockIdentity = new Mock<IIdentity>();
+            httpContext.SetupGet(x => x.User.Identity).Returns(mockIdentity.Object);
+            mockIdentity.Setup(x => x.Name).Returns(username);
+           
+            var controller = new HomeController(homeServicesMock.Object, adminServicesMock.Object, dbServicesMock.Object);
+            controller.ControllerContext = new ControllerContext(httpContext.Object,
+                                                                    new RouteData(), controller);
 
-
-            homeServicesMock.Setup(x => x.GetCourseStates(id)).Returns(model);
+            homeServicesMock.Setup(x => x.GetCourseStates(username)).Returns(model);
             adminServicesMock.Setup(x => x.ReadImagesFromFiles(new List<HttpPostedFileBase>() { fileMock.Object })).Returns(list);
             //Act 
             controller.MyProfile(model, fileMock.Object);
 
             //Assert
-            homeServicesMock.Verify(x => x.SaveImagesToUser(image, id), Times.Once);
+            homeServicesMock.Verify(x => x.SaveImagesToUser(image, username), Times.Once);
         }
     }
 }

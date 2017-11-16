@@ -1,0 +1,68 @@
+﻿#deassign-form {
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    text-align: center;
+}
+#user-name {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    text-align:center;
+}
+#course-name {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    text-align: center;
+}
+#due-date {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    text-align: center;
+}
+#assgn-date {
+    grid-column-start: 4;
+    grid-column-end: 5;
+    text-align: center;
+}
+#state-bool {
+    grid-column-start: 5;
+    grid-column-end: 6;
+    text-align: center;
+}
+#attrs {
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    grid-column-start: 1;
+    grid-column-end: 6;
+    font-weight:bold;
+    font-size:120%;
+    margin-bottom: 2%;
+}
+
+.info {
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    grid-column-start: 1;
+    grid-column-end: 6;
+}
+
+#mybtn {
+    color: grey;
+    border: solid;
+    border-color: gray;
+    background-color: white;
+    margin-top: 7%;
+    margin-bottom: 2%;
+    border-width: thin;
+    border-radius: 15px;
+    padding: 4%;
+    grid-column-start: 5;
+    grid-column-end: 6;
+}
+
+    #mybtn:hover {
+        color: white;
+        border: solid;
+        border-color: gray;
+        background-color: gray;
+        margin-bottom: 0.5%;
+    }

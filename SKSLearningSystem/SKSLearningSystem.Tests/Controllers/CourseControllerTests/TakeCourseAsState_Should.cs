@@ -35,7 +35,7 @@ namespace SKSLearningSystem.Tests.Controllers.CourseControllerTests
 
             var courseStateSetMock = new Mock<DbSet<CourseState>>();
             courseStateSetMock.SetupData(courseStates);
-
+            dbSevrviceMock.Setup(x => x.GetStateFromDB(courseStateId)).Returns(courseState);
             contextMock.Setup(c => c.CourseStates).Returns(courseStateSetMock.Object);
 
             var controller = new CourseController(courseServiceMock.Object, dbSevrviceMock.Object);

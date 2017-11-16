@@ -76,6 +76,9 @@ namespace SKSLearningSystem
 
             bundles.Add(new ScriptBundle("~/bundles/infoBox").Include(
                       "~/Scripts/infoBox.js"));
+
+            bundles.Add(new StyleBundle("~/Content/deassign").Include(
+                "~/Content/deassign.css"));
         }
     }
 }

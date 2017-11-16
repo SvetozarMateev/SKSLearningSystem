@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using SKSLearningSystem.Areas.Admin.Models;
 using SKSLearningSystem.Data;
 using SKSLearningSystem.Data.Models;
+using SKSLearningSystem.Models.ViewModels.AdminViewModels;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -88,8 +89,12 @@ namespace SKSLearningSystem.Areas.Admin.Services
         public void SaveCourseToDB(Course course)
         {
             Guard.WhenArgument(course, "course").IsNull().Throw();
-            this.db.Courses.Add(course);
-            this.db.SaveChanges();
+            var name = course.Name;
+            if (this.db.Courses.Any(x => x.Name == name)==false)
+            {
+                this.db.Courses.Add(course);
+                this.db.SaveChanges();
+            }           
         }
 
         private bool ValidateState(string userId, int courseId)
@@ -97,6 +102,20 @@ namespace SKSLearningSystem.Areas.Admin.Services
             bool answer = db.CourseStates.Any(x => userId == x.UserId && courseId == x.CourseId);
 
             return answer;
+        }
+
+        public void DeleteCourseStates(List<DeassignViewModel> model)
+        {
+            for (int i = 0; i < model.Count; i++)
+            {
+                if (model[i].Selected)
+                {
+                    var currId = model[i].CourseState.Id;
+                    var currState = this.db.CourseStates.First(x => x.Id == currId) ;
+                    this.db.CourseStates.Remove(currState);
+                }
+            }
+            this.db.SaveChanges();
         }
 
         public void SaveAssignedCoursesToDb(AssignCourseViewModel assignCourseViewModel)
@@ -134,5 +153,6 @@ namespace SKSLearningSystem.Areas.Admin.Services
 
             db.SaveChanges();
         }
+
     }
 }

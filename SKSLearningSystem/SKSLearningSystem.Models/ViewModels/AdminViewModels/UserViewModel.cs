@@ -20,6 +20,8 @@ namespace SKSLearningSystem.Areas.Admin.Models
 
         public DateTime DueDate { get; set; }
 
+        public double Grade { get; set; }
+
         public bool Mandatory { get; set; }
     }
 }

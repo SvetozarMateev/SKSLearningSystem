@@ -27,9 +27,8 @@ namespace SKSLearningSystem.Controllers
             //GetUserId = () => HttpContext.User.Identity.GetUserId();
         }
         public ActionResult Index()
-        {
-            var courses = this.dBServices.GetCoursesFromDb();
-            return View(courses);
+        {           
+            return View();
         }
 
         public ActionResult About()

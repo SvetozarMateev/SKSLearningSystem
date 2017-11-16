@@ -32,6 +32,10 @@ namespace SKSLearningSystem.Controllers
         [Authorize]
         public ActionResult TakeCourse(int courseStateId, int courseId)
         {
+            if (courseStateId == 0)
+            {
+                courseStateId=this.services.AssignUserToCourse(courseId,this.User.Identity.Name);
+            }
             TakeCourseModel model = new TakeCourseModel() { CourseStateId=courseStateId};
             var course = this.dBServices.GetCoursesFromDB(courseId);
             var images = this.dBServices.GetImages(courseId);

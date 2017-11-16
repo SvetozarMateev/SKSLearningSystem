@@ -1,17 +1,14 @@
-﻿using SKSLearningSystem.Areas.Admin.Models;
+﻿using Bytes2you.Validation;
+using Microsoft.AspNet.Identity;
+using SKSLearningSystem.Areas.Admin.Models;
 using SKSLearningSystem.Areas.Admin.Services;
-using SKSLearningSystem.Data;
-using System.Linq;
-using SKSLearningSystem;
-using System.Web.Mvc;
-using System.Threading.Tasks;
-using SKSLearningSystem.Data.Models;
-using Bytes2you.Validation;
+using SKSLearningSystem.Models.ViewModels;
 using SKSLearningSystem.Models.ViewModels.AdminViewModels;
 using SKSLearningSystem.Services.Contracts;
-using Microsoft.AspNet.Identity;
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace SKSLearningSystem.Areas.Admin.Controllers
 {
@@ -22,6 +19,7 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
         private readonly IGridServices gridServices;
         private readonly ApplicationUserManager userManager;
         private readonly IDBServices dBServices;
+
        
 
         public AdminController(IAdminServices services, ApplicationUserManager userManager, 
@@ -38,13 +36,37 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
             this.dBServices = dBServices;
             this.gridServices = gridServices;
             
-        }     
+        }
 
+       
         [HttpGet]
         public ActionResult UploadCourse()
         {                      
             return this.View();
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UploadCourse(UploadCourseViewModel model)
+        {
+            var IsValid = this.adminServices.ValidateInputFiles(model);
+            var infoModel = new UploadedCourseInfoViewModel();
+            if (IsValid)
+            {
+                var course = this.adminServices.ReadCourseFromJSON(model.CourseFile);
+                var images = this.adminServices.ReadImagesFromFiles(model.Photos);
+                infoModel.CourseName = course.Name;
+                infoModel.PhotosCount = images.Count;
+                course.Images = images;
+                this.adminServices.SaveCourseToDB(course);
+            }
+            else
+            {
+                this.ModelState.AddModelError("file", "You can upload only json, png or jpg files.");
+            }
+            return RedirectToAction("AlertUploadCourses");
+        }
+
 
         //Start of alternative
         [HttpGet]
@@ -63,7 +85,7 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
         public ActionResult ConfirmDepToCourse(DepToCourseViewModel model)
         {
             this.dBServices.SaveAssignementsForDepartment(model);
-            return RedirectToAction("AssignDepToCourse");
+            return RedirectToAction("AssignChoose");
         }
 
         public ActionResult AssignChoose()
@@ -115,34 +137,30 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
             return RedirectToAction("AlertUser");
         }
 
+        [HttpGet]
+        public ActionResult Deassign()
+        {
+            DeassignViewModel model = new DeassignViewModel();
+            var courseStates = this.dBServices.GetAllStates();
+            var listViewModels = courseStates.Select(x => new DeassignViewModel() { CourseState = x }).ToList();
+            
+            return this.View(listViewModels);
+        }
+
+        [HttpPost]
+        public ActionResult Deassign(List<DeassignViewModel> listViewModels)
+        {
+            this.adminServices.DeleteCourseStates(listViewModels);
+            return RedirectToAction("Deassign");
+        }
+
         public ActionResult AlertUser()
         {
             return View();
         }
         // end
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult UploadCourse(UploadCourseViewModel model)
-        {
-            var IsValid = this.adminServices.ValidateInputFiles(model);
-            var infoModel = new UploadedCourseInfoViewModel();
-            if (IsValid)
-            {
-                var course = this.adminServices.ReadCourseFromJSON(model.CourseFile);
-                var images = this.adminServices.ReadImagesFromFiles(model.Photos);
-                infoModel.CourseName = course.Name;
-                infoModel.PhotosCount = images.Count;
-                course.Images = images;
-                this.adminServices.SaveCourseToDB(course);
-            }
-            else
-            {
-                this.ModelState.AddModelError("file", "You can upload only json, png or jpg files.");
-            }
-            return RedirectToAction("AlertUploadCourses");
-        }
-
+       
         public ActionResult AlertUploadCourses()
         {
             return this.View();

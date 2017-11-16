@@ -2,7 +2,10 @@
     padding-top: 50px;
     padding-bottom: 20px;
 }
-
+#slide-img{
+    height:400px;
+    width:100%;
+}
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 30px;

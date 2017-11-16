@@ -38,23 +38,23 @@ namespace SKSLearningSystem.Tests.Areas.Admin.Services.AdminServicesTests
             Assert.ThrowsException<ArgumentNullException>(() => services.ReadCourseFromJSON(model.CourseFile));
         }
 
-        [TestMethod]
-        public void ThrowException_WhenJsonIsEmpty()
-        {
-            //Arrange
-            var dbMock = new Mock<LearningSystemDbContext>();
-            var services = new AdminServices(dbMock.Object);
-            var jsonFileMock = new Mock<HttpPostedFileBase>();
-            var model = new UploadCourseViewModel();
+        //[TestMethod]
+        //public void ThrowException_WhenJsonIsEmpty()
+        //{
+        //    //Arrange
+        //    var dbMock = new Mock<LearningSystemDbContext>();
+        //    var services = new AdminServices(dbMock.Object);
+        //    var jsonFileMock = new Mock<HttpPostedFileBase>();
+        //    var model = new UploadCourseViewModel();
 
-            FileStream stream = new FileStream(@"..\..\Empty.json", FileMode.Open);
-            jsonFileMock.Setup(x => x.InputStream).Returns(stream);
+        //    FileStream stream = new FileStream(@"..\..\Empty.json", FileMode.Open);
+        //    jsonFileMock.Setup(x => x.InputStream).Returns(stream);
 
-            //Act & Assert
-            Assert.ThrowsException<ArgumentNullException>(() => services.ReadCourseFromJSON(model.CourseFile));
+        //    //Act & Assert
+        //    Assert.ThrowsException<ArgumentNullException>(() => services.ReadCourseFromJSON(model.CourseFile));
 
-            stream.Dispose();
-        }
+        //    stream.Dispose();
+        //}
 
         [TestMethod]
         public void ReturnCourse_WhenParametersAreCorrect()

@@ -16,7 +16,7 @@ namespace SKSLearningSystem.Controllers
         private readonly IHomeServices homeServices;
         private readonly IAdminServices adminServices;
         private readonly IDBServices dBServices;
-       // public Func<string> GetUserId; //For testing
+      
 
         public HomeController(IHomeServices homeServices, IAdminServices adminServices,
             IDBServices dBServices)
@@ -24,7 +24,7 @@ namespace SKSLearningSystem.Controllers
             this.homeServices = homeServices;
             this.adminServices = adminServices;
             this.dBServices = dBServices;
-            //GetUserId = () => HttpContext.User.Identity.GetUserId();
+            
         }
         public ActionResult Index()
         {           

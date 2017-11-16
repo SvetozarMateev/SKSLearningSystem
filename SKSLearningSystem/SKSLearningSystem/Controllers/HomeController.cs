@@ -1,10 +1,8 @@
 ﻿using Bytes2you.Validation;
-using Microsoft.AspNet.Identity;
 using SKSLearningSystem.Areas.Admin.Services;
 using SKSLearningSystem.Models.ViewModels;
 using SKSLearningSystem.Services;
 using SKSLearningSystem.Services.Contracts;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -44,20 +42,6 @@ namespace SKSLearningSystem.Controllers
 
         public ActionResult Index()
         {           
-            return View();
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-           
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
 

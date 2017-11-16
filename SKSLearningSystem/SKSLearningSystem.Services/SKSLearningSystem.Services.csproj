@@ -75,7 +75,6 @@
     <Compile Include="DBServices.cs" />
     <Compile Include="GridServices.cs" />
     <Compile Include="HomeServices.cs" />
-    <Compile Include="JSONservices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

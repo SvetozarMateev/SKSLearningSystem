@@ -133,8 +133,11 @@
     <Compile Include="Web\Areas\Admin\Controllers\AdminControllerTests\AssignDepToCoursePost_Should.cs" />
     <Compile Include="Web\Areas\Admin\Controllers\AdminControllerTests\ConfirmAssignement_Should.cs" />
     <Compile Include="Web\Areas\Admin\Controllers\AdminControllerTests\ConfirmDepToCourse_Should.cs" />
+    <Compile Include="Web\Areas\Admin\Controllers\AdminControllerTests\DeassignPost_Should.cs" />
+    <Compile Include="Web\Areas\Admin\Controllers\AdminControllerTests\Deassign_Should.cs" />
     <Compile Include="Web\Areas\Admin\Controllers\AdminControllerTests\FinalAssign_Should.cs" />
     <Compile Include="Web\Areas\Admin\Controllers\AdminControllerTests\GetJSON_Should.cs" />
+    <Compile Include="Web\Areas\Admin\Controllers\AdminControllerTests\MakeAdmin_Should.cs" />
     <Compile Include="Web\Areas\Admin\Controllers\AdminControllerTests\MonitorUsersProgress_Should.cs" />
     <Compile Include="Web\Areas\Admin\Controllers\AdminControllerTests\UploadCourseGet_Should.cs" />
     <Compile Include="Web\Areas\Admin\Controllers\AdminControllerTests\UploadCoursePost_Should.cs" />

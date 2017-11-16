@@ -230,6 +230,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="404sheet.css" />
     <Content Include="Areas\Admin\Views\Admin\AssignChoose.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\AssignCourse.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\AssignCourseToUsers.cshtml" />
@@ -322,6 +323,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
     <Content Include="Content\singleCourse.css" />
     <Content Include="Content\uploadcourse.css" />
+    <Content Include="Error.html" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

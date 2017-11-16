@@ -85,7 +85,7 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        [ChildActionOnly]
+        
         public ActionResult ConfirmDepToCourse(DepToCourseViewModel model)
         {
             this.dBServices.SaveAssignementsForDepartment(model);
@@ -111,7 +111,7 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
             return this.PartialView("Assigning",model);
         }
 
-        [ChildActionOnly]
+        
         public ActionResult FinalAssign(AssignCourseToUsersViewModel model)
         {
             this.dBServices.SaveAssignementsToDb(model.CourseId,model.Users.Where(x=>x.Checked).ToList());

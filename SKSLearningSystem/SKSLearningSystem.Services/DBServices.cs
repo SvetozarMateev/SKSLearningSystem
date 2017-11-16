@@ -194,7 +194,9 @@ namespace SKSLearningSystem.Services
         public  void SaveToFile(Object obj)
         {
            // string url = "App_Data/saved.json";
+
             string url = "E:/saved/saved.json";
+
             //string json = await JsonConvert.SerializeObjectAsync(obj);
             string json2 = Task.Factory.StartNew(() => JsonConvert.SerializeObject(obj)).ToString();
             File.WriteAllText(url, json2);

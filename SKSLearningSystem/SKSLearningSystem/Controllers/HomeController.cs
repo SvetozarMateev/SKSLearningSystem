@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using Bytes2you.Validation;
+using Microsoft.AspNet.Identity;
 using SKSLearningSystem.Areas.Admin.Services;
 using SKSLearningSystem.Models.ViewModels;
 using SKSLearningSystem.Services;
@@ -16,16 +17,31 @@ namespace SKSLearningSystem.Controllers
         private readonly IHomeServices homeServices;
         private readonly IAdminServices adminServices;
         private readonly IDBServices dBServices;
-       // public Func<string> GetUserId; //For testing
+      
 
         public HomeController(IHomeServices homeServices, IAdminServices adminServices,
             IDBServices dBServices)
         {
+
+            Guard.WhenArgument(homeServices, "homeServices").IsNull().Throw();
+            Guard.WhenArgument(adminServices, "adminServices").IsNull().Throw();
+            Guard.WhenArgument(dBServices, "dBServices").IsNull().Throw();
+
             this.homeServices = homeServices;
             this.adminServices = adminServices;
             this.dBServices = dBServices;
-            //GetUserId = () => HttpContext.User.Identity.GetUserId();
+            
         }
+
+        [ChildActionOnly]
+        [OutputCache(Duration = 180)]
+        public ActionResult GetCoursesPartial()
+        {
+            var courses = this.dBServices.GetCoursesFromDb();
+
+            return this.PartialView("_CoursesPartial", courses);
+        }
+
         public ActionResult Index()
         {           
             return View();

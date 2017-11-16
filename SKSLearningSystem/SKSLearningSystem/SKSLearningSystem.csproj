@@ -461,6 +461,7 @@
     <Content Include="Views\Home\AllCourses.cshtml" />
     <Content Include="Views\Home\MyProfile.cshtml" />
     <Content Include="Scripts\swiper.min.js.map" />
+    <Content Include="Views\Shared\_CoursesPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,11 +1,14 @@
-﻿using SKSLearningSystem.Areas.Admin.Models;
+﻿using Newtonsoft.Json;
+using SKSLearningSystem.Areas.Admin.Models;
 using SKSLearningSystem.Data;
 using SKSLearningSystem.Data.Models;
 using SKSLearningSystem.Models.ViewModels;
 using SKSLearningSystem.Models.ViewModels.AdminViewModels;
 using SKSLearningSystem.Services.Contracts;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -186,6 +189,15 @@ namespace SKSLearningSystem.Services
                     Id = c.Id
                 })
                 .ToList();
+        }
+
+        public  void SaveToFile(Object obj)
+        {
+           // string url = "App_Data/saved.json";
+            string url = "E:/saved/saved.json";
+            //string json = await JsonConvert.SerializeObjectAsync(obj);
+            string json2 = Task.Factory.StartNew(() => JsonConvert.SerializeObject(obj)).ToString();
+            File.WriteAllText(url, json2);
         }
     }
 }

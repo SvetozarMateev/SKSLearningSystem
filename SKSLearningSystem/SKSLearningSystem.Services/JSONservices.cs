@@ -12,7 +12,9 @@ namespace SKSLearningSystem.Services
     {
         public static void SaveToFile(Object obj)
         {
-            string url = "../../Data/saved.json";
+            //string url = "../../App_Data/saved.json";
+            
+                string url = "E:/saved/saved.json";
             string json = JsonConvert.SerializeObject(obj);
             File.WriteAllText(url, json);
         }

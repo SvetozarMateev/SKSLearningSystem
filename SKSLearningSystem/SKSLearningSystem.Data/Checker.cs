@@ -12,6 +12,7 @@ namespace SKSLearningSystem.Data
     {
         public static void Start()
         {
+
             IScheduler scheduler = StdSchedulerFactory.GetDefaultScheduler();
             scheduler.Start();
             IJobDetail job = JobBuilder.Create<OverdueCheckJob>().Build();

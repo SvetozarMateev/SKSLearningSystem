@@ -1,0 +1,8 @@
+﻿@model SKSLearningSystem.Areas.Admin.Models.TakeTestViewModel
+<div class="passed-box">
+
+    <div class="text-passed">
+        Congratulations your grade is @Model.Grade%
+       </div>
+    </div>
+        @Html.ActionLink("Return to Home page", "Index", "Home", null, new { @class = "return-home-passed" });

@@ -1,0 +1,48 @@
+﻿@model SKSLearningSystem.Models.TakeCourseModel
+
+@{
+    ViewBag.Title = "TakeCourse";
+}
+
+
+
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        @foreach (var image in Model.Images)
+        {
+            <div class="swiper-slide">
+                <img id="slide-img" src="@Url.Action("RenderImage", new { id = image.Id })" alt="firstSlide">
+            </div>
+        }
+    </div>
+    <div class="swiper-pagination"></div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+</div>
+@Html.ActionLink("Take Exam","takeexam",new { courseStateId = Model.CourseStateId })
+
+
+@section styles{
+    @Styles.Render("~/Content/TakeCourse")
+}
+@section scripts{ 
+    @Scripts.Render("~/bundles/swiper")
+    <script>
+         var swiper = new Swiper('.swiper-container', {
+            pagination: {
+                el: '.swiper-pagination',
+                type: 'progressbar',
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            on: {
+                init: function () {
+                    console.log('swiper initialized');
+                }
+
+            }
+        });
+    </script>
+}

@@ -1,0 +1,165 @@
+﻿h2, #butt {
+    text-align: center;
+}
+
+#container {
+    display: grid;
+    grid-template-columns: repeat(60, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(40px, auto);
+    border: 1px solid black;
+    margin: 5px 150px;
+    padding: 5px;
+}
+
+#ListUsers {
+    grid-column-start: 1;
+    grid-column-end: 52;
+    display: grid;
+    grid-template-columns: repeat(52, 1fr);
+}
+
+#userName {
+    grid-column-start: 1;
+    grid-column-end: 20;
+}
+#mandatory {
+    text-align: center;
+    grid-column-start: 20;
+    grid-column-end: 30;
+}
+#dueDate {
+    text-align: center;
+    grid-column-start: 30;
+    grid-column-end: 52;
+}
+
+#ListCourses {
+    grid-column-start:52;
+    grid-column-end: 60;
+}
+
+/*p {
+    border: 1px solid black;
+}*/
+.choose-btn{
+    text-decoration:none;
+    color:dimgrey;
+    border-radius:15px;
+    border-width:thin;
+    background-color:white;
+    border:solid;
+    padding:1%;   
+
+}
+.btn-wrapper{
+    margin-top:5%;
+}
+
+    .choose-btn:hover {
+        text-decoration: none;
+        color: white;
+        
+        background-color: dimgray;
+    
+    }
+.choose-btn:focus {
+    text-decoration: none;
+    color: white;
+    background-color: dimgray;
+}
+
+.form-assign{
+    margin-top:3%;
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+
+}
+.user-name{
+    grid-column-start:1;
+    grid-column-end:2;
+}
+.user-checked {
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+.user-mand {
+    grid-column-start: 3;
+    grid-column-end: 4;
+}
+.user-duedate {
+    grid-column-start: 4;
+    grid-column-end: 5;
+}
+.filler {
+    grid-column-start: 5;
+    grid-column-end: 6;
+}
+
+.search {
+    grid-column-start: 1;
+    grid-column-end: 4;
+   
+}
+.search-btn{
+    border-radius:15px;
+    background-color:mediumseagreen;
+    color:white;
+    padding:2%;
+    border-style:solid;
+    margin-left:3%;
+    border-width:thin;
+}
+.search-btn:hover {
+  
+    background-color: darkgreen;
+  
+}
+.half-search {
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+.full-search {
+    grid-column-start: 3;
+    grid-column-end: 5;
+}
+.attrs {
+    grid-column-start: 1;
+    grid-column-end: 5;
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    border-bottom: solid;
+    border-bottom-color: gray;
+}
+.info {
+    grid-column-start: 1;
+    grid-column-end: 5;
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    text-align:center;
+    
+}
+.button {
+    grid-column-start: 1;
+    grid-column-end: 5;
+}
+#name {
+    grid-column-start: 1;
+    grid-column-end: 2;
+}
+#dep {
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+#mand {
+    grid-column-start: 3;
+    grid-column-end: 4;
+}
+#due {
+    grid-column-start: 4;
+    grid-column-end: 5;
+}
+#grade {
+    grid-column-start: 5;
+    grid-column-end: 6;
+}

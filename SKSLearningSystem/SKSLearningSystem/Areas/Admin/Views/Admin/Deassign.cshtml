@@ -1,0 +1,34 @@
+﻿@model System.Collections.Generic.List<SKSLearningSystem.Models.ViewModels.AdminViewModels.DeassignViewModel>
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("deassign", "admin", FormMethod.Post, new { id = "deassign-form" }))
+{
+    <div id="attrs">
+        <div id="user-name"> Username</div>
+        <div id="course-name"> Coursename</div>
+        <div id="due-date"> Duedate</div>
+        <div id="assgn-date"> Assignement Date</div>
+        <div id="state-bool"> Delete</div>
+    </div>
+    
+    <div class="info">
+        @for (int i = 0; i < Model.Count; i++)
+        {
+        @Html.HiddenFor(x => x[i].CourseState.Id)
+        <div id="user-name"> @Html.DisplayFor(x => x[i].CourseState.User.UserName)</div>
+        <div id="course-name"> @Html.DisplayFor(x => x[i].CourseState.Course.Name)</div>
+        <div id="due-date"> @Html.DisplayFor(x => x[i].CourseState.DueDate)</div>
+        <div id="assgn-date"> @Html.DisplayFor(x => x[i].CourseState.AssignmentDate)</div>
+        <div id="state-bool"> @Html.EditorFor(x => x[i].Selected)</div>
+        }
+    </div>
+  
+    <button id="mybtn" type="submit">Delete Assignements</button>
+}
+
+@section styles{
+
+    @Styles.Render("~/Content/deassign");
+}

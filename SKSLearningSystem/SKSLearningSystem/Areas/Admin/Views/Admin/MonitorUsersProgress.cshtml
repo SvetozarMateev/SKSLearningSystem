@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "MonitorUsersProgress";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="users-field">
+    <table id="list485"></table>
+    <div id="plist485"></div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqGrid")
+}
+@section styles{
+    @Styles.Render("~/Content/jqGridcss")
+}

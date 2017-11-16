@@ -1,0 +1,45 @@
+﻿@model SKSLearningSystem.Areas.Admin.Models.AssignCourseViewModel
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<h2>You Have Selected</h2>
+
+@using (Html.BeginForm("SubmitAssignments", "Admin", FormMethod.Post))
+{
+    <div id="container">
+        <div id="ListUsers">
+            @for (int i = 0; i < Model.Users.Count; i++)
+            {
+                <p>@Html.HiddenFor(x => Model.Users[i].Checked)</p>
+                if (Model.Users[i].Checked == true)
+                {
+                    <p>@Html.HiddenFor(x => Model.Users[i].Id)</p>
+                    <p id="userName"> @Html.DisplayFor(x => Model.Users[i].UserName) @Html.HiddenFor(x => Model.Users[i].UserName)</p>
+                    <p id="mandatory">@Html.LabelFor(u => Model.Users[i].Mandatory) @Html.DisplayFor(u => Model.Users[i].Mandatory) @Html.HiddenFor(u => Model.Users[i].Mandatory)</p>
+                    <p id="dueDate">@Html.LabelFor(u => Model.Users[i].DueDate) @Html.DisplayFor(u => Model.Users[i].DueDate) @Html.HiddenFor(u => Model.Users[i].DueDate)</p>
+                }
+            }
+        </div>
+        <div id="ListCourses">
+            @for (int i = 0; i < Model.Courses.Count; i++)
+                {
+                <p>@Html.HiddenFor(x => Model.Courses[i].Checked)</p>
+                if (Model.Courses[i].Checked == true)
+                {
+                    <p>@Html.HiddenFor(x => Model.Courses[i].Id)</p>
+                    <p>@Html.DisplayFor(x => Model.Courses[i].Name) @Html.HiddenFor(x => Model.Courses[i].Name)</p>
+                }
+            }
+        </div>
+    </div>
+    <div id="butt">
+        <div id="butt">
+            <input type="submit" value="Assign Courses">
+        </div>
+        <p class="pressMe">@Html.ActionLink("Chose New Assignmet", "AssignCourse", "Admin", new { area = "Admin" }, null)</p>
+
+    </div>
+}

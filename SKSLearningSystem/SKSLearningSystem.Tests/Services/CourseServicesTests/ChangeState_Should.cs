@@ -11,27 +11,27 @@ namespace SKSLearningSystem.Tests.Services.CourseServices.CourseServicesTests
     [TestClass]
     public class ChangeState_Should
     {
-        [TestMethod]
-        public async void ChangeCourseState_WhenParametersAreCorrect()
-        {
-            //Arrange
-            var dbMock = new Mock<LearningSystemDbContext>();
-            var courseServices = new CourseService(dbMock.Object);
-            var courseStatesMock = new Mock<DbSet<CourseState>>();
-            var states = new List<CourseState>();
-            var state = new CourseState() { Id = 1, State = "None" };
-            var expected = "New State";
+        //[TestMethod]
+        //public async void ChangeCourseState_WhenParametersAreCorrect()
+        //{
+        //    //Arrange
+        //    var dbMock = new Mock<LearningSystemDbContext>();
+        //    var courseServices = new CourseService(dbMock.Object);
+        //    var courseStatesMock = new Mock<DbSet<CourseState>>();
+        //    var states = new List<CourseState>();
+        //    var state = new CourseState() { Id = 1, State = "None" };
+        //    var expected = "New State";
             
-            states.Add(state);
-            courseStatesMock.SetupData(states);
-            dbMock.Setup(x => x.CourseStates).Returns(courseStatesMock.Object);
+        //    states.Add(state);
+        //    courseStatesMock.SetupData(states);
+        //    dbMock.Setup(x => x.CourseStates).Returns(courseStatesMock.Object);
 
-            //Act
-            await courseServices.ChangeCourseState(1, expected,It.IsAny<double>());
+        //    //Act
+        //    await courseServices.ChangeCourseState(1, expected,It.IsAny<double>());
 
-            //Assert
-            Assert.AreEqual(expected, state.State);
-        }
+        //    //Assert
+        //    Assert.AreEqual(expected, state.State);
+        //}
 
         [TestMethod]
         public  void ChangeGrade_WhenParametersAreCorrect()

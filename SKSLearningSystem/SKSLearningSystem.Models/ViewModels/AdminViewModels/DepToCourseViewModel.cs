@@ -9,6 +9,10 @@ namespace SKSLearningSystem.Models.ViewModels.AdminViewModels
 {
     public class DepToCourseViewModel
     {
+        public DepToCourseViewModel()
+        {
+            this.DueDate = DateTime.Now;       
+        }
         [Required]
         public string CourseName { get; set; }
         [Required]

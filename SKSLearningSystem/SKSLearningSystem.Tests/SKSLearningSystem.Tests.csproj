@@ -115,6 +115,7 @@
     <Compile Include="Services\DbServicesTests\GetImages_Should.cs" />
     <Compile Include="Services\DbServicesTests\GetStateFromDB_Should.cs" />
     <Compile Include="Services\DbServicesTests\SaveAssignementsForDepartment_Should.cs" />
+    <Compile Include="Services\DbServicesTests\SaveAssignementsToDb_Should.cs" />
     <Compile Include="Services\GridServicesTests\SearchResultFalse_Should.cs" />
     <Compile Include="Services\GridServicesTests\SearchResultTrue_Should.cs" />
     <Compile Include="Controllers\HomeControllerTests\AllCoursesShould.cs" />

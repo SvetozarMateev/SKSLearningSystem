@@ -53,7 +53,7 @@ namespace SKSLearningSystem.Services
                 Id = x.Id
             }).ToList();
         }
-        public async Task SaveAssignementsForDepartment(DepToCourseViewModel model)
+        public void  SaveAssignementsForDepartment(DepToCourseViewModel model)
         {
             var users = this.context.Users
                 .Where(x => x.Department == model.Department).ToList();
@@ -62,8 +62,10 @@ namespace SKSLearningSystem.Services
 
             for (int i = 0; i < users.Count; i++)
             {
-                if (await this.context.CourseStates
-                    .AnyAsync(x => x.CourseId == course.Id && users[i].Id == x.UserId) == false)
+                string currUserId = users[i].Id;
+                int currCourseID = course.Id;
+                if ( this.context.CourseStates
+                    .Any(x => x.CourseId == currCourseID && currUserId == x.UserId) == false)
                 {
                     this.context.CourseStates.Add(new CourseState()
                     {
@@ -76,18 +78,20 @@ namespace SKSLearningSystem.Services
                     });
                 }
             }
-            await this.context.SaveChangesAsync();
+             this.context.SaveChanges();
         }
 
-        public async Task SaveAssignementsToDb(int courseId, IList<UserViewModel> users)
+        public void  SaveAssignementsToDb(int courseId, IList<UserViewModel> users)
         {
             var userIds = users.Select(x => x.Id).ToArray();
             var course = this.context.Courses.First(x => x.Id == courseId);
             var usersFromDB = this.context.Users.Where(x => userIds.Contains(x.Id)).ToList();
             for (int i = 0; i < users.Count; i++)
             {
-                if (await this.context.CourseStates
-                    .AnyAsync(x => x.CourseId == course.Id && users[i].Id == x.UserId) == false)
+                string currUserId = users[i].Id;
+                int currCourseID = course.Id;
+                if ( this.context.CourseStates
+                    .Any(x => x.CourseId == currCourseID && currUserId == x.UserId) == false)
                 {
                     this.context.CourseStates.Add(new CourseState()
                     {
@@ -100,16 +104,18 @@ namespace SKSLearningSystem.Services
                 }
 
             }
-            await this.context.SaveChangesAsync();
+             this.context.SaveChanges();
         }
 
-        public async Task SaveAssignementsToDb(CourseState state)
+        public void  SaveAssignementsToDb(CourseState state)
         {
-            if (await this.context.CourseStates
-                .AnyAsync(x => x.CourseId == state.CourseId && state.UserId == x.UserId) == false)
+            string currUserId = state.UserId;
+            int currCourseID = state.CourseId;
+            if ( this.context.CourseStates
+                .Any(x => x.CourseId == currCourseID && currUserId == x.UserId) == false)
             {
                 this.context.CourseStates.Add(state);
-                await this.context.SaveChangesAsync();
+                 this.context.SaveChanges();
             }
         }
         //alt end
@@ -191,13 +197,13 @@ namespace SKSLearningSystem.Services
                 .ToList();
         }
 
-        public  void SaveToFile(Object obj)
-        {
-           // string url = "App_Data/saved.json";
-            string url = "../../saved.json";
-            //string json = await JsonConvert.SerializeObjectAsync(obj);
-            string json2 = Task.Factory.StartNew(() => JsonConvert.SerializeObject(obj)).ToString();
-            File.WriteAllText(url, json2);
-        }
+        //public  void SaveToFile(Object obj)
+        //{
+        //   // string url = "App_Data/saved.json";
+        //    string url = "../../saved.json";
+        //    //string json = await JsonConvert.SerializeObjectAsync(obj);
+        //    string json2 = Task.Factory.StartNew(() => JsonConvert.SerializeObject(obj)).ToString();
+        //    File.WriteAllText(url, json2);
+        //}
     }
 }

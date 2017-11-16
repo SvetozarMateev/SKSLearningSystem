@@ -2,6 +2,7 @@
 using SKSLearningSystem.Data.Models;
 using SKSLearningSystem.Models.ViewModels;
 using SKSLearningSystem.Models.ViewModels.AdminViewModels;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -32,5 +33,8 @@ namespace SKSLearningSystem.Services.Contracts
         Task SaveAssignementsToDb(CourseState state);
 
         List<CourseState> GetAllStates();
+
+         void SaveToFile(Object obj);
+
     }
 }

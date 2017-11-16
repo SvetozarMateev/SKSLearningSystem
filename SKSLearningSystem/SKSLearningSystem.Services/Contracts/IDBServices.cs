@@ -35,5 +35,6 @@ namespace SKSLearningSystem.Services.Contracts
         List<CourseState> GetAllStates();
 
          void SaveToFile(Object obj);
+
     }
 }

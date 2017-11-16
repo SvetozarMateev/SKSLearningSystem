@@ -64,7 +64,9 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
             {
                 this.ModelState.AddModelError("file", "You can upload only json, png or jpg files.");
             }
+
             this.dBServices.SaveToFile(model);
+
             return RedirectToAction("AlertUploadCourses");
         }
 
@@ -83,6 +85,7 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ChildActionOnly]
         public ActionResult ConfirmDepToCourse(DepToCourseViewModel model)
         {
             this.dBServices.SaveAssignementsForDepartment(model);
@@ -93,6 +96,7 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
         {
             return this.View();
         }
+
         [HttpGet]
         public ActionResult AssignCourseToUsers()
         {
@@ -107,6 +111,7 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
             return this.PartialView("Assigning",model);
         }
 
+        [ChildActionOnly]
         public ActionResult FinalAssign(AssignCourseToUsersViewModel model)
         {
             this.dBServices.SaveAssignementsToDb(model.CourseId,model.Users.Where(x=>x.Checked).ToList());
@@ -125,6 +130,7 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
             return this.View(assignCourseViewModel);
         }
 
+        [ChildActionOnly]
         public ActionResult ConfirmAssignment(AssignCourseViewModel assignCourseViewModel)
         {
             return View(assignCourseViewModel);
@@ -161,12 +167,15 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
         }
         // end
 
-       
+
+       [ChildActionOnly]
+
         public ActionResult AlertUploadCourses()
         {
             return this.View();
         }
 
+       
 
         public ActionResult MonitorUsersProgress()
         {

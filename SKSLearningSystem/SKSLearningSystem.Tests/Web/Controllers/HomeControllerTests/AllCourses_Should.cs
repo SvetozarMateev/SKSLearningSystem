@@ -27,10 +27,10 @@ namespace SKSLearningSystem.Tests.Web.Controllers.HomeControllerTests
             List<SingleCourseViewModel> model = new List<SingleCourseViewModel>();
 
             var controller = new HomeController(homeServicesMock.Object, adminServicesMock.Object, dbServicesMock.Object);
-            dbServicesMock.Setup(x => x.GetCoursesFromDb()).Returns(model);
+
 
             //Act & Assert
-            controller.WithCallTo(x => x.Index()).ShouldRenderDefaultView().WithModel(model);
+            controller.WithCallTo(x => x.Index()).ShouldRenderDefaultView();
         }
     }
 }

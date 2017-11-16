@@ -123,6 +123,17 @@
     <Compile Include="Services\DbServicesTests\GetCoursesFromDbShould.cs" />
     <Compile Include="Services\HomeServicesTests\GetCoursesFromDbShould.cs" />
     <Compile Include="Services\HomeServicesTests\GetCourseStatesShould.cs" />
+    <Compile Include="Web\Areas\Admin\Controllers\AdminControllerTests\AlertUploadCourses_Should.cs" />
+    <Compile Include="Web\Areas\Admin\Controllers\AdminControllerTests\AlertUser_Should.cs" />
+    <Compile Include="Web\Areas\Admin\Controllers\AdminControllerTests\AssignChoose_Should.cs" />
+    <Compile Include="Web\Areas\Admin\Controllers\AdminControllerTests\AssignCourseToUsersPost_Should.cs" />
+    <Compile Include="Web\Areas\Admin\Controllers\AdminControllerTests\AssignCourseToUsers_Should.cs" />
+    <Compile Include="Web\Areas\Admin\Controllers\AdminControllerTests\AssignCourse_Should.cs" />
+    <Compile Include="Web\Areas\Admin\Controllers\AdminControllerTests\AssignDepToCourseGet_Should.cs" />
+    <Compile Include="Web\Areas\Admin\Controllers\AdminControllerTests\AssignDepToCoursePost_Should.cs" />
+    <Compile Include="Web\Areas\Admin\Controllers\AdminControllerTests\ConfirmAssignement_Should.cs" />
+    <Compile Include="Web\Areas\Admin\Controllers\AdminControllerTests\ConfirmDepToCourse_Should.cs" />
+    <Compile Include="Web\Areas\Admin\Controllers\AdminControllerTests\FinalAssign_Should.cs" />
     <Compile Include="Web\Areas\Admin\Controllers\AdminControllerTests\GetJSON_Should.cs" />
     <Compile Include="Web\Areas\Admin\Controllers\AdminControllerTests\MonitorUsersProgress_Should.cs" />
     <Compile Include="Web\Areas\Admin\Controllers\AdminControllerTests\UploadCourseGet_Should.cs" />

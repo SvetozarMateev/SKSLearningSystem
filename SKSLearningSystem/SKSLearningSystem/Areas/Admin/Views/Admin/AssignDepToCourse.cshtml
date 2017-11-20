@@ -5,8 +5,10 @@
 }
 
 
-@using (Ajax.BeginForm("AssignDepToCourse", "admin", null, new AjaxOptions() { UpdateTargetId = "field-assign" }, new {@class="form-assign dept-assign" }))
+@using (Ajax.BeginForm("AssignDepToCourse", "admin", null, new AjaxOptions() { UpdateTargetId = "field-assign" }, new { @class = "form-assign dept-assign" }))
 {
+    @Html.ValidationSummary()
+    @Html.AntiForgeryToken()
     <div class="half-search" >
         <label for="depname">Department</label>
         @Html.TextBox("depName")

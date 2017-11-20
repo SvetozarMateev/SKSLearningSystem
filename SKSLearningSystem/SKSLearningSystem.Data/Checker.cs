@@ -18,7 +18,7 @@ namespace SKSLearningSystem.Data
             IJobDetail job = JobBuilder.Create<OverdueCheckJob>().Build();
 
             ITrigger trigger = TriggerBuilder.Create().WithDailyTimeIntervalSchedule(
-                s => s.WithIntervalInMinutes(1).OnEveryDay().StartingDailyAt(TimeOfDay.HourAndMinuteOfDay(6, 7)).InTimeZone(TimeZoneInfo.Local)).Build();
+                s => s.WithIntervalInSeconds(15).OnEveryDay().StartingDailyAt(TimeOfDay.HourAndMinuteOfDay(6, 7)).InTimeZone(TimeZoneInfo.Local)).Build();
 
             scheduler.ScheduleJob(job, trigger);           
         }

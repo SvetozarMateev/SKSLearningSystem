@@ -1,5 +1,7 @@
-﻿@using (Ajax.BeginForm("assigncoursetousers", "admin", null, new AjaxOptions() { UpdateTargetId = "field-assign" }, new { @class="form-assign" }))
+﻿@using (Ajax.BeginForm("assigncoursetousers", "admin", null, new AjaxOptions() { UpdateTargetId = "field-assign" }, new { @class = "form-assign" }))
 {
+    @Html.ValidationSummary()
+    @Html.AntiForgeryToken()
     <div class="search">
         Course: 
         @Html.TextBox("courseName", "", new { @class = "text-field" })

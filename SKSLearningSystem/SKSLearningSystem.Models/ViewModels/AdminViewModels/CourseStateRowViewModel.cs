@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.ComponentModel.DataAnnotations;
 
 namespace SKSLearningSystem.Areas.Admin.Models
 {
@@ -14,10 +12,21 @@ namespace SKSLearningSystem.Areas.Admin.Models
         }
 
         public int Index { get; set; }
+
         public string Username { get; set; }
+
         public string Coursename { get; set; }
+
+        [Required]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime AssignementDate { get; set; }
+
+        [Required]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime DueDate { get; set; }
+
         public string State { get; set; }
     }
 }

@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SKSLearningSystem.Models.ViewModels
 {
@@ -15,26 +12,39 @@ namespace SKSLearningSystem.Models.ViewModels
 
         public int PicId { get; set; }
 
+        [Required]
         public string Description { get; set; }
 
+        [Required]
         public string CourseName { get; set; }
 
+        [Required]
         public bool Passed { get; set; }
 
         public bool Mandatory { get; set; }
 
         public double Grade { get; set; }
 
+        [Required]
         public string State { get; set; }
 
         public int CourseId { get; set; }
 
+        [Required]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         [Column(TypeName = "DateTime2")]
         public DateTime AssignmentDate { get; set; }
 
+        [Required]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         [Column(TypeName = "DateTime2")]
         public DateTime DueDate { get; set; }
 
+        [Required]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         [Column(TypeName = "DateTime2")]
         public DateTime CompletionDate { get; set; }
     }

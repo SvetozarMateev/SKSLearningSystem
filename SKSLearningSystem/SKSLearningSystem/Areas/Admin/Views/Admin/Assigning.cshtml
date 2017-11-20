@@ -1,6 +1,9 @@
 ﻿@model SKSLearningSystem.Models.ViewModels.AdminViewModels.AssignCourseToUsersViewModel
-    @using (Html.BeginForm("finalassign","admin",FormMethod.Post,new { @class="form-assign"}))
+    @using (Html.BeginForm("finalassign", "admin", FormMethod.Post, new { @class = "form-assign" }))
     {
+        @Html.ValidationSummary()
+        @Html.AntiForgeryToken()
+
         <div class="user-name">Username</div>
         <div class="user-checked">Select</div>
         <div class="user-mand">Mandatory</div>

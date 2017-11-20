@@ -94,7 +94,6 @@
     <Compile Include="ViewModels\AdminViewModels\CourseViewModel.cs" />
     <Compile Include="ViewModels\AdminViewModels\DeassignViewModel.cs" />
     <Compile Include="ViewModels\AdminViewModels\DepToCourseViewModel.cs" />
-    <Compile Include="ViewModels\AdminViewModels\FilterViewModel.cs" />
     <Compile Include="ViewModels\AdminViewModels\GridRequestViewModel.cs" />
     <Compile Include="ViewModels\AdminViewModels\RulesViewModel.cs" />
     <Compile Include="ViewModels\AdminViewModels\UploadCourseViewModel.cs" />

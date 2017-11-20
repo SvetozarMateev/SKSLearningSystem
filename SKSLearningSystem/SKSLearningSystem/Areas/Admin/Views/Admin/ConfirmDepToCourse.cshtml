@@ -1,6 +1,9 @@
 ﻿@model SKSLearningSystem.Models.ViewModels.AdminViewModels.DepToCourseViewModel
-    @using (Html.BeginForm("ConfirmDepToCourse", "admin", FormMethod.Post, new {@class="form-assign" }))
+    @using (Html.BeginForm("ConfirmDepToCourse", "admin", FormMethod.Post, new { @class = "form-assign" }))
     {
+        @Html.ValidationSummary()
+        @Html.AntiForgeryToken()
+
         @Html.HiddenFor(x => x.CourseName);
         @Html.HiddenFor(x => x.Department);
         @Html.DisplayFor(x => x.CourseName);

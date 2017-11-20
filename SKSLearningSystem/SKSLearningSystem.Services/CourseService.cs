@@ -96,7 +96,7 @@ namespace SKSLearningSystem.Services.CourseServices
             return this.context.CourseStates.First(x => x.User.UserName == name && x.CourseId == courseId).Id;
         }
 
-        public async Task ChangeCourseState(int courseStateId, string newState,double grade)
+        public void  ChangeCourseState(int courseStateId, string newState,double grade)
         {
             var course = this.context.CourseStates.First(x => x.Id == courseStateId);
             if (course.State != "Completed")
@@ -104,7 +104,7 @@ namespace SKSLearningSystem.Services.CourseServices
                 course.Grade = grade;
                 course.Passed = true;
                 course.State = newState;
-               await this.context.SaveChangesAsync();
+                this.context.SaveChanges();
             }
             
         }

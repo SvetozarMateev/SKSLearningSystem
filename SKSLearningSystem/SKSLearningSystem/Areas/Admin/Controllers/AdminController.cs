@@ -2,7 +2,6 @@
 using Microsoft.AspNet.Identity;
 using SKSLearningSystem.Areas.Admin.Models;
 using SKSLearningSystem.Areas.Admin.Services;
-using SKSLearningSystem.Models.ViewModels;
 using SKSLearningSystem.Models.ViewModels.AdminViewModels;
 using SKSLearningSystem.Services.Contracts;
 using System.Collections.Generic;
@@ -18,9 +17,7 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
         private readonly IAdminServices adminServices;
         private readonly IGridServices gridServices;
         private readonly ApplicationUserManager userManager;
-        private readonly IDBServices dBServices;
-
-       
+        private readonly IDBServices dBServices;       
 
         public AdminController(IAdminServices services, ApplicationUserManager userManager, 
             IGridServices gridServices, IDBServices dBServices)
@@ -34,10 +31,8 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
             this.adminServices = services;
             this.userManager = userManager;
             this.dBServices = dBServices;
-            this.gridServices = gridServices;
-            
+            this.gridServices = gridServices;           
         }
-
        
         [HttpGet]
         public ActionResult UploadCourse()
@@ -68,14 +63,14 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
             return RedirectToAction("AlertUploadCourses");
         }
 
-
-        //Start of alternative
         [HttpGet]
         public ActionResult AssignDepToCourse()
         {
             return this.PartialView();
         }
+
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult AssignDepToCourse(string depName, string courseName)
         {
             var model = new DepToCourseViewModel() { Department = depName, CourseName = courseName };
@@ -83,10 +78,14 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        
+        [ValidateAntiForgeryToken]
         public ActionResult ConfirmDepToCourse(DepToCourseViewModel model)
         {
-            this.dBServices.SaveAssignementsForDepartment(model);
+            if (this.ModelState.IsValid)
+            {
+                this.dBServices.SaveAssignementsForDepartment(model);
+            }
+           
             return RedirectToAction("AssignChoose");
         }
 
@@ -100,7 +99,9 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
         {
             return this.PartialView();
         }
+
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult AssignCourseToUsers(string courseName)
         {
             var course = this.dBServices.GetCoursesFromDBByName(courseName);
@@ -109,17 +110,13 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
             return this.PartialView("Assigning",model);
         }
 
-        
+        [ValidateAntiForgeryToken]
         public ActionResult FinalAssign(AssignCourseToUsersViewModel model)
         {
             this.dBServices.SaveAssignementsToDb(model.CourseId,model.Users.Where(x=>x.Checked).ToList());
             return this.RedirectToAction("AssignChoose");
         }
 
-
-
-            //end of alternative
-        // Assign Course Methods Start
         [HttpGet]
         public ActionResult AssignCourse()
         {
@@ -128,13 +125,15 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
             return this.View(assignCourseViewModel);
         }
 
-        [ChildActionOnly]
+       
+        [ValidateAntiForgeryToken]
         public ActionResult ConfirmAssignment(AssignCourseViewModel assignCourseViewModel)
         {
             return View(assignCourseViewModel);
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult SubmitAssignments(AssignCourseViewModel assignCourseViewModel)
         {
             this.adminServices.SaveAssignedCoursesToDb(assignCourseViewModel);
@@ -153,6 +152,7 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Deassign(List<DeassignViewModel> listViewModels)
         {
             this.adminServices.DeleteCourseStates(listViewModels);
@@ -163,17 +163,11 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
         {
             return View();
         }
-        // end
-
-
-      
 
         public ActionResult AlertUploadCourses()
         {
             return this.View();
-        }
-
-       
+        }      
 
         public ActionResult MonitorUsersProgress()
         {
@@ -203,8 +197,13 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
             return View(assignCourseViewModel);
         }
 
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> MakeAdmin(AssignCourseViewModel assignCourseViewModel)
         {
+            if(this.ModelState.IsValid == false)
+            {
+                return RedirectToAction("AssignRoles");
+            }
             var userIds = assignCourseViewModel.Users.Select(y => y.Id).ToArray();
             var users = this.dBServices.GetUsersFromDB(userIds).ToList();
 
@@ -236,7 +235,6 @@ namespace SKSLearningSystem.Areas.Admin.Controllers
                 {
                     return Json(this.gridServices.SearchResultTrue(filters), JsonRequestBehavior.AllowGet);
                 }
-
             }
         }
     }

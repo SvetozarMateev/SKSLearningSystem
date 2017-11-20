@@ -5,6 +5,7 @@
 
 @using (Html.BeginForm("deassign", "admin", FormMethod.Post, new { id = "deassign-form" }))
 {
+    @Html.AntiForgeryToken()
     <div id="attrs">
         <div id="user-name"> Username</div>
         <div id="course-name"> Coursename</div>
